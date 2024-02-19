@@ -11,10 +11,12 @@ Welcome to the Capstone Full-Stack Template! This repository is a starting point
 ## Prerequisites
 
 Before you begin, ensure you have the following installed on your system:
+
 - Docker and Docker Compose
 - Node.js (recommended: the latest LTS version)
 - Git (for cloning the repository)
 
 ## Getting Started
 
+First run this command `npm run setup` then run this `npm run docker`.\
 Follow the README.md file in each of the client and server for setup steps
