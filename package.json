@@ -1,0 +1,24 @@
+{
+  "name": "capstone-project",
+  "version": "0.0.1",
+  "description": "Welcome to the Capstone Full-Stack Template! This repository is a starting point for full-stack development capstone projects, featuring a backend Express server with MongoDB, and a frontend Next.js client, both dockerized for ease of development and deployment.",
+  "scripts": {
+    "test": "jest --findRelatedTests --passWithNoTests",
+    "format": "prettier --ignore-path ./.gitignore --write",
+    "prepare": "husky",
+    "lint-staged": "lint-staged",
+    "setup:client": "cd client && npm i",
+    "setup:server": "cd server && npm i",
+    "setup": "npm i && npm run setup:client && npm run setup:server",
+    "docker:client": "cd client && docker-compose up -d",
+    "docker:server": "cd server && docker-compose up -d",
+    "docker": "npm run docker:client && npm run docker:server"
+  },
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "jest": "^29.7.0"
+  },
+  "author": ""
+}
