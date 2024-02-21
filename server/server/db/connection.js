@@ -10,9 +10,9 @@ const DB_URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${
 const url = DB_URI;
 
 const connectToMongo = () => {
+  mongoose.set("strictQuery", true);
   mongoose.connect(url, { useNewUrlParser: true });
-
-  db = mongoose.connection;
+  const db = mongoose.connection;
 
   db.once("open", () => {
     console.log("Database connected: ", url);

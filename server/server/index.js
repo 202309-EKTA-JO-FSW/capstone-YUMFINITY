@@ -15,10 +15,12 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-  connectToMongo();
-});
+if (process.env.NODE_ENV === "development") {
+  app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+    connectToMongo();
+  });
+}
 
 app.get("/test", (req, res) => {
   res.json(
