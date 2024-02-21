@@ -19,4 +19,5 @@ Before you begin, ensure you have the following installed on your system:
 ## Getting Started
 
 First run this command `npm run setup` then run this `npm run docker`.\
+If you face problems and want to delete containers run `npm run prune`.\
 Follow the README.md file in each of the client and server for setup steps

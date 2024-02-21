@@ -1,5 +1,4 @@
 const path = require("path");
-const BaseConfig = require("../.lintstagedrc.js");
 
 const buildEslintCommand = (filenames) =>
   `next lint --fix --file ${filenames
@@ -7,6 +6,5 @@ const buildEslintCommand = (filenames) =>
     .join(" --file ")}`;
 
 module.exports = {
-  ...BaseConfig,
-  "*.{js,jsx,ts,tsx}": [buildEslintCommand],
+  "*.{js,jsx,ts,tsx}": ["npm --prefix ../ run format", buildEslintCommand],
 };
