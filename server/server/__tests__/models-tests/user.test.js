@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const User = require("../Models/user");
-const connectToMongo = require("../db/connection");
+const User = require("../../Models/user");
+const connectToMongo = require("../../db/connection");
 
 beforeAll(() => {
   // Connect to the database before running any tests (only once)
