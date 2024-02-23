@@ -24,6 +24,7 @@ describe("Cart model tests", () => {
     // arrange
     const cartId = new mongoose.Types.ObjectId();
     const secondUserId = new mongoose.Types.ObjectId();
+    const item2Id = new mongoose.Types.ObjectId();
     let newCart = new Cart({
       _id: cartId,
       userId: userId,
@@ -34,6 +35,11 @@ describe("Cart model tests", () => {
           quantity: 2,
           specialItemRequirement: "pizza without onion",
         },
+        {
+          itemId: item2Id,
+          quantity: 1,
+          specialItemRequirement: "pizza without potato",
+        },
       ],
     });
 
@@ -42,7 +48,7 @@ describe("Cart model tests", () => {
       restaurantId: restaurantId,
       items: [
         {
-          itemId: itemId,
+          itemId: item2Id,
           quantity: 9,
           specialItemRequirement: "pizza without ketchup",
         },
@@ -66,7 +72,7 @@ describe("Cart model tests", () => {
     expect(cart.items[0].itemId).toEqual(itemId);
   });
 
-  it("should not create cart document in database if duplicate (userId) or (itemId inside items array) is provided", async () => {
+  it("should not create cart document in database if duplicate userId is provided", async () => {
     // arrange
     const cartId = new mongoose.Types.ObjectId();
     let newCart = new Cart({
@@ -93,6 +99,44 @@ describe("Cart model tests", () => {
     // assert
     const cart = await Cart.findById(cartId);
     expect(error).not.toBeNull();
+    expect(error.message).toContain("duplicate key error");
+    expect(cart).toBeNull();
+  });
+
+  it("should not create cart document in database if duplicate itemId in items array is provided", async () => {
+    // arrange
+    const cartId = new mongoose.Types.ObjectId();
+    const newUser = new mongoose.Types.ObjectId();
+    let newCart = new Cart({
+      _id: cartId,
+      userId: newUser,
+      restaurantId: restaurantId,
+      items: [
+        {
+          itemId: itemId,
+          quantity: 7,
+          specialItemRequirement: "pizza without mayonase",
+        },
+        {
+          itemId: itemId,
+          quantity: 12,
+          specialItemRequirement: "shawerma",
+        },
+      ],
+    });
+
+    // act
+    let error;
+    try {
+      await newCart.save();
+    } catch (e) {
+      error = e;
+    }
+
+    // assert
+    const cart = await Cart.findById(cartId);
+    expect(error).not.toBeNull();
+    expect(error.name).toContain("ValidationError");
     expect(cart).toBeNull();
   });
 });
