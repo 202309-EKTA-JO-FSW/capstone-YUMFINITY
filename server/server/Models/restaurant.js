@@ -20,11 +20,8 @@ const restaurantSchema = new mongoose.Schema({
   },
 
   restaurantPicture: {
-    // type to be decieded later on
-    // type: String,
+    type: String,
     required: true,
-    // default
-    // default img to be decided
   },
 
   acceptedPayment: {
@@ -37,5 +34,4 @@ const restaurantSchema = new mongoose.Schema({
     required: true,
   },
 });
-
 module.exports = mongoose.model("Restaurant", restaurantSchema);
