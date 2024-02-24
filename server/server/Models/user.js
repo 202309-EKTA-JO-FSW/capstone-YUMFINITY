@@ -24,6 +24,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    profilePicture: String, // Path to the image of the user inside backend
     phoneNumber: {
       type: Number,
       required: true,
