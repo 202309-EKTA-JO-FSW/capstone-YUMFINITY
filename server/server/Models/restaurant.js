@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// schema
 const restaurantSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
 
@@ -10,8 +9,15 @@ const restaurantSchema = new mongoose.Schema({
   },
 
   location: {
-    type: [String],
-    required: true,
+    type: [Number],
+    validate: {
+      validator: (v) => {
+        return v.length === 2;
+      },
+      message: (props) => {
+        return `${props.value} should be an array of two elements like [longitude, latitude]`;
+      },
+    },
   },
 
   phoneNumber: {
@@ -30,8 +36,9 @@ const restaurantSchema = new mongoose.Schema({
   },
 
   category: {
-    type: String,
+    type: [String],
     required: true,
   },
 });
+
 module.exports = mongoose.model("Restaurant", restaurantSchema);
