@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
     },
     profilePicture: String, // Path to the image of the user inside backend
     phoneNumber: {
-      type: Number,
+      type: String,
       required: true,
     },
     isAdmin: {
@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema(
               return v.length === 2;
             },
             message: (props) => {
-              return `${props.value} should be an array of two elements like [longitude, latitude]`;
+              return `${props.value} should be an array of two elements like [latitude, longitude]`;
             },
           },
         },

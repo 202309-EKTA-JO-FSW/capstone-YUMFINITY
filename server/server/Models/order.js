@@ -30,7 +30,7 @@ const orderSchema = new mongoose.Schema(
           return v.length === 2;
         },
         message: (props) => {
-          return `${props.value} should be an array of two elements like [longitude, latitude]`;
+          return `${props.value} should be an array of two elements like [latitude, longitude]`;
         },
       },
     },
