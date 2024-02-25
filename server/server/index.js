@@ -14,6 +14,7 @@ const port =
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use("/v1", require("./Routes/v1"));
 
 if (process.env.NODE_ENV === "development") {
   app.listen(port, () => {
