@@ -23,7 +23,7 @@ describe("User schema test", () => {
       email: "ahmad@test.com",
       firstName: "Ahmad",
       lastName: "Khaled",
-      phoneNumber: parseInt("0780000000", 10),
+      phoneNumber: "0780000000",
       isAdmin: true,
       addresses: [
         {
@@ -49,7 +49,7 @@ describe("User schema test", () => {
       email: "ahmad@test.com",
       firstName: "Ahmad",
       lastName: "Khaled",
-      phoneNumber: parseInt("0780000000", 10),
+      phoneNumber: "0780000000",
       isAdmin: true,
       addresses: [
         {
