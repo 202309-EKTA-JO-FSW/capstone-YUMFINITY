@@ -107,7 +107,7 @@ const orderSchema = new mongoose.Schema(
 orderSchema.index(
   { createdAt: 1 },
   {
-    expireAfterSeconds: 10,
+    expireAfterSeconds: 3600,
     partialFilterExpression: {
       orderStatus: "delivering",
     },
@@ -117,7 +117,7 @@ orderSchema.index(
 orderSchema.index(
   { orderDate: 1 },
   {
-    expireAfterSeconds: 10,
+    expireAfterSeconds: 3600,
     partialFilterExpression: {
       orderStatus: "cancelled",
     },
