@@ -103,12 +103,24 @@ const orderSchema = new mongoose.Schema(
   },
 );
 
-// order document will be deleted after 1 hour only if order status was still delivering
+// order document will be deleted after 1 hour only if order status was still delivering or cancelled
 orderSchema.index(
   { createdAt: 1 },
   {
     expireAfterSeconds: 3600,
-    partialFilterExpression: { orderStatus: "delivering" },
+    partialFilterExpression: {
+      orderStatus: "delivering",
+    },
+  },
+);
+
+orderSchema.index(
+  { orderDate: 1 },
+  {
+    expireAfterSeconds: 3600,
+    partialFilterExpression: {
+      orderStatus: "cancelled",
+    },
   },
 );
 
