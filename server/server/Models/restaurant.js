@@ -15,6 +15,7 @@ const restaurantSchema = new mongoose.Schema({
         return `${props.value} should be an array of two elements like [latitude, longitude]`;
       },
     },
+    required: true,
   },
   phoneNumber: {
     type: String,
