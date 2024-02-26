@@ -13,10 +13,10 @@ const itemSchema = new mongoose.Schema(
     price: {
       type: Number,
       required: true,
+      min: 0,
     },
     itemPicture: {
       type: String,
-      required: true,
     },
     restaurantID: {
       type: mongoose.Schema.Types.ObjectId,
@@ -27,6 +27,11 @@ const itemSchema = new mongoose.Schema(
       type: [String],
       required: true,
     },
+    availableQuantity: {
+      type: Number,
+      required: true,
+      min: 0,
+    }
   },
   {
     timestamps: true,
