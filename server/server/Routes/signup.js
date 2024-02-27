@@ -8,12 +8,20 @@ router.post(
   "/signup",
 
   // Validation rules
-  body("username").isLength({ min: 5 }),
-  body("password").isLength({ min: 5 }),
-  body("email").isEmail(),
-  body("firstName").notEmpty(),
-  body("lastName").notEmpty(),
-  body("phoneNumber").isMobilePhone(),
+  body("username", "Username should be at least 5 characters")
+    .isLength({ min: 5 })
+    .escape(),
+  body("password", "Password should be at least 5 characters")
+    .isLength({ min: 5 })
+    .escape(),
+  body("email", "Email should be in 'example@email.com' format")
+    .isEmail()
+    .escape(),
+  body("firstName", "First Name should not be empty").notEmpty().escape(),
+  body("lastName", "Last Name should not be empty").notEmpty().escape(),
+  body("phoneNumber", "Phone Number should be a Jordanian mobile number")
+    .isMobilePhone("ar-JO")
+    .escape(),
 
   // Controller function
   userController.signUp,
