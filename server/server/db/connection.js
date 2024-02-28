@@ -9,18 +9,21 @@ const DB_URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${
 
 const url = DB_URI;
 
-const connectToMongo = () => {
+const connectToMongo = async () => {
   mongoose.set("strictQuery", true);
-  mongoose.connect(url, { useNewUrlParser: true });
-  const db = mongoose.connection;
+  await mongoose
+    .connect(url)
+    .then(() => console.log("Database connected: ", url))
+    .catch((err) => console.error("Database connection error: ", err));
+  // const db = mongoose.connection;
 
-  db.once("open", () => {
-    console.log("Database connected: ", url);
-  });
+  // db.once("open", () => {
+  //   console.log("Database connected: ", url);
+  // });
 
-  db.on("error", (err) => {
-    console.error("Database connection error: ", err);
-  });
+  // db.on("error", (err) => {
+  //   console.error("Database connection error: ", err);
+  // });
 };
 
 module.exports = connectToMongo;
