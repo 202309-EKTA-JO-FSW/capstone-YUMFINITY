@@ -16,15 +16,15 @@ afterAll(async () => {
 
 describe("Order model tests", () => {
   // setup global Ids
-  const userId = mongoose.Types.ObjectId();
-  const restaurantId = mongoose.Types.ObjectId();
-  const itemId = mongoose.Types.ObjectId();
+  const userId = new mongoose.Types.ObjectId();
+  const restaurantId = new mongoose.Types.ObjectId();
+  const itemId = new mongoose.Types.ObjectId();
 
   it("should create order document in database with valid data", async () => {
     // arrange
-    const id = mongoose.Types.ObjectId();
-    const item2Id = mongoose.Types.ObjectId();
-    const item3Id = mongoose.Types.ObjectId();
+    const id = new mongoose.Types.ObjectId();
+    const item2Id = new mongoose.Types.ObjectId();
+    const item3Id = new mongoose.Types.ObjectId();
     let newOrder = new Order({
       _id: id,
       totalBill: 1,
@@ -61,7 +61,7 @@ describe("Order model tests", () => {
 
   it("should not create order document in database if duplicate itemId in items array provided", async () => {
     // arrange
-    const id = mongoose.Types.ObjectId();
+    const id = new mongoose.Types.ObjectId();
     let newOrder = new Order({
       _id: id,
       totalBill: 5,
@@ -88,7 +88,7 @@ describe("Order model tests", () => {
 
   it("should not create order document in database if wrong order status provided", async () => {
     // arrange
-    const id = mongoose.Types.ObjectId();
+    const id = new mongoose.Types.ObjectId();
     let newOrder = new Order({
       _id: id,
       totalBill: 5,
@@ -116,7 +116,7 @@ describe("Order model tests", () => {
 
   it("should not create order document in database if empty items array provided", async () => {
     // arrange
-    const id = mongoose.Types.ObjectId();
+    const id = new mongoose.Types.ObjectId();
     let newOrder = new Order({
       _id: id,
       totalBill: 5,
@@ -142,7 +142,7 @@ describe("Order model tests", () => {
 
   it("should not create order document in database if wrong address syntax provided", async () => {
     // arrange
-    const id = mongoose.Types.ObjectId();
+    const id = new mongoose.Types.ObjectId();
     let newOrder = new Order({
       _id: id,
       totalBill: 5,
@@ -169,7 +169,7 @@ describe("Order model tests", () => {
 
   it("should not create order document in database if either userId or restaurantId not provided", async () => {
     // arrange
-    const id = mongoose.Types.ObjectId();
+    const id = new mongoose.Types.ObjectId();
     let newOrder = new Order({
       _id: id,
       totalBill: 5,

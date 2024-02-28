@@ -19,11 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x]
 
     steps:
       - name: checkout our repo
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
       - name: creating docker containers
         working-directory: ./server

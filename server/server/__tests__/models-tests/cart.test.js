@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const Cart = require("../../Models/cart");
 const connectToMongo = require("../../db/connection");
 
-beforeAll(() => {
+beforeAll(async () => {
   // Connect to the database before running any tests (only once)
-  connectToMongo();
+  await connectToMongo();
 });
 
 afterAll(async () => {
