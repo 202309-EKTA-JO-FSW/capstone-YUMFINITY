@@ -30,7 +30,7 @@ const orderSchema = new mongoose.Schema(
           return v.length === 2;
         },
         message: (props) => {
-          return `${props.value} should be an array of two elements like [longitude, latitude]`;
+          return `${props.value} should be an array of two elements like [latitude, longitude]`;
         },
       },
     },
@@ -103,12 +103,24 @@ const orderSchema = new mongoose.Schema(
   },
 );
 
-// order document will be deleted after 1 hour only if order status was still delivering
+// order document will be deleted after 1 hour only if order status was still delivering or cancelled
 orderSchema.index(
   { createdAt: 1 },
   {
     expireAfterSeconds: 3600,
-    partialFilterExpression: { orderStatus: "delivering" },
+    partialFilterExpression: {
+      orderStatus: "delivering",
+    },
+  },
+);
+
+orderSchema.index(
+  { orderDate: 1 },
+  {
+    expireAfterSeconds: 3600,
+    partialFilterExpression: {
+      orderStatus: "cancelled",
+    },
   },
 );
 
