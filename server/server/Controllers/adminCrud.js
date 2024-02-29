@@ -51,17 +51,22 @@ const addNewItem = async (req, res) => {
   const updateItem = async (req, res) => {
     try {
        const { id } = req.params; 
-       const { title, price, itemPicture, category, availableQuantity } = req.body; 
+       const { title, price, description, itemPicture, category, availableQuantity } = req.body; 
        
        const updatedItem = await itemsModel.findByIdAndUpdate(
          id,
          {
            title,
            price,
+           description,
            itemPicture,
            category,
            availableQuantity,
          },
+         {
+          runValidators: true,
+          new: true,
+          },
          );
 
     if (!updatedItem) {
