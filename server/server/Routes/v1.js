@@ -6,7 +6,7 @@ const router = express.Router();
 // public API route for fetching restaurants
 router.use("/", require("./restaurantRoutes"));
 
-// public API route for signing in
-router.use("/signIn", require("./sign"));
+// public API routes for sign in and sign up
+router.use("/", require("./signRoutes"));
 
 module.exports = router;
