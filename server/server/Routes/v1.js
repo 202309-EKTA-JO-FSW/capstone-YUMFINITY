@@ -4,7 +4,7 @@ const router = express.Router();
 // we will put all of our major routes here
 
 // public API route for fetching restaurants
-router.use("/restaurants", require("./restaurant"));
+router.use("/", require("./restaurantRoutes"));
 
 // public API route for signing in
 router.use("/signIn", require("./sign"));
