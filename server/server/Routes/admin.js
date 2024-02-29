@@ -5,7 +5,7 @@ const adminController = require("../controllers/adminCrud");
 
 router.post("/add", adminController.addNewItem);
 router.put("/update/:id", adminController.updateItem);
-router.delete('/remove', adminController.removeOneOrManyItems);
+router.delete('/remove/:ids', adminController.removeOneOrManyItems);
 router.get('/filter', adminController.getItemById);
 
 

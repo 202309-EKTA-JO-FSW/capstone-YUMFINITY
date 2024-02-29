@@ -21,47 +21,66 @@ const getItemById = async (req, res) => {
 
 // admin add new item
 const addNewItem = async (req, res) => {
-    const ItemData = req.body;
-    try {
-      const newItem = await itemsModel.create(ItemData);
-      res.status(201).json(newItem);
-    } catch (err) {
-      res.status(400).json({ message: err.message });
-    };
-  };
+  try {
+    const { title, price, itemPicture, category, availableQuantity } =
+      req.body;
+
+    const newItem = itemsModel({
+      title, 
+      price, 
+      itemPicture, 
+      category, 
+      availableQuantity,
+    });
+
+    await newItem.save();
+
+    res
+      .status(201)
+      .json({ message: "Item added successfully", newItem });
+  } catch (error) {
+    console.error("Error adding item:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
 
 
 
   // admin update item
-const updateItem = async (req, res) => {
-    const { id } = req.params;
+  const updateItem = async (req, res) => {
     try {
-      const updatedItem = await itemsModel.findByIdAndUpdate(
-        id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      if (!updatedItem) {
-        res.status(422).json({
-          message: "The Item you are trying to update wasn't found",
-        });
-      } else {
-        res.json(updatedItem);
-      }
-    } catch (err) {
-      res.status(422).json({ message: err.message });
+       const { id } = req.params; 
+       const { title, price, itemPicture, category, availableQuantity } = req.body; 
+       
+       const updatedItem = await itemsModel.findByIdAndUpdate(
+         id,
+         {
+           title,
+           price,
+           itemPicture,
+           category,
+           availableQuantity,
+         },
+         );
+
+    if (!updatedItem) {
+      return res.status(404).json({ message: "Item not found" });
     }
-  };
+
+    res.status(200).json({ message: "Item updated successfully", updatedItem });
+ } catch (error) {
+    console.error("Error updating item:", error);
+    res.status(500).json({ message: error.message });
+ }
+};
 
 
 
 // Admin delete one or more from an items 
 const removeOneOrManyItems = async (req, res) => {
     try {
-      // Example: { ids: ['id1', 'id2', 'id3'] }
-      const { ids } = req.body;
+      const ids = req.params.ids.split(',');
+      
       const deleteItems = await itemsModel.deleteMany({ _id: { $in: ids } });
   
       if (deleteItems.deletedCount > 0) {
