@@ -5,6 +5,8 @@ require("dotenv").config();
 
 const connectToMongo = require("./db/connection");
 
+// const adminRoutes = require("./routes/admin");
+
 const app = express();
 const port =
   process.env.NODE_ENV === "test"

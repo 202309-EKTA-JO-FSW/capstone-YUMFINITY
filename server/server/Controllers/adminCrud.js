@@ -22,11 +22,12 @@ const getItemById = async (req, res) => {
 // admin add new item
 const addNewItem = async (req, res) => {
   try {
-    const { title, price, itemPicture, category, availableQuantity } =
+    const { title, description, restaurantID, price, itemPicture, category, availableQuantity } =
       req.body;
-
     const newItem = itemsModel({
       title, 
+      description,
+      restaurantID,
       price, 
       itemPicture, 
       category, 
