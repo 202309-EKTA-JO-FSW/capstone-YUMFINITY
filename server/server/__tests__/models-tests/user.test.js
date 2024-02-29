@@ -49,7 +49,7 @@ describe("User schema test", () => {
       email: "ahmad@test.com",
       firstName: "Ahmad",
       lastName: "Khaled",
-      phoneNumber: "0780000000",
+      phoneNumber: "0781000000",
       isAdmin: true,
       addresses: [
         {

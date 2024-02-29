@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema(
     phoneNumber: {
       type: String,
       required: true,
+      unique: true,
     },
     isAdmin: {
       type: Boolean,
@@ -56,7 +57,6 @@ const userSchema = new mongoose.Schema(
     cart: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Cart",
-      unique: true,
     },
   },
   {

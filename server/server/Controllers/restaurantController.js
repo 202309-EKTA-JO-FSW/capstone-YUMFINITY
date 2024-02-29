@@ -2,8 +2,8 @@ const Restaurant = require("../Models/restaurant");
 const {
   getNearbyRestaurantsSquareArea,
   getNearbyRestaurantsCircleArea,
-  pagination,
-} = require("./restaurant.utils");
+} = require("../utils/locationFilter");
+const pagination = require("../utils/pagination");
 
 const restaurantController = {
   getFilteredRestaurants: async (req, res) => {

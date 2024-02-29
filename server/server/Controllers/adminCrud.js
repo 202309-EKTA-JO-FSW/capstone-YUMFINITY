@@ -103,6 +103,7 @@ const removeOneOrManyItems = async (req, res) => {
 
 
 
+jana/feature/admin-CRUD-item
 //  Admin add new Restaurant
 const addnewRestaurant = async (req, res) => {
   try {
@@ -205,3 +206,11 @@ module.exports = {
   updateRestaurant,
   removeOneOrManyRestaurants,
 };
+
+module.exports = {
+    getItemById,
+    addNewItem,
+    updateItem,
+    removeOneOrManyItems,
+  };
+ main
