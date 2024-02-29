@@ -45,7 +45,7 @@ const signingController = {
         .cookie("refreshToken", refreshToken, {
           httpOnly: true,
           secure: false,
-          maxAge: 1000 * 60 * 60 * 24 * 15, // 15 days
+          maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
         })
         .status(200)
         .json({ success: true, accessToken, refreshToken });
