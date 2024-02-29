@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const signingController = require("../Controllers/signingController");
 const { body } = require("express-validator");
-const userController = require("../controllers/userController");
+
+router.post("/signIn", signingController.signIn);
 
 // Define the sign-up route
 router.post(
-  "/signup",
+  "/signUp",
 
   // Validation rules
   body("username", "Username should be at least 5 characters")
@@ -24,7 +26,7 @@ router.post(
     .escape(),
 
   // Controller function
-  userController.signUp,
+  signingController.signUp,
 );
 
 module.exports = router;
