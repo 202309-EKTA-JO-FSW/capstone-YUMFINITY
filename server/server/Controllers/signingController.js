@@ -2,6 +2,7 @@ const User = require("../Models/user");
 const bcrypt = require("bcrypt");
 const createTokens = require("../utils/createTokens");
 const { validationResult } = require("express-validator");
+const jwt = require("jsonwebtoken");
 
 const signingController = {
   // controller for /v1/signIn route
@@ -40,7 +41,6 @@ const signingController = {
         .cookie("accessToken", accessToken, {
           httpOnly: true,
           secure: false,
-          maxAge: 15 * 60 * 1000, // 15 minutes
         })
         .cookie("refreshToken", refreshToken, {
           httpOnly: true,
@@ -95,6 +95,47 @@ const signingController = {
         .status(400)
         .json({ error: "Error creating user", message: error.message });
     }
+  },
+
+  // controller for verifying refresh token and returning access token
+  refreshToken: async (req, res) => {
+    // check if user has a refresh token
+    const refreshToken = req.cookies["refreshToken"];
+    if (!req.cookies && !refreshToken)
+      return res.status(401).send("No token provided");
+
+    // check if refresh token is valid and not expired
+    let payload;
+    try {
+      payload = jwt.verify(refreshToken, process.env.REFRESJH_TOKEN_SECRET_KEY);
+    } catch (error) {
+      // if refresh token is expired, return error
+      return res.status(401).json(error);
+    }
+
+    // check if user exists in database
+    let user;
+    try {
+      user = await User.findById(payload.userId);
+      if (!user)
+        return res.status(401).json({ message: "User does not exist" });
+    } catch (error) {
+      return res.status(500).json(error);
+    }
+
+    // if user exists, proceed with generating access token
+    const accessToken = jwt.sign(
+      { username: user.username, userId: user._id, isAdmin: user.isAdmin },
+      process.env.SECRET_KEY,
+      { expiresIn: "15m" },
+    );
+    res
+      .cookie("accessToken", accessToken, {
+        httpOnly: true,
+        secure: false,
+      })
+      .status(201)
+      .json({ successful: true, accessToken });
   },
 };
 

@@ -29,4 +29,7 @@ router.post(
   signingController.signUp,
 );
 
+// route for refreshing expired tokens
+router.get("/refreshToken");
+
 module.exports = router;
