@@ -103,9 +103,105 @@ const removeOneOrManyItems = async (req, res) => {
 
 
 
-module.exports = {
-    getItemById,
-    addNewItem,
-    updateItem,
-    removeOneOrManyItems,
+//  Admin add new Restaurant
+const addnewRestaurant = async (req, res) => {
+  try {
+    const { name, location, phoneNumber, restaurantPicture, acceptedPayment, category } =
+      req.body;
+
+    const newRestaurant = new restaurantsModel({
+      name,
+      location,
+      phoneNumber,
+      restaurantPicture,
+      acceptedPayment,
+      category,
+    });
+
+    await newRestaurant.save();
+
+    res
+      .status(201)
+      .json({ message: "Restaurant added successfully", newRestaurant });
+  } catch (error) {
+    console.error("Error adding restaurant:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+// Admin get restaurant by id
+const getRestaurantById = async (req, res) => {
+const { id } = req.params;
+try {
+    const restaurant = await restaurantsModel.findById(id);
+    if (!restaurant) {
+        // If the restaurant is not found
+        return res.status(404).json({ message: "Restaurant not found" });
+    }
+    // If the restaurant is found
+    res.json(restaurant);
+} catch (err) {
+    // If there's an error
+    res.status(500).json({ message: err.message });
+}
+};
+
+// admin update restaurant details
+const updateRestaurant = async (req, res) => {
+try {
+   const { id } = req.params; 
+   const { name, location, phoneNumber, restaurantPicture, acceptedPayment, category } =
+   req.body;
+
+ const updatedRestaurant = new restaurantsModel({
+   name,
+   location,
+   phoneNumber,
+   restaurantPicture,
+   acceptedPayment,
+   category,
+ });
+
+
+if (!updatedRestaurant) {
+  return res.status(404).json({ message: "Restaurant not found" });
+}
+
+res.status(200).json({ message: "Restaurant updated successfully", updatedRestaurant });
+} catch (error) {
+console.error("Error updating restaurant:", error);
+res.status(500).json({ message: error.message });
+}
+};
+
+
+// Admin delete one or more from an restaurants 
+const removeOneOrManyRestaurants = async (req, res) => {
+try {
+  const ids = req.params.ids.split(',');
+  
+  const deleterestaurants = await restaurantsModel.deleteMany({ _id: { $in: ids } });
+
+  if (deleterestaurants.deletedCount > 0) {
+    res.json({ message: `${deleterestaurants.deletedCount} documents deleted` });
+  } else {
+    res.status(422).json({ message: "The Restaurant you are trying to delete wasn't found" });
   };
+} catch (error) {
+  res.status(500).json(error.message);
+};
+};
+
+
+
+module.exports = {
+  getItemById,
+  addNewItem,
+  updateItem,
+  removeOneOrManyItems,
+  addnewRestaurant,
+  getRestaurantById,
+  updateRestaurant,
+  removeOneOrManyRestaurants,
+};
