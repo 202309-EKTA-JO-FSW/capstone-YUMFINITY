@@ -27,7 +27,6 @@ const userSchema = new mongoose.Schema(
     profilePicture: String, // Path to the image of the user inside backend
     phoneNumber: {
       type: String,
-      required: true,
       unique: true,
     },
     isAdmin: {
