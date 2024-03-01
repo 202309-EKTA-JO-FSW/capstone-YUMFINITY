@@ -1,4 +1,6 @@
 const Restaurant = require("../Models/restaurant");
+const Item = require("../Models/item");
+const Review = require("../Models/review");
 const {
   getNearbyRestaurantsSquareArea,
   getNearbyRestaurantsCircleArea,
@@ -41,6 +43,25 @@ const restaurantController = {
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: error.message });
+    }
+  },
+  getOneRestaurantWithMenuAndReviews: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const restaurant = await Restaurant.findById(id);
+      // if restaurant doesn't exist, exit with response
+      if (!restaurant)
+        return res.status(404).json({
+          message: "Restaurant does not exist, check the provided ID",
+        });
+      const items = await Item.find({ restaurantID: id });
+      const restaurantReviews = await Review.find({ restaurantId: id }).limit(
+        50,
+      );
+      return res.status(200).json({ restaurant, items, restaurantReviews });
+    } catch (error) {
+      return res.status(500).json(error);
     }
   },
 };
