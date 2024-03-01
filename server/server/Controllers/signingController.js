@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const createTokens = require("../utils/createTokens");
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
+const passport = require("passport");
 
 const signingController = {
   // controller for /v1/signIn route
@@ -25,6 +26,10 @@ const signingController = {
         return res
           .status(400)
           .json({ message: "User not found, recheck the provided username" });
+
+      // check if user registered with google sign in, redirect to google routes if true
+      if (user.password_hash === "signed with google")
+        return res.redirect("/v1/google");
 
       // compare provided hash with stored hash in database
       const passMatchResult = await bcrypt.compare(
@@ -136,6 +141,32 @@ const signingController = {
       })
       .status(201)
       .json({ successful: true, accessToken });
+  },
+
+  signWithGoogle: (req, res, next) => {
+    passport.authenticate(["google"], (err, user, info) => {
+      if (err) return res.status(500).json(err);
+      if (Object.keys(info).length > 0) {
+        if (req.query.error.includes("access_denied"))
+          return res.status(401).json({ message: "You need to sign in" });
+        return res.status(401).json(info);
+      }
+      if (user) {
+        const { accessToken, refreshToken } = createTokens(user);
+        return res
+          .cookie("accessToken", accessToken, {
+            httpOnly: true,
+            secure: false,
+          })
+          .cookie("refreshToken", refreshToken, {
+            httpOnly: true,
+            secure: false,
+            maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
+          })
+          .status(200)
+          .json({ success: true, accessToken, refreshToken });
+      }
+    })(req, res, next);
   },
 };
 

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const signingController = require("../Controllers/signingController");
 const { body } = require("express-validator");
+const passport = require("passport");
 
 router.post("/signIn", signingController.signIn);
 
@@ -30,6 +31,17 @@ router.post(
 );
 
 // route for refreshing expired tokens
-router.get("/refreshToken");
+router.get("/refreshToken", signingController.refreshToken);
+
+// route for signing in with google
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  }),
+);
+
+// google authentication callback
+router.get("/google/callback", signingController.signWithGoogle);
 
 module.exports = router;
