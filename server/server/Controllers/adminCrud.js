@@ -101,9 +101,6 @@ const removeOneOrManyItems = async (req, res) => {
   };
 
 
-
-
-jana/feature/admin-CRUD-item
 //  Admin add new Restaurant
 const addnewRestaurant = async (req, res) => {
   try {
@@ -155,19 +152,20 @@ try {
    const { name, location, phoneNumber, restaurantPicture, acceptedPayment, category } =
    req.body;
 
- const updatedRestaurant = new restaurantsModel({
-   name,
-   location,
-   phoneNumber,
-   restaurantPicture,
-   acceptedPayment,
-   category,
- });
-
-
-if (!updatedRestaurant) {
+ const restaurant  = new restaurantsModel.findById(id);
+ if (!restaurant) {
   return res.status(404).json({ message: "Restaurant not found" });
 }
+// Update details
+restaurant.name = name;
+restaurant.location = location;
+restaurant.phoneNumber = phoneNumber;
+restaurant.restaurantPicture = restaurantPicture;
+restaurant.acceptedPayment = acceptedPayment;
+restaurant.category = category;
+
+ 
+const updatedRestaurant = await restaurant.save();
 
 res.status(200).json({ message: "Restaurant updated successfully", updatedRestaurant });
 } catch (error) {
@@ -213,4 +211,3 @@ module.exports = {
     updateItem,
     removeOneOrManyItems,
   };
- main
