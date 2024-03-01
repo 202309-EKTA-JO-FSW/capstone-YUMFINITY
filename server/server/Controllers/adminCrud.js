@@ -1,4 +1,5 @@
 const itemsModel  = require("../models/Item");
+const restaurantsModel = require("../models/Restaurant");
 
 // Admin get item by id
 const getItemById = async (req, res) => {
@@ -151,27 +152,27 @@ try {
    const { id } = req.params; 
    const { name, location, phoneNumber, restaurantPicture, acceptedPayment, category } =
    req.body;
-
- const restaurant  = new restaurantsModel.findById(id);
- if (!restaurant) {
-  return res.status(404).json({ message: "Restaurant not found" });
-}
-// Update details
-restaurant.name = name;
-restaurant.location = location;
-restaurant.phoneNumber = phoneNumber;
-restaurant.restaurantPicture = restaurantPicture;
-restaurant.acceptedPayment = acceptedPayment;
-restaurant.category = category;
-
+   
+   const updatedRestaurant = await restaurantsModel.findByIdAndUpdate(
+    id,
+    {
+      name,
+      location,
+      phoneNumber,
+      restaurantPicture,
+      acceptedPayment,
+      category
+    },
+   { runValidators: true, new: true });
+   if (!updatedRestaurant) {
+    return res.status(404).json({ message: "Restaurant not found" });
+  }
  
-const updatedRestaurant = await restaurant.save();
-
 res.status(200).json({ message: "Restaurant updated successfully", updatedRestaurant });
 } catch (error) {
 console.error("Error updating restaurant:", error);
 res.status(500).json({ message: error.message });
-}
+ }
 };
 
 
