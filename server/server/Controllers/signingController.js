@@ -27,6 +27,10 @@ const signingController = {
           .status(400)
           .json({ message: "User not found, recheck the provided username" });
 
+      // check if user registered with google sign in, redirect to google routes if true
+      if (user.password_hash === "signed with google")
+        return res.redirect("/v1/google");
+
       // compare provided hash with stored hash in database
       const passMatchResult = await bcrypt.compare(
         password,
