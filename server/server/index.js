@@ -35,7 +35,8 @@ if (process.env.NODE_ENV === "development") {
 
 // for testing purposes, i used passport authentication middleware on /test endpoint
 const passportAuthMiddleware = require("./Middlewares/passportAuthMiddleware");
-app.get("/test", passportAuthMiddleware, (req, res) => {
+const authorizeAdmin = require("./Middlewares/authorizeAdmin");
+app.get("/test", passportAuthMiddleware, authorizeAdmin, (req, res) => {
   res.json(
     "Server connection to client works!!  Good Luck with your capstones :D",
   );
