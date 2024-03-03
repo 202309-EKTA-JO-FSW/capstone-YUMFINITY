@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passportAuthMiddleware = require("../Middlewares/passportAuthMiddleware");
+const authorizeAdmin = require("../Middlewares/authorizeAdmin");
 
 // we will put all of our major routes here
 
@@ -12,5 +13,13 @@ router.use("/", require("./signRoutes"));
 
 // customer specific routes
 router.use("/", passportAuthMiddleware, require("./customerRoutes"));
+
+// admin specific routes
+router.use(
+  "/admin",
+  passportAuthMiddleware,
+  authorizeAdmin,
+  require("./adminRoutes"),
+);
 
 module.exports = router;
