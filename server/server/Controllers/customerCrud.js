@@ -55,8 +55,10 @@ const deleteCustomer = async (req, res) => {
     const deletedCustomer = await User.findByIdAndDelete(id);
 
     if (!deletedCustomer) {
-      return res.status(404).json({ message: "Customer not found" });
-    }
+      return res
+      .clearCookie("refreshToken")
+      .clearCookie("accessToken")
+      .status(404).json({ message: "Customer not found" });    }
 
     res.json({ message: "Customer deleted successfully", deletedCustomer });
   } catch (error) {
