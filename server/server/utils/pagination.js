@@ -1,11 +1,11 @@
 // pagination handling function
-function pagination(queries, restaurants) {
+function pagination(queries, results) {
   const page = parseInt(queries.page, 10) || 1;
   const limit = parseInt(queries.limit, 10) || 20;
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
-  const restaurantList = restaurants.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(restaurants.length / limit);
+  const restaurantList = results.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(results.length / limit);
 
   if (page > totalPages || page < 1)
     return Error(
@@ -15,7 +15,7 @@ function pagination(queries, restaurants) {
   return {
     page: page,
     totalPages: totalPages,
-    totalResult: restaurants.length,
+    totalResult: results.length,
     results: restaurantList,
   };
 }
