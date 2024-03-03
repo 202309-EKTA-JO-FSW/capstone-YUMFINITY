@@ -22,6 +22,8 @@ const customerController = {
             as: "review",
           },
         },
+        // third, sort orders by orderDate in descending order
+        { $sort: { orderDate: -1 } },
       ];
 
       // Execute the aggregation pipeline
