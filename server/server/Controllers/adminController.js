@@ -2,7 +2,6 @@ const itemsModel = require("../Models/item");
 const restaurantsModel = require("../Models/restaurant");
 const ordersModel = require("../Models/order");
 
-
 // Admin get item by id
 const getItemById = async (req, res) => {
   const { id } = req.params;
@@ -94,7 +93,7 @@ const updateItem = async (req, res) => {
 // Admin delete one or more from an items
 const removeOneOrManyItems = async (req, res) => {
   try {
-    const ids = req.params.ids.split(",");
+    const ids = req.body.ids;
 
     const deleteItems = await itemsModel.deleteMany({ _id: { $in: ids } });
 
@@ -200,7 +199,7 @@ const updateRestaurant = async (req, res) => {
 // Admin delete one or more from an restaurants
 const removeOneOrManyRestaurants = async (req, res) => {
   try {
-    const ids = req.params.ids.split(",");
+    const ids = req.body.ids;
 
     const deleterestaurants = await restaurantsModel.deleteMany({
       _id: { $in: ids },
@@ -220,45 +219,45 @@ const removeOneOrManyRestaurants = async (req, res) => {
   }
 };
 
-
 // Admin retrieving all current orders with the status "delivering"
 const getDeliveringOrders = async (req, res) => {
   try {
-     const deliveringOrders = await ordersModel.find({ orderStatus: 'delivering' });
-     if (deliveringOrders.length === 0) {
-       return res.status(404).json({ message: "No delivering orders found" });
-     }
-     res.status(200).json(deliveringOrders);
+    const deliveringOrders = await ordersModel.find({
+      orderStatus: "delivering",
+    });
+    if (deliveringOrders.length === 0) {
+      return res.status(404).json({ message: "No delivering orders found" });
+    }
+    res.status(200).json(deliveringOrders);
   } catch (error) {
-     console.error("Error retrieving delivering orders:", error);
-     res.status(500).json({ message: error.message });
+    console.error("Error retrieving delivering orders:", error);
+    res.status(500).json({ message: error.message });
   }
- };
+};
 
-
- // Admin update order status to completed
+// Admin update order status to completed
 const updateOrderStatusToCompleted = async (req, res) => {
   const { id } = req.params;
   try {
-     const updatedOrder = await ordersModel.findByIdAndUpdate(
-       id,
-       { orderStatus: 'completed' },
-       { new: true }
-     );
- 
-     if (!updatedOrder) {
-       return res.status(404).json({ message: "Order not found" });
-     }
- 
-     res.status(200).json({ message: "Order status updated successfully", updatedOrder });
-  } catch (error) {
-     console.error("Error updating order status:", error);
-     res.status(500).json({ message: error.message });
-  }
- };
+    const updatedOrder = await ordersModel.findByIdAndUpdate(
+      id,
+      { orderStatus: "completed" },
+      { new: true },
+    );
 
- 
- 
+    if (!updatedOrder) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Order status updated successfully", updatedOrder });
+  } catch (error) {
+    console.error("Error updating order status:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getItemById,
   addNewItem,
