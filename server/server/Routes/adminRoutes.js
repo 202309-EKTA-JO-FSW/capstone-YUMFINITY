@@ -13,9 +13,10 @@ router.delete("/item/remove/:ids", adminController.removeOneOrManyItems);
 router.get("/restaurant/:id", adminController.getRestaurantById);
 router.post("/restaurant/add", adminController.addnewRestaurant);
 router.patch("/restaurant/update/:id", adminController.updateRestaurant);
-router.delete(
-  "/restaurant/remove/:ids",
-  adminController.removeOneOrManyRestaurants,
-);
+router.delete("/restaurant/remove/:ids", adminController.removeOneOrManyRestaurants);
+
+// CRUD routes for orders
+router.get("/current-orders", adminController.getDeliveringOrders);
+
 
 module.exports = router;

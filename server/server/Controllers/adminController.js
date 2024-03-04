@@ -1,5 +1,7 @@
 const itemsModel = require("../Models/item");
 const restaurantsModel = require("../Models/restaurant");
+const ordersModel = require("../Models/order");
+
 
 // Admin get item by id
 const getItemById = async (req, res) => {
@@ -218,6 +220,22 @@ const removeOneOrManyRestaurants = async (req, res) => {
   }
 };
 
+
+// Admin retrieving all current orders with the status "delivering"
+const getDeliveringOrders = async (req, res) => {
+  try {
+     const deliveringOrders = await ordersModel.find({ orderStatus: 'delivering' });
+     if (deliveringOrders.length === 0) {
+       return res.status(404).json({ message: "No delivering orders found" });
+     }
+     res.status(200).json(deliveringOrders);
+  } catch (error) {
+     console.error("Error retrieving delivering orders:", error);
+     res.status(500).json({ message: error.message });
+  }
+ };
+
+
 module.exports = {
   getItemById,
   addNewItem,
@@ -227,4 +245,5 @@ module.exports = {
   getRestaurantById,
   updateRestaurant,
   removeOneOrManyRestaurants,
+  getDeliveringOrders,
 };
