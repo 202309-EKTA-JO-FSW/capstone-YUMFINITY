@@ -224,7 +224,7 @@ const removeOneOrManyRestaurants = async (req, res) => {
 // Admin retrieving all current orders with the status "delivering"
 const getDeliveringOrders = async (req, res) => {
   try {
-     const deliveringOrders = await Order.find({ orderStatus: 'delivering' });
+     const deliveringOrders = await ordersModel.find({ orderStatus: 'delivering' });
      if (deliveringOrders.length === 0) {
        return res.status(404).json({ message: "No delivering orders found" });
      }

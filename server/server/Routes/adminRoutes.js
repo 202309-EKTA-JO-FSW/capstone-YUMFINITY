@@ -16,7 +16,7 @@ router.patch("/restaurant/update/:id", adminController.updateRestaurant);
 router.delete("/restaurant/remove/:ids", adminController.removeOneOrManyRestaurants);
 
 // CRUD routes for orders
-router.get("/order", adminController.getDeliveringOrders);
+router.get("/current-orders", adminController.getDeliveringOrders);
 
 
 module.exports = router;
