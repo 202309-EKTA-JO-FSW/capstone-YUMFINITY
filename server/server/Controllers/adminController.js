@@ -236,6 +236,29 @@ const getDeliveringOrders = async (req, res) => {
  };
 
 
+ // Admin update order status to completed
+const updateOrderStatusToCompleted = async (req, res) => {
+  const { id } = req.params;
+  try {
+     const updatedOrder = await ordersModel.findByIdAndUpdate(
+       id,
+       { orderStatus: 'completed' },
+       { new: true }
+     );
+ 
+     if (!updatedOrder) {
+       return res.status(404).json({ message: "Order not found" });
+     }
+ 
+     res.status(200).json({ message: "Order status updated successfully", updatedOrder });
+  } catch (error) {
+     console.error("Error updating order status:", error);
+     res.status(500).json({ message: error.message });
+  }
+ };
+
+ 
+ 
 module.exports = {
   getItemById,
   addNewItem,
@@ -246,4 +269,5 @@ module.exports = {
   updateRestaurant,
   removeOneOrManyRestaurants,
   getDeliveringOrders,
+  updateOrderStatusToCompleted,
 };
