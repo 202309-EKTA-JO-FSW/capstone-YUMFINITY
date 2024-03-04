@@ -237,7 +237,7 @@ const getDeliveringOrders = async (req, res) => {
 
 // Admin update order status to completed
 const updateOrderStatusToCompleted = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.body;
   try {
     const updatedOrder = await ordersModel.findByIdAndUpdate(
       id,

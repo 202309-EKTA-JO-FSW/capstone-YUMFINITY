@@ -21,7 +21,7 @@ router.delete(
 // CRUD routes for orders
 router.get("/current-orders", adminController.getDeliveringOrders);
 router.patch(
-  "/order/update-status/:id",
+  "/order/update-status",
   adminController.updateOrderStatusToCompleted,
 );
 
