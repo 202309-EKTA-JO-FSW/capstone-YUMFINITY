@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Order = require("../Models/order");
 const Cart = require("../Models/cart");
+const User = require("../Models/user");
+const bcrypt = require("bcrypt");
 const pagination = require("../utils/pagination");
 
 const customerController = {
@@ -136,6 +138,82 @@ const customerController = {
       return res.status(201).json(newOrder);
     } catch (error) {
       return res.status(500).json(error);
+    }
+  },
+
+  // function for GETting profile details for signed in user
+  getCustomerById: async (req, res) => {
+    const id = req.user.userId;
+
+    try {
+      const customer = await User.findById(id);
+
+      if (!customer) {
+        return res.status(404).json({ message: "Customer not found" });
+      }
+
+      res.status(200).json(customer);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  },
+
+  // function for applying profile changes for signed in user
+  updateCustomer: async (req, res) => {
+    try {
+      const id = req.user.userId;
+      let password_hash;
+      if (req.body.password)
+        password_hash = await bcrypt.hash(req.body.password, 10);
+      const updatedFields = {
+        username: req.body.username,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        phoneNumber: req.body.phoneNumber,
+        addresses: req.body.addresses,
+        password_hash,
+      };
+
+      const updatedCustomer = await User.findByIdAndUpdate(id, updatedFields, {
+        runValidators: true,
+        new: true,
+      });
+
+      if (!updatedCustomer) {
+        return res.status(404).json({ message: "Customer not found" });
+      }
+
+      res
+        .status(200)
+        .json({ message: "Customer updated successfully", updatedCustomer });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  },
+
+  // function for deleting user
+  deleteCustomer: async (req, res) => {
+    const id = req.user.userId;
+
+    try {
+      const deletedCustomer = await User.findByIdAndDelete(id);
+
+      if (!deletedCustomer) {
+        return res
+          .clearCookie("refreshToken")
+          .clearCookie("accessToken")
+          .status(404)
+          .json({ message: "Customer not found" });
+      }
+
+      res
+        .status(202)
+        .json({ message: "Customer deleted successfully", deletedCustomer });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
     }
   },
 };

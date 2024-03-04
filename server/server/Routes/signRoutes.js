@@ -30,9 +30,6 @@ router.post(
   signingController.signUp,
 );
 
-// route for refreshing expired tokens
-router.get("/refreshToken", signingController.refreshToken);
-
 // route for signing in with google
 router.get(
   "/google",
