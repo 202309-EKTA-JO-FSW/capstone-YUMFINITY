@@ -90,9 +90,23 @@ const signingController = {
     try {
       // Save the user to the database
       const savedUser = await user.save();
+
+      // Generate tokens and send them back in response
+      const { accessToken, refreshToken } = createTokens(savedUser);
+
       res
+        .cookie("accessToken", accessToken, { httpOnly: true, secure: false })
+        .cookie("refreshToken", refreshToken, {
+          httpOnly: true,
+          secure: false,
+          maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        })
         .status(201)
-        .json({ message: "User created successfully", user: savedUser });
+        .json({
+          message: "User created successfully",
+          user: savedUser,
+          tokens: { accessToken, refreshToken },
+        });
     } catch (error) {
       if (error.message.includes("duplicate key error"))
         error.message = "User already exists";
