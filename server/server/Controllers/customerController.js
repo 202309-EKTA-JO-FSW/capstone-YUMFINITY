@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Order = require("../Models/order");
 const Cart = require("../Models/cart");
 const User = require("../Models/user");
+const Item = require("../Models/item");
 const bcrypt = require("bcrypt");
 const pagination = require("../utils/pagination");
 
@@ -214,6 +215,26 @@ const customerController = {
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: error.message });
+    }
+  },
+
+  // function to GET user cart
+  getUserCart: async (req, res) => {
+    const { userId } = req.user;
+    try {
+      const cart = await Cart.findOne({ userId: userId })
+        .populate("restaurantId", {
+          name: 1,
+          restaurantPicture: 1,
+          location: 1,
+        })
+        .populate("items.itemId");
+      if (!cart) {
+        return res.status(404).json({ message: "Cart not found" });
+      }
+      return res.json(cart);
+    } catch (error) {
+      return res.status(500).json(error);
     }
   },
 };
