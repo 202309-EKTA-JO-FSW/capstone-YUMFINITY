@@ -258,6 +258,139 @@ const customerController = {
       res.status(500).json(error);
     }
   },
+
+  // function to create or update user cart
+  upsertCart: async (req, res) => {
+    const { userId } = req.user;
+    const {
+      itemId,
+      quantity,
+      specialOrderRequirement,
+      specialItemRequirement,
+    } = req.body;
+
+    // check if quantity is not 0
+    if (quantity === 0)
+      return res.status(400).json({ message: "Quantity cannot be zero" });
+
+    try {
+      // find item document
+      const item = await Item.findById(itemId);
+      if (!item) return res.status(404).json({ message: "Item not found" });
+      // check item availabilty
+      if (item.availableQuantity === 0 && quantity > 0)
+        return res
+          .status(400)
+          .json({ message: "This item is currently out of stock." });
+
+      // find/create cart and add/update item in it
+      const cart = await Cart.findOne({ userId });
+      // if cart doesn't exist, we create new one and add item, then decrease item available quantity
+      if (!cart) {
+        // check if provided quantity is above zero
+        if (quantity <= 0)
+          return res.status(400).send({
+            message: "Cannot provide negative quantity if Cart doesn't exist",
+          });
+
+        // create new cart document
+        const newCart = new Cart({
+          userId,
+          restaurantId: item.restaurantID,
+          items: [],
+          specialOrderRequirement,
+        });
+
+        // we add the item to items array in cart
+        newCart.items.push({
+          itemId,
+          quantity,
+          specialItemRequirement,
+        });
+
+        // we change (decrease/increase) item available quantity by the provided required quantity
+        item.availableQuantity -= quantity;
+        // check if requested quantity exceeds available quantity
+        if (item.availableQuantity < 0)
+          return res.status(403).json({
+            message: "Not enough items in stock for the provided quantity.",
+          });
+
+        // save item and new cart documents
+        await newCart.save();
+        await item.save();
+
+        // return response with new cart
+        return res
+          .status(201)
+          .json({ message: "New cart created successfully", Cart: newCart });
+      }
+
+      // if cart exists, we add/update the item to cart
+      else {
+        // check if item is from same restaurant as current cart
+        if (item.restaurantID.toString() !== cart.restaurantId.toString())
+          return res
+            .status(403)
+            .json({ message: "Items must be from the same restaurant." });
+
+        // check if item already exists in cart
+        const itemIndex = cart.items.findIndex(
+          (item) => item.itemId.toString() === itemId,
+        );
+        // if item does not exist in cart then add it
+        if (itemIndex < 0) {
+          // forbid negative quantity if item doesn't exist in cart
+          if (quantity < 0)
+            return res.status(400).json({
+              message:
+                "Cannot provide negative quantity if Item doesn't exist in Cart",
+            });
+          cart.items.push({
+            itemId,
+            quantity,
+            specialItemRequirement,
+          });
+        }
+        // if item exists in cart, we change it's quantity
+        else {
+          cart.items[itemIndex].quantity += quantity;
+          if (cart.items[itemIndex].quantity < 0)
+            return res.status(400).json({
+              message: "Item Quantity in Cart cannot become negative",
+            });
+
+          // if item quantity becomes 0, we remove it from items array
+          if (cart.items[itemIndex].quantity === 0)
+            cart.items.splice(itemIndex, 1);
+        }
+
+        // we change (decrease/increase) item available quantity by the provided required quantity
+        item.availableQuantity -= quantity;
+        // check if requested quantity exceeds available quantity
+        if (item.availableQuantity < 0)
+          return res.status(403).json({
+            message: "Not enough items in stock for the provided quantity.",
+          });
+
+        // save item and new cart documents
+        await item.save();
+        // if cart items array becomes empty, we delete the cart document and return response
+        if (cart.items.length === 0) {
+          await Cart.deleteOne({ userId });
+          return res.status(201).json({ message: "Cart emptied successfully" });
+        }
+        await cart.save();
+
+        // return response with new cart
+        return res
+          .status(200)
+          .json({ message: "Cart updated successfully", cart });
+      }
+    } catch (error) {
+      return res.status(500).json(error);
+    }
+  },
 };
 
 module.exports = customerController;

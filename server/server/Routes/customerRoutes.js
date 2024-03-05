@@ -26,4 +26,7 @@ router.get("/cart", customerController.getUserCart);
 // delete signed in user Cart
 router.delete("/cart", customerController.deleteCart);
 
+// edit user cart, includes creating and updating the cart
+router.patch("/cart", customerController.upsertCart);
+
 module.exports = router;
