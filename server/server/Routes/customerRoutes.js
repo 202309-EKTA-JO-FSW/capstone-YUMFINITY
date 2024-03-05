@@ -23,4 +23,7 @@ router.post("/checkout", customerController.createNewOrder);
 // fetch signed in user Cart if exists
 router.get("/cart", customerController.getUserCart);
 
+// delete signed in user Cart
+router.delete("/cart", customerController.deleteCart);
+
 module.exports = router;

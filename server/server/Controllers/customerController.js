@@ -237,6 +237,27 @@ const customerController = {
       return res.status(500).json(error);
     }
   },
+
+  // function to DELETE user cart
+  deleteCart: async (req, res) => {
+    const { userId } = req.user;
+    try {
+      const cart = await Cart.findOne({ userId });
+      // return quantity of each item to be added back to inventory
+      if (cart)
+        cart.items.forEach(async (item) => {
+          await Item.findByIdAndUpdate(item.itemId, {
+            $inc: { availableQuantity: item.quantity },
+          });
+        });
+      const result = await Cart.deleteOne({ userId: userId });
+      if (result.deletedCount === 0)
+        return res.status(404).json({ message: "Cart not found" });
+      res.json({ message: "Cart deleted" });
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
 };
 
 module.exports = customerController;
