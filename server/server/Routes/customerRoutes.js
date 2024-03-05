@@ -16,4 +16,17 @@ router.patch("/cancel-order", customerController.cancelCurrentOrder);
 // checkout route for submitting signed in user cart
 router.post("/checkout", customerController.createNewOrder);
 
+// ##################################
+
+// cart specific routes
+
+// fetch signed in user Cart if exists
+router.get("/cart", customerController.getUserCart);
+
+// delete signed in user Cart
+router.delete("/cart", customerController.deleteCart);
+
+// edit user cart, includes creating and updating the cart
+router.patch("/cart", customerController.upsertCart);
+
 module.exports = router;
