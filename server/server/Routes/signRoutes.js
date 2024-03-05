@@ -41,4 +41,7 @@ router.get(
 // google authentication callback
 router.get("/google/callback", signingController.signWithGoogle);
 
+// Sign-out route
+router.post("/signout", passAuthMiddleware, signOutController.signOut);
+
 module.exports = router;
