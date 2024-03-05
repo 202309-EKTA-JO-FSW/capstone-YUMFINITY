@@ -182,7 +182,7 @@ const signingController = {
       }
     })(req, res, next);
   },
-};
+
 
 signOut: async (req, res) => {
   try {
@@ -198,7 +198,7 @@ signOut: async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 },
- 
+};
  
 module.exports = 
 
