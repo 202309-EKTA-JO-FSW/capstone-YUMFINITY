@@ -184,25 +184,23 @@ const signingController = {
   },
 };
 
-const signOutController = async (req, res) => {
+signOut: async (req, res) => {
   try {
-     const userId = req.user.userId;
- 
-     // Clear the authentication cookies
-     res.clearCookie("refreshToken");
-     res.clearCookie("accessToken");
- 
-     // invalidate the user's session or tokens in your database here
- 
-     res.status(200).json({ message: "User signed out successfully" });
+    // Clear the authentication cookies
+    res.clearCookie("refreshToken");
+    res.clearCookie("accessToken");
+
+    // clear the session or any other relevant data here
+
+    res.status(200).json({ message: "Signed out successfully" });
   } catch (error) {
-     console.error(error);
-     res.status(500).json({ message: error.message });
+    console.error(error);
+    res.status(500).json({ message: error.message });
   }
- };
+},
+ 
  
 module.exports = 
-{
-  signingController,
-  signOutController,
-}
+
+  signingController;
+  

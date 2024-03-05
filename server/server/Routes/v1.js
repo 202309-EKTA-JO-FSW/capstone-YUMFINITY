@@ -26,4 +26,8 @@ router.use(
 // route for refreshing expired tokens, works for admin and customer
 router.get("/refreshToken", signingController.refreshToken);
 
+// Sign-out route
+router.post("/signout", passAuthMiddleware, signOutController.signOut);
+
+
 module.exports = router;
