@@ -3,6 +3,7 @@ const Order = require("../Models/order");
 const Cart = require("../Models/cart");
 const User = require("../Models/user");
 const Item = require("../Models/item");
+const Review = require("../Models/review");
 const bcrypt = require("bcrypt");
 const pagination = require("../utils/pagination");
 
@@ -394,40 +395,44 @@ const customerController = {
 
   createReview: async (req, res) => {
     try {
-        const { orderId, rating, comment } = req.body;
+      const { orderId, rating, comment } = req.body;
 
-        // fetch order to make sure it exists
-        const order = await Order.findById(orderId);
+      // fetch order to make sure it exists
+      const order = await Order.findById(orderId);
 
-        if (!order) {
-            return res.status(404).json({ message: 'Order not found' });
-        }
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
 
-        // check if order already has a review
-        const existingReview = await Review.findOne({ orderId });
+      // check if order already has a review
+      const existingReview = await Review.findOne({ orderId });
 
-        if (existingReview) {
-            return res.status(400).json({ message: 'Review already exists for this order' });
-        }
+      if (existingReview) {
+        return res
+          .status(400)
+          .json({ message: "Review already exists for this order" });
+      }
 
-        // create a new review
-        const newReview = new Review({
-            rating,
-            comment,
-            restaurantId: order.restaurantId,
-            userId: order.userId,
-            orderId: orderId,
-        });
+      // create a new review
+      const newReview = new Review({
+        rating,
+        comment,
+        restaurantId: order.restaurantId,
+        userId: order.userId,
+        orderId: orderId,
+      });
 
-        // review saved to database
-        const savedReview = await newReview.save();
+      // review saved to database
+      const savedReview = await newReview.save();
 
-        res.status(201).json({ message: 'Review created successfully', review: savedReview });
+      res
+        .status(201)
+        .json({ message: "Review created successfully", review: savedReview });
     } catch (error) {
-        console.error('Error creating review:', error);
-        res.status(500).json({ message: error.message });
+      console.error("Error creating review:", error);
+      res.status(500).json({ message: error.message });
     }
-};
+  },
 };
 
 module.exports = customerController;
