@@ -16,6 +16,9 @@ router.patch("/cancel-order", customerController.cancelCurrentOrder);
 // checkout route for submitting signed in user cart
 router.post("/checkout", customerController.createNewOrder);
 
+// create review for orders with no reviews
+router.post("/order/review", customerController.createReview);
+
 // ##################################
 
 // cart specific routes
@@ -28,8 +31,5 @@ router.delete("/cart", customerController.deleteCart);
 
 // edit user cart, includes creating and updating the cart
 router.patch("/cart", customerController.upsertCart);
-
-// create review for orders with no reviews
-router.post('/order/review', customerController.createReview);
 
 module.exports = router;
