@@ -15,6 +15,12 @@ module.exports = {
       fontFamily: {
         boston: "var(--font-boston)",
       },
+      colors: {
+        "red-YUMFINITY": "#C20114",
+        "yellow-YUMFINITY": "#F18805",
+        "black-YUMFINITY": "#02020A",
+        "white-YUMFINITY": "#F1F2EB",
+      },
     },
   },
   plugins: [],
