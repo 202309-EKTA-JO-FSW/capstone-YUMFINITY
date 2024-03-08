@@ -12,6 +12,15 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        boston: "var(--font-boston)",
+      },
+      colors: {
+        "red-YUMFINITY": "#C20114",
+        "yellow-YUMFINITY": "#F18805",
+        "black-YUMFINITY": "#02020A",
+        "white-YUMFINITY": "#F1F2EB",
+      },
     },
   },
   plugins: [],

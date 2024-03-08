@@ -8,7 +8,8 @@
     "build": "docker-compose up --build",
     "prune": "docker-compose down -v --rmi local",
     "stop": "docker-compose down",
-    "lint": "next lint --ignore-path ../.gitignore --fix"
+    "lint": "next lint --ignore-path ../.gitignore --fix",
+    "format": "prettier --ignore-path ../.gitignore --write"
   },
   "dependencies": {
     "next": "^14.1.0",

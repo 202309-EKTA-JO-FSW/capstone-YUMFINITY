@@ -6,5 +6,5 @@ const buildEslintCommand = (filenames) =>
     .join(" --file ")}`;
 
 module.exports = {
-  "*.{js,jsx,ts,tsx}": ["npm --prefix ../ run format", buildEslintCommand],
+  "*.{js,jsx,ts,tsx}": ["npm run format", buildEslintCommand],
 };
