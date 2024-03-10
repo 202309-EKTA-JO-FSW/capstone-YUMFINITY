@@ -1,6 +1,7 @@
 import { Roboto } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import Footer from "./components/Footer";
 
 const roboto = Roboto({
   weight: ["400", "300"],
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${Boston.variable} ${roboto.className}`}>
         {children}
+        <Footer />
       </body>
     </html>
   );

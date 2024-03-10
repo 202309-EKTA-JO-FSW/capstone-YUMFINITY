@@ -1,48 +1,30 @@
-import React from "react";
+import Link from "next/link";
+import Logo from "./Logo";
 
-import logo from "../public/logo.svg";
-
-const LinkedInIcon = (props) => (
-  <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-    {/* SVG path for LinkedIn icon */}
-  </svg>
-);
-const GitHubIcon = (props) => (
-  <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-    {/* SVG path for GitHub icon */}
-  </svg>
-);
-const Footer = () => {
+export default function Footer() {
   const teamMembers = [
     {
       name: "Dana Maraqa",
       github: "https://github.com/Dana8392",
       linkedin: "https://www.linkedin.com/in/dana-maraqa-3a4654b7/",
-      icon: GitHubIcon,
-      LinkedInIcon,
     },
     {
       name: "Dana Alsidigg",
       github: "https://github.com/danasidd",
       linkedin: "https://www.linkedin.com/in/danaalsiddig/",
-      icon: GitHubIcon,
-      LinkedInIcon,
     },
     {
       name: "Belal Abo Moailish",
       github: "https://github.com/belalninja",
       linkedin: "https://www.linkedin.com/in/belalabomoailish/",
-      icon: GitHubIcon,
-      LinkedInIcon,
     },
     {
       name: "Jana AbuHaltam",
       github: "https://github.com/JanaAbuHaltam",
       linkedin: "https://www.linkedin.com/in/jana-abuhaltam-b00335288/",
-      icon: GitHubIcon,
-      LinkedInIcon,
     },
   ];
+
   const data = [
     {
       title: "Pages",
@@ -55,62 +37,53 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="mt-auto rounded-t-3xl bg-slate-100">
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <footer className="mt-auto">
+      <div className="mx-auto px-6 py-16 sm:px-10 lg:px-16">
         <div className="logo mb-0">
-          <svg
-            className="mb-4 h-12 w-auto md:mb-0 md:mr-4"
-            src={logo}
-            alt="logo"
-          >
-            {" "}
-          </svg>
-          <span className="ml-2 text-xl font-bold uppercase tracking-wide text-gray-800">
+          <Logo className="mb-2 ml-7 size-24" />
+          <span className="font-boston text-xl uppercase tracking-wide ">
             Yumfinity
           </span>
         </div>
-        <div className=" lg:flex lg:items-start lg:gap-8 ">
+        <div className="lg:flex lg:items-start lg:gap-8 ">
           <div className="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
             <div className="col-span-2">
-              <p className="mt-4 text-black">
+              <p className="mt-4 text-xl ">
                 Your go-to destination for seamless food ordering. Yumfinity
                 brings the flavors you love right to your doorstep. Order, eat,
                 and repeat the joy of delicious dining with Yumfinity.
               </p>
             </div>
 
-            <div className="col-span-2 sm:col-span-1"></div>
-            <div className="mx-auto flex flex-row flex-wrap gap-6 sm:flex-nowrap md:gap-12">
-              {data.map(({ title, list }, idx) => (
-                <div key={idx}>
-                  <h5
-                    className={`mb-2 font-semibold sm:mb-8
-                   `}
-                  >
-                    {title}
-                  </h5>
-                  <ul className="flex flex-col gap-3 sm:gap-5">
-                    {list.map((item, idx) => (
-                      <li key={idx}>{item}</li>
+            <div className="col-span-2 lg:col-span-1"></div>
+            <div className="flex gap-10 sm:flex-nowrap md:gap-12 lg:justify-center">
+              {data.map(({ title, list }, index) => (
+                <div key={index} className="min-w-fit">
+                  <h5 className={`mb-2 font-semibold  sm:mb-8`}>{title}</h5>
+                  <ul className="flex flex-col gap-3  sm:gap-5">
+                    {list.map((item, index) => (
+                      <Link href={"#"} key={index} className="hover:opacity-75">
+                        <li>{item}</li>
+                      </Link>
                     ))}
                   </ul>
                 </div>
               ))}
             </div>
-            <div className="col-span-2 sm:col-span-1">
-              <p className="font-medium text-black ">Our Team</p>
+            <div className="col-span-2 min-w-fit sm:col-span-1 md:ml-4">
+              <p className="font-semibold  ">Our Team</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <div>
-                  <div className=" space-y-4">
+                  <div className="space-y-4">
                     {teamMembers.map((member, index) => (
                       <div
                         key={index}
-                        className="col-span-2 flex justify-start gap-3 "
+                        className="col-span-2 flex items-center justify-start gap-3 "
                       >
                         <a
-                          href="#"
-                          className="container w-40 text-black transition hover:opacity-75"
+                          href={member.linkedin}
+                          className="container min-w-32 max-w-40 transition hover:opacity-75"
                         >
                           {member.name}
                         </a>
@@ -118,7 +91,7 @@ const Footer = () => {
                         <li className="">
                           <a
                             href={member.github}
-                            className="text-black transition hover:opacity-75"
+                            className=" transition hover:opacity-75"
                           >
                             <span className="sr-only">GitHub</span>
 
@@ -140,7 +113,7 @@ const Footer = () => {
                         <li>
                           <a
                             href={member.linkedin}
-                            className="text-black transition hover:opacity-75"
+                            className=" transition hover:opacity-75"
                           >
                             <span className="sr-only">Linkedin</span>
 
@@ -162,7 +135,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-gray-100 pt-8">
+        <div className="mt-8 border-t border-black-YUMFINITY pt-8 dark:border-white-YUMFINITY">
           <div className="sm:flex sm:justify-between">
             <p className="text-xs text-gray-500">
               &copy; 2024. Yumfinity. All rights reserved.
@@ -201,6 +174,4 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
