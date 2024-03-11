@@ -1,0 +1,3 @@
+body:has(.burger-menu:checked) {
+  overflow-y: hidden;
+}
