@@ -1,19 +1,15 @@
-import { HiOutlineBuildingOffice } from "react-icons/hi2";
-import { FiPhoneCall } from "react-icons/fi";
-import { IoChatboxEllipsesOutline } from "react-icons/io5";
-import { RiSendPlaneFill } from "react-icons/ri";
 import React from "react";
 
 const SignUp = () => {
   return (
-    <div className="font-boston text-[#333]">
-      <div className="grid h-[320px] gap-4 bg-gradient-to-r from-[#FD7014] to-white p-4 sm:p-8 lg:grid-cols-2">
+    <div className="border-b border-black-YUMFINITY text-[#333] lg:h-[70vh] lg:border-0 dark:border-white-YUMFINITY">
+      <div className="grid gap-4 bg-gradient-to-b from-yellow-YUMFINITY to-white-YUMFINITY p-4 pb-14 sm:p-10 lg:h-[400px] lg:grid-cols-2 lg:bg-gradient-to-r dark:to-black-YUMFINITY dark:to-70% dark:text-white-YUMFINITY">
         <div>
           <div className="mt-16 max-w-lg px-6 max-lg:hidden">
-            <h3 className=" text-3xl font-bold text-white">
+            <h3 className=" font-boston text-3xl text-white">
               Let us get started!
             </h3>
-            <p className=" mt-4 text-sm text-white">
+            <p className=" mt-4 text-lg text-white">
               Become a registered user and unlock the full flavor experience.
               Fill out the details below to create your account and embark on a
               delicious journey with us. From mouthwatering meals to delightful
@@ -22,14 +18,11 @@ const SignUp = () => {
             </p>
           </div>
         </div>
-        <div className="my-4 h-max w-full max-w-md rounded-xl bg-white px-4 py-8 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] max-lg:mx-auto sm:px-6">
+        <div className="dark:bg my-4 h-max w-full max-w-md rounded-xl bg-white px-4 py-8 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] max-lg:mx-auto sm:px-6 dark:bg-orange-950 dark:bg-opacity-35 dark:backdrop-blur-lg">
           <form>
             <div className="mb-10">
-              <h3 className=" text-3xl font-extrabold text-[#FD7014]">
-                Sign up
-              </h3>
+              <h3 className=" text-3xl font-extrabold">Sign up</h3>
             </div>
-            {/* <div className="sm:flex sm:items-start space-x-4 max-sm:space-y-4 mb-10"></div> */}
             <div>
               <label className="mb-2 block text-sm">First name</label>
               <div className="relative flex items-center">
@@ -37,7 +30,7 @@ const SignUp = () => {
                   name="username"
                   type="text"
                   required
-                  className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-[#FD7014]"
+                  className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm text-black-YUMFINITY outline-[#FD7014]"
                   placeholder="Enter first name"
                 />
                 <svg
@@ -62,7 +55,7 @@ const SignUp = () => {
                   name="username"
                   type="text"
                   required
-                  className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-[#FD7014]"
+                  className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm text-black-YUMFINITY outline-[#FD7014]"
                   placeholder="Enter last name"
                 />
                 <svg
@@ -88,7 +81,7 @@ const SignUp = () => {
                   name="email"
                   type="email"
                   required
-                  className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-[#FD7014]"
+                  className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm text-black-YUMFINITY outline-[#FD7014]"
                   placeholder="example@domain.com"
                 />
                 <svg
@@ -119,7 +112,7 @@ const SignUp = () => {
                   name="password"
                   type="password"
                   required
-                  className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm outline-[#FD7014]"
+                  className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm text-black-YUMFINITY outline-[#FD7014]"
                   placeholder="Enter password"
                 />
                 <svg
@@ -140,7 +133,7 @@ const SignUp = () => {
             <div className="mt-10">
               <button
                 type="button"
-                className="w-full rounded bg-[#FD7014] px-4 py-2.5 text-sm font-semibold text-white shadow-xl hover:bg-orange-400 focus:outline-none"
+                className="w-full rounded bg-orange-500 px-4 py-2.5 text-sm font-semibold text-white shadow-xl transition-all hover:bg-orange-600 focus:outline-none active:bg-orange-900"
               >
                 Sign up
               </button>
