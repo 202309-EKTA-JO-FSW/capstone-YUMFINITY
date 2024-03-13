@@ -1,16 +1,16 @@
 import Image from "next/image";
 import React from "react";
-import allRestaurantsHeader from "./client/src/app/restaurants/allRestaurantsHeader.jpg";
+import allRestaurantsHeader from "./allRestaurantsHeader.jpg";
 import { FaAnglesDown } from "react-icons/fa6";
 
 const Restaurants = () => {
   return (
     <div>
-      <div className="relative flex h-[73vh] max-h-[710px] flex-col items-center justify-start shadow-lg dark:shadow-white/40">
+      <div className="relative flex h-[73vh] max-h-[710px] flex-col items-center justify-start overflow-y-hidden shadow-lg dark:shadow-white/40">
         <Image
           src={allRestaurantsHeader}
           priority={true}
-          className="absolute -z-10 size-full object-cover dark:brightness-90"
+          className="absolute top-0 -z-10 size-full min-h-[750px] object-cover dark:brightness-90"
           alt="Example"
         />
 
