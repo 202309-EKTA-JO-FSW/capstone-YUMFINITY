@@ -93,15 +93,15 @@ export default function AccountDetails() {
             </div>
           </fieldset>
           <fieldset>
-            <picture className="flex flex-col items-center justify-around gap-8 text-lg font-bold md:flex-row">
+            <picture className="flex flex-col gap-8 text-lg font-bold md:flex-row">
               <div className="mr-auto text-nowrap">Profile pic</div>
               <Image
-                width={formData.profilePicture && 50}
-                height={formData.profilePicture && 50}
+                width={formData.profilePicture && 355}
+                height={formData.profilePicture && 355}
                 priority
                 src={formData.profilePicture || profilePlaceholder}
                 alt="Profile Picture"
-                className="size-2/3 rounded-2xl md:size-1/2"
+                className="rounded-2xl md:max-w-[200px]"
               />
             </picture>
           </fieldset>

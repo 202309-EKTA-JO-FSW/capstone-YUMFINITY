@@ -65,7 +65,7 @@ export default function PastOrders() {
       <div className="flex items-center justify-between px-6 pt-4 lg:pt-8">
         <h2 className="font-boston text-2xl">Past Orders</h2>
       </div>
-      <section className="m-3 flex h-[650px] flex-col overflow-y-scroll rounded-lg bg-red-700/25 lg:m-6 lg:mt-8 lg:h-[634px]">
+      <section className="m-3 flex h-[650px] flex-col overflow-y-scroll rounded-lg bg-red-700/25 lg:m-6 lg:mt-8  lg:h-[634px]">
         <PastOrderCard order={orderWithOutReview} />
         <PastOrderCard order={orderWithReview} />
         <PastOrderCard order={orderWithReview} />
