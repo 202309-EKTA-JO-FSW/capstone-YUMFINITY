@@ -2,14 +2,14 @@ import React from "react";
 
 const SignUp = () => {
   return (
-    <div className="border-b border-black-YUMFINITY text-[#333] lg:h-[70vh] lg:border-0 dark:border-white-YUMFINITY">
-      <div className="grid gap-4 bg-gradient-to-b from-yellow-YUMFINITY to-white-YUMFINITY p-4 pb-14 sm:p-10 lg:h-[400px] lg:grid-cols-2 lg:bg-gradient-to-r dark:to-black-YUMFINITY dark:to-70% dark:text-white-YUMFINITY">
+    <div className="border-b border-black-YUMFINITY text-[#333] lg:border-0 dark:border-white-YUMFINITY">
+      <div className="relative grid gap-4 bg-gradient-to-b from-yellow-YUMFINITY to-white-YUMFINITY p-4 pb-14 sm:p-10 lg:grid-cols-2 lg:bg-none dark:to-black-YUMFINITY dark:text-white-YUMFINITY">
         <div>
-          <div className="mt-16 max-w-lg px-6 max-lg:hidden">
-            <h3 className=" font-boston text-3xl text-white">
+          <div className="inset-0 -z-10 hidden w-full bg-gradient-to-b from-yellow-YUMFINITY to-white-YUMFINITY pl-12 pt-20 lg:absolute lg:block lg:h-[390px] lg:bg-gradient-to-r xl:h-[360px] dark:to-70%">
+            <h3 className=" w-2/5 font-boston  text-3xl text-white">
               Let us get started!
             </h3>
-            <p className=" mt-4 text-lg text-white">
+            <p className=" mt-4 w-2/5 text-lg text-white">
               Become a registered user and unlock the full flavor experience.
               Fill out the details below to create your account and embark on a
               delicious journey with us. From mouthwatering meals to delightful
