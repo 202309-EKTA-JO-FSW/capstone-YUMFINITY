@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 
 const SignIn = () => {
   return (
-    <div className="border-b border-black-YUMFINITY text-[#333] lg:border-0 dark:border-white-YUMFINITY">
+    <div className="text-[#333]">
       <div className="relative grid gap-4 bg-gradient-to-b from-yellow-YUMFINITY to-white-YUMFINITY p-4 pb-14 sm:p-10 lg:grid-cols-2 lg:bg-none dark:to-black-YUMFINITY dark:text-white-YUMFINITY">
         <div>
           <div className="inset-0 -z-10 hidden h-[320px] w-full bg-gradient-to-b from-yellow-YUMFINITY to-white-YUMFINITY pl-12 pt-20 lg:absolute lg:block lg:bg-gradient-to-r dark:to-70%">
