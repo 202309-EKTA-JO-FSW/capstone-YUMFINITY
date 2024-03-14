@@ -141,7 +141,7 @@ const SignUp = () => {
             <p className="mt-6 text-center text-sm">
               Already have an account?
               <a
-                href="javascript:void(0);"
+                href="#"
                 className="ml-1 whitespace-nowrap font-semibold text-[#FD7014] hover:underline"
               >
                 Sign in

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 
@@ -88,12 +89,12 @@ const SignIn = () => {
             </div>
             <p className="mt-6 text-center text-sm">
               Do not have an account{" "}
-              <a
-                href="javascript:void(0);"
+              <Link
+                href="/SignUp"
                 className="ml-1 whitespace-nowrap font-semibold text-[#FD7014] hover:underline"
               >
                 Register here
-              </a>
+              </Link>
             </p>
           </form>
         </div>
