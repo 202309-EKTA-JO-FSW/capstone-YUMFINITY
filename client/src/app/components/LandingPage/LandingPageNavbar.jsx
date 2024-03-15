@@ -1,10 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "../Logo";
 import { FaBurger } from "react-icons/fa6";
-import styles from "./LandingPageNavbar.module.css";
+import styles from "../Navbar.module.css";
+import { useState } from "react";
 
 export default function LandingPageNavbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const navbarList = [
+    {
+      title: "Home",
+      href: "/",
+    },
     {
       title: "Sign In",
       href: "/SignIn",
@@ -12,6 +21,14 @@ export default function LandingPageNavbar() {
     {
       title: "Sign Up",
       href: "/SignUp",
+    },
+    {
+      title: "Profile",
+      href: "/profile",
+    },
+    {
+      title: "Restaurants",
+      href: "/restaurants",
     },
     {
       title: "About",
@@ -47,17 +64,21 @@ export default function LandingPageNavbar() {
           />
         </label>
       </aside>
-      <nav className="absolute right-0 top-[4.5rem] w-full translate-x-full transition-all duration-300 peer-has-[:checked]:-translate-x-0 md:top-[5.5rem]">
+      <div className="absolute right-0 top-[4.5rem] w-full translate-x-full transition-all duration-300 peer-has-[:checked]:-translate-x-0 md:top-[5.5rem]">
         <ul className="min-h-[calc(100vh-4rem)] space-y-5 bg-gradient-to-b from-black-YUMFINITY from-70% to-red-YUMFINITY text-white-YUMFINITY">
-          {navbarList.map(({ title, href }, index) => (
-            <Link href={href} key={index}>
-              <li className="border-b px-8 py-6 text-2xl hover:bg-slate-800">
-                {title}
-              </li>
-            </Link>
-          ))}
+          {navbarList.map(({ title, href }, index) => {
+            if (isLoggedIn && title.includes("Sign")) return null;
+            if (!isLoggedIn && title.includes("Profile")) return null;
+            return (
+              <Link href={href} key={index}>
+                <li className="border-b px-8 py-6 text-2xl hover:bg-slate-800">
+                  {title}
+                </li>
+              </Link>
+            );
+          })}
         </ul>
-      </nav>
+      </div>
       <div className="hidden flex-shrink-0 items-center md:flex">
         <Link href={"/SignIn"}>
           <button className="group relative me-1 inline-flex items-center justify-center overflow-hidden rounded-lg bg-red-600 bg-gradient-to-l p-0.5 hover:text-white-YUMFINITY focus:outline-none active:bg-black-YUMFINITY">
