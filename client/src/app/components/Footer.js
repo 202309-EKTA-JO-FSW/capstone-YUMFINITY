@@ -29,6 +29,7 @@ export default function Footer() {
     {
       title: "Pages",
       list: ["Home", "About", "Contact us"],
+      href: ["/", "/about", "/contact-us"],
     },
     {
       title: "Features",
@@ -38,8 +39,8 @@ export default function Footer() {
 
   return (
     <footer className="mt-auto">
-      <div className="mx-auto px-6 py-16 sm:px-10 lg:px-16">
-        <div className="logo mb-0">
+      <div className="mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="logo mb-0 border-t border-black-YUMFINITY py-16 dark:border-white-YUMFINITY">
           <Logo className="mb-2 ml-7 size-24" />
           <span className="font-boston text-xl uppercase tracking-wide ">
             Yumfinity
@@ -57,12 +58,16 @@ export default function Footer() {
 
             <div className="col-span-2 lg:col-span-1"></div>
             <div className="flex gap-10 sm:flex-nowrap md:gap-12 lg:justify-center">
-              {data.map(({ title, list }, index) => (
+              {data.map(({ title, list, href }, index) => (
                 <div key={index} className="min-w-fit">
                   <h5 className={`mb-2 font-semibold  sm:mb-8`}>{title}</h5>
                   <ul className="flex flex-col gap-3  sm:gap-5">
                     {list.map((item, index) => (
-                      <Link href={"#"} key={index} className="hover:opacity-75">
+                      <Link
+                        href={(href && href[index]) || "#"}
+                        key={index}
+                        className="hover:opacity-75"
+                      >
                         <li>{item}</li>
                       </Link>
                     ))}
@@ -135,7 +140,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-black-YUMFINITY pt-8 dark:border-white-YUMFINITY">
+        <div className="my-8 border-t border-black-YUMFINITY pt-8 dark:border-white-YUMFINITY">
           <div className="sm:flex sm:justify-between">
             <p className="text-xs text-gray-500">
               &copy; 2024. Yumfinity. All rights reserved.

@@ -10,7 +10,7 @@ const Restaurants = () => {
         <Image
           src={allRestaurantsHeader}
           priority={true}
-          className="absolute top-0 -z-10 size-full min-h-[750px] object-cover dark:brightness-90"
+          className="absolute -top-10 -z-10 size-full min-h-[750px] object-cover dark:brightness-90"
           alt="Example"
         />
 

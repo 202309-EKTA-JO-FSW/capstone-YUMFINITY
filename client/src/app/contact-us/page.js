@@ -49,11 +49,11 @@ const ContactPage = () => {
                 className="text-sm text-gray-400 dark:text-black-YUMFINITY"
               >
                 I agree to the{" "}
-                <a href="javascript:void(0);" className="underline">
+                <a href="#" className="underline">
                   Terms and Conditions
                 </a>{" "}
                 and{" "}
-                <a href="javascript:void(0);" className="underline">
+                <a href="#" className="underline">
                   Privacy Policy
                 </a>
               </label>

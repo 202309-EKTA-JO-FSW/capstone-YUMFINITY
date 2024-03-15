@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa6";
 export default function ReviewCard({ className }) {
   return (
     <section
-      className={`flex flex-col gap-3 rounded-md bg-gray-100 px-10 py-5 shadow-md ${className}`}
+      className={`flex flex-col gap-3 rounded-md bg-white px-10 py-5 shadow-md dark:bg-gray-800 ${className}`}
     >
       <div className="flex items-center gap-3 text-xl">
         <div className="flex size-10 items-center justify-center rounded-full bg-yellow-YUMFINITY text-xl text-white-YUMFINITY">
@@ -15,7 +15,7 @@ export default function ReviewCard({ className }) {
           <FaStar color="orange" />
         </div>
       </div>
-      <div className="p-2">
+      <div className="m-2 line-clamp-2">
         Comment Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
         ipsum dolor sit amet consectetur adipisicing elit. Cum veritatis quo
         autem laborum modi mollitia eos quisquam error excepturi esse. Omnis,
