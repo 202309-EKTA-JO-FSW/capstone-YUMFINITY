@@ -39,7 +39,7 @@ export default function ShoppingCart() {
           <span className="font-bold">$19.00</span>
         </div>
         <div className="mt-4 flex items-center justify-between">
-          <span>Taxes:</span>
+          <span>Delivery fees:</span>
           <span>$1.00</span>
         </div>
         <hr className="my-4" />
