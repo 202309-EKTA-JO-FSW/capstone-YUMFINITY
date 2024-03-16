@@ -1,7 +1,7 @@
 import React from "react";
 
-const ContactPage = () => {
+const AdminDashboard = () => {
   return <></>;
 };
 
-export default ContactPage;
+export default AdminDashboard;
