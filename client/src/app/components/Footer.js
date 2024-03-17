@@ -40,7 +40,7 @@ export default function Footer() {
   return (
     <footer className="mt-auto">
       <div className="mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="logo mb-0 border-t border-black-YUMFINITY py-16 dark:border-white-YUMFINITY">
+        <div className="logo mb-0 mt-10 border-t border-black-YUMFINITY py-10 md:mt-16 dark:border-white-YUMFINITY">
           <Logo className="mb-2 ml-7 size-24" />
           <span className="font-boston text-xl uppercase tracking-wide ">
             Yumfinity
