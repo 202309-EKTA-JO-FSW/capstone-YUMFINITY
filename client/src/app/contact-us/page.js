@@ -8,11 +8,11 @@ const ContactPage = () => {
   return (
     <div className="">
       <div className="h-40 w-full bg-gradient-to-b from-yellow-YUMFINITY to-[#ff8c00ad]">
-        <h1 className="pt-10 text-center font-boston text-4xl text-white">
+        <h1 className="mb-6 pt-10 text-center font-boston text-4xl text-white">
           Contact Us
         </h1>
       </div>
-      <div className="-mt-14 mb-6 px-4">
+      <div className="-mt-10 px-4">
         <div className="relative mx-auto max-w-6xl rounded bg-white-YUMFINITY bg-opacity-60 px-6 py-8 shadow-lg backdrop-blur-lg dark:bg-white-YUMFINITY dark:bg-opacity-60">
           <h2 className=" text-xl text-black-YUMFINITY">Get In Touch</h2>
           <form className="mt-8 grid gap-6 sm:grid-cols-2 *:dark:text-black-YUMFINITY">

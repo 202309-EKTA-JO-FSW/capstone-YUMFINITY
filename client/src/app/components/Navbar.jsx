@@ -35,7 +35,7 @@ const navbarList = [
   },
   {
     title: "Contact Us",
-    href: "/ContactPage",
+    href: "/contact-us",
   },
 ];
 

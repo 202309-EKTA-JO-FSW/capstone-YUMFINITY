@@ -1,3 +1,11 @@
 body:has(.burger-menu:checked) {
   overflow-y: hidden;
 }
+
+body:has(header.OVERFLOWYHIDDEN) {
+  overflow-x: hidden;
+}
+
+body:has(header.openedNavbar) {
+  overflow-y: hidden;
+}
