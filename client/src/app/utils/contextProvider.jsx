@@ -13,7 +13,6 @@ export default function UserContextProvider({ children }) {
     const currentUserJSON = Cookies.get("user");
     let currentUser;
     if (currentUserJSON) currentUser = JSON.parse(currentUserJSON);
-    console.log(currentUser);
     if (currentUser) return setUser(currentUser);
     setUser("");
   }, []);
