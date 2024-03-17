@@ -12,6 +12,7 @@
     "format": "prettier --ignore-path ../.gitignore --write"
   },
   "dependencies": {
+    "js-cookie": "^3.0.5",
     "next": "^14.1.0",
     "react": "^18",
     "react-dom": "^18",
