@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${Boston.variable} ${roboto.className}`}>
-        <UserContextProvider getCookie={getCookie}>
+        <UserContextProvider>
           <Navbar />
           {children}
           <Footer />
