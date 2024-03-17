@@ -21,7 +21,7 @@ const signingController = {
 
     // query database to find user with provided credentials
     try {
-      const user = await User.findOne({ username: username });
+      const user = await User.findOne({ username: username }).lean();
       if (!user)
         return res
           .status(400)
@@ -42,6 +42,9 @@ const signingController = {
       // if all processes are passed, send back a both tokens which can be used for authentication
       const { accessToken, refreshToken } = createTokens(user);
 
+      delete user.password_hash;
+      console.log(user);
+
       res
         .cookie("accessToken", accessToken, {
           httpOnly: true,
@@ -53,7 +56,7 @@ const signingController = {
           maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
         })
         .status(200)
-        .json({ success: true, accessToken, refreshToken });
+        .json({ success: true, accessToken, refreshToken, user });
     } catch (error) {
       return res.status(500).json(error);
     }
