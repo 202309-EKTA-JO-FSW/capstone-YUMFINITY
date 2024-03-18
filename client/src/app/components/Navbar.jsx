@@ -64,7 +64,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky left-0 top-0 z-10 w-full bg-yellow-YUMFINITY text-white-YUMFINITY shadow-lg duration-300 ease-in ${styles.OVERFLOWYHIDDEN} ${isOpen ? styles.openedNavbar : ""}`}
+      className={`sticky left-0 top-0 z-10 w-full bg-yellow-YUMFINITY text-white-YUMFINITY shadow-lg duration-300 ease-in ${styles.OVERFLOWXHIDDEN} ${isOpen ? styles.openedNavbar : ""}`}
     >
       <nav className="mx-auto flex h-[4.5rem] max-w-[1366px] items-center justify-between bg-yellow-YUMFINITY md:h-[5.5rem] md:p-4">
         <div>
