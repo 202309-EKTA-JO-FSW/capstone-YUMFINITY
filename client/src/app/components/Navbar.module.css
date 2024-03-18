@@ -8,6 +8,6 @@ html:has(header.OVERFLOWXHIDDEN) {
 }
 
 body:has(header.openedNavbar),
-html:has(header.openedNavbarw) {
+html:has(header.openedNavbar) {
   overflow-y: hidden;
 }
