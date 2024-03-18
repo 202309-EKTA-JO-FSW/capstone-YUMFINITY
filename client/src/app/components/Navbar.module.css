@@ -2,10 +2,12 @@ body:has(.burger-menu:checked) {
   overflow-y: hidden;
 }
 
-body:has(header.OVERFLOWYHIDDEN) {
+body:has(header.OVERFLOWXHIDDEN),
+html:has(header.OVERFLOWXHIDDEN) {
   overflow-x: hidden;
 }
 
-body:has(header.openedNavbar) {
+body:has(header.openedNavbar),
+html:has(header.openedNavbar) {
   overflow-y: hidden;
 }
