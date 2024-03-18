@@ -1,10 +1,10 @@
-export default function AddRestaurant() {
+export default function EditItem({ data, setEditOpen }) {
   return (
-    <div className="relative max-h-full w-full max-w-md p-4">
+    <div className="relative max-h-full w-[400%] bg-white p-4">
       <div className="relative rounded-lg bg-white shadow dark:bg-gray-700">
         <div className="flex items-center justify-between rounded-t border-b p-4 md:p-5 dark:border-gray-600">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Create New Restaurant
+            Update Item
           </h3>
         </div>
         <form className="p-4 md:p-5">
@@ -17,21 +17,40 @@ export default function AddRestaurant() {
                 type="text"
                 name="name"
                 id="name"
+                defaultValue={data.title}
                 className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
-                placeholder="Enter restaurant name"
+                placeholder="Enter item name"
+                required=""
+              />
+            </div>
+            <div className="col-span-2">
+              <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                Quantity
+              </label>
+              <input
+                type="number"
+                name="quantity"
+                id="quantity"
+                defaultValue={data.availableQuantity}
+                className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                placeholder="100"
                 required=""
               />
             </div>
             <div className="col-span-2 sm:col-span-1">
-              <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
-                Phone no.
+              <label
+                // for="price"
+                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Price
               </label>
               <input
-                type="text"
-                name="phone"
-                id="phone"
-                className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
-                placeholder="Enter phone no."
+                type="number"
+                name="price"
+                id="price"
+                defaultValue={data.price}
+                className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                placeholder="$10"
                 required=""
               />
             </div>
@@ -47,7 +66,18 @@ export default function AddRestaurant() {
                 <option value="PH">Healthy</option>
               </select>
             </div>
-
+            <div className="col-span-2">
+              <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                Description
+              </label>
+              <textarea
+                id="description"
+                rows="4"
+                defaultValue={data.description}
+                className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900  dark:border-gray-500 dark:bg-gray-600 dark:placeholder-gray-400  "
+                placeholder="Enter description here"
+              ></textarea>
+            </div>
             <div className="col-span-2">
               <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                 Photo
@@ -76,23 +106,13 @@ export default function AddRestaurant() {
                 </label>
               </div>
             </div>
-            <div className="col-span-2">
-              <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
-                Location
-              </label>
-              <textarea
-                id="location"
-                rows="4"
-                className="block w-full rounded-lg border bg-gray-50 p-2.5 text-sm text-gray-900  dark:border-gray-500 dark:bg-gray-600 dark:placeholder-gray-400  "
-                placeholder="Enter location here"
-              ></textarea>
-            </div>
           </div>
           <button
             type="submit"
+            onClick={() => setEditOpen(false)}
             className="inline-flex items-center rounded-lg bg-[#FD7014]  px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 "
           >
-            Add new restaurant
+            Save changes
           </button>
         </form>
       </div>
