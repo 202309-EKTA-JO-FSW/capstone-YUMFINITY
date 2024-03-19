@@ -1,0 +1,77 @@
+@keyframes fade-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  100% {
+    opacity: 0;
+  }
+}
+
+.Error {
+  @apply -top-8 w-[400px] text-center;
+  animation:
+    fade-in-top 5s cubic-bezier(0.39, 0.575, 0.565, 1) both,
+    fade-out 0.6s ease-out 2s both;
+}
+
+@media (max-width: 768px) {
+  .Error {
+    @apply -top-16 left-0 right-0 w-[100%] px-3 text-center;
+  }
+}
+
+@keyframes shake-horizontal-fade {
+  0%,
+  6% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  0.6%,
+  1.7%,
+  2.9%,
+  4% {
+    transform: translateX(-10px);
+  }
+  1.15%,
+  2.3%,
+  3.4% {
+    transform: translateX(10px);
+  }
+  4.6% {
+    transform: translateX(8px);
+  }
+  5.15% {
+    transform: translateX(-8px);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes error {
+  80% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+}
+
+div.ERROR {
+  animation: shake-horizontal-fade 7s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+    both;
+}
