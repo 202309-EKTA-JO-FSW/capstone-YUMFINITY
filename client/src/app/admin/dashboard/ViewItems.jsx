@@ -28,6 +28,11 @@ export default function ViewItems() {
           {items.map((item) => (
             <ItemRow key={item._id} data={item} />
           ))}
+          {!items.length && (
+            <div className="w-[400%] bg-white py-36 text-center text-5xl">
+              Please Select a restaurant to view its Item list!
+            </div>
+          )}
         </tbody>
       </table>
     </div>
