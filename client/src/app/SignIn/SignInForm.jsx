@@ -19,7 +19,7 @@ export default function SignInForm({ submitData }) {
     if (!result) throw new Error("fetch failed");
     if (!user) {
       if (result.user) {
-        setUser(result);
+        setUser(result.user);
         router.push("/restaurants");
       } else {
         if (!error) setError(result.message);
