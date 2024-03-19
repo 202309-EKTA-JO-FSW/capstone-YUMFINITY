@@ -14,6 +14,7 @@ module.exports = {
       },
       fontFamily: {
         boston: "var(--font-boston)",
+        Roboto: "__Roboto_a2ea95",
       },
       colors: {
         "red-YUMFINITY": "#C20114",
