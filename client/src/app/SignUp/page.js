@@ -31,7 +31,9 @@ async function submitData(form) {
   const result = await res.json();
   if (result.user) {
     const cookiesSetter = cookies();
-    cookiesSetter.set("user", JSON.stringify(result.user));
+    cookiesSetter.set("user", JSON.stringify(result.user), {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    });
     cookiesSetter.set("accessToken", result.tokens.accessToken, {
       httpOnly: true,
     });
