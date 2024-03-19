@@ -13,6 +13,8 @@ export default function Dashboard({
   fetchItems,
   deleteRestaurant,
   deleteItem,
+  updateRestaurant,
+  updateItem,
 }) {
   const [tab, setTab] = useState("Restaurants");
   const [createOpen, setCreateOpen] = useState(false);
@@ -40,6 +42,8 @@ export default function Dashboard({
         deleteRestaurant,
         setRestaurants,
         deleteItem,
+        updateRestaurant,
+        updateItem,
       }}
     >
       <header>
