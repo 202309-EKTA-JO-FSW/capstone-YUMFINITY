@@ -13,7 +13,7 @@ async function submitData(form) {
 
   const [username, password] = [form.get("username"), form.get("password")];
 
-  const res = await fetch("http://192.168.100.5:3001/v1/signIn", {
+  const res = await fetch("http://localhost:3001/v1/signIn", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +21,19 @@ async function submitData(form) {
     body: JSON.stringify({ username, password }),
   });
   const result = await res.json();
-  if (result.user) cookies().set("user", JSON.stringify(result.user));
+  if (result.user) {
+    const cookiesSetter = cookies();
+    cookiesSetter.set("user", JSON.stringify(result.user), {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    });
+    cookiesSetter.set("accessToken", result.accessToken, {
+      httpOnly: true,
+    });
+    cookiesSetter.set("refreshToken", result.refreshToken, {
+      httpOnly: true,
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    });
+  }
   return result;
 }
 
