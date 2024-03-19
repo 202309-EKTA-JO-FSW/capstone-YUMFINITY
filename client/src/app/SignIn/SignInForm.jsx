@@ -4,13 +4,12 @@ import Link from "next/link";
 import GoogleSignIn from "./GoogleSignIn";
 import { useContext, useState } from "react";
 import { UserContext } from "../utils/contextProvider";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import styles from "./signin.module.css";
 
 export default function SignInForm({ submitData }) {
   const { user, setUser } = useContext(UserContext);
   const router = useRouter();
-  const [passwordVisible, setPasswordVisible] = useState(false);
   const [error, setError] = useState(null);
 
   async function handleSubmit(e) {
@@ -19,7 +18,6 @@ export default function SignInForm({ submitData }) {
     const result = await submitData(formData);
     if (!result) throw new Error("fetch failed");
     if (!user) {
-      // localStorage.setItem("user", JSON.stringify(resultUser));
       if (result.user) {
         setUser(result);
         router.push("/restaurants");
@@ -27,10 +25,6 @@ export default function SignInForm({ submitData }) {
         if (!error) setError(result.message);
       }
     }
-  }
-
-  function showPassword() {
-    setPasswordVisible(!passwordVisible);
   }
 
   if (user) return router.push("/restaurants");
@@ -81,7 +75,7 @@ export default function SignInForm({ submitData }) {
         <div className="relative flex items-center">
           <input
             name="password"
-            type={passwordVisible ? "text" : "password"}
+            type={"password"}
             required
             className="w-full rounded-md border border-gray-300 px-4 py-3 text-sm text-black-YUMFINITY outline-[#FD7014]"
             placeholder="Enter password"
@@ -90,9 +84,8 @@ export default function SignInForm({ submitData }) {
             xmlns="http://www.w3.org/2000/svg"
             fill="#bbb"
             stroke="#bbb"
-            className={`absolute right-3 size-7 cursor-pointer rounded-full p-1 transition-all hover:bg-slate-300 hover:fill-slate-800 ${passwordVisible ? "bg-yellow-YUMFINITY/20 fill-yellow-YUMFINITY" : ""}`}
+            className={`absolute right-3 size-7 rounded-full p-1 transition-all`}
             viewBox="0 0 128 128"
-            onClick={showPassword}
           >
             <path
               d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
