@@ -2,7 +2,7 @@ export default function Services() {
   return (
     <section className="w-11/12 p-4 py-14">
       <div className="container mx-auto rounded-lg pb-20 pt-12">
-        <h1 className="mb-8 text-center font-boston text-4xl font-bold text-gray-800 dark:text-white-YUMFINITY">
+        <h1 className="mb-8 text-center font-boston text-4xl font-bold text-black dark:text-white-YUMFINITY">
           Our Services
         </h1>
         <p className="mb-12 text-center text-lg text-gray-700 dark:text-white-YUMFINITY">
