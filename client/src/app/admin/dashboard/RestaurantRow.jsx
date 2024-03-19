@@ -14,15 +14,16 @@ export default function RestaurantRow({ data }) {
   } = useContext(RestaurantsContext);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const [restaurantData, setRestaurantData] = useState(data);
 
   async function handleViewItems() {
-    const { items } = await fetchItems(data._id);
+    const { items } = await fetchItems(restaurantData._id);
     setItems(items);
     setTab("Items");
   }
 
   async function handleDelete() {
-    const res = await deleteRestaurant(data._id);
+    const res = await deleteRestaurant(restaurantData._id);
     if (res) {
       const newRestaurants = await fetchRestaurants();
       setDeleteOpen(false);
@@ -33,11 +34,13 @@ export default function RestaurantRow({ data }) {
   return (
     <>
       <tr className="*:py-2">
-        <td className="border-b border-gray-200 px-6">{data.name}</td>
+        <td className="border-b border-gray-200 px-6">{restaurantData.name}</td>
         <td className="truncate border-b border-gray-200 px-6">
-          {data.category}
+          {restaurantData.category}
         </td>
-        <td className="border-b border-gray-200 px-6">{data.phoneNumber}</td>
+        <td className="border-b border-gray-200 px-6">
+          {restaurantData.phoneNumber}
+        </td>
         <td className="flex gap-1 whitespace-nowrap border-b border-gray-200 px-6">
           <button
             onClick={handleViewItems}
@@ -59,7 +62,13 @@ export default function RestaurantRow({ data }) {
           </button>
         </td>
       </tr>
-      {editOpen && <EditRestaurant data={data} setEditOpen={setEditOpen} />}
+      {editOpen && (
+        <EditRestaurant
+          data={restaurantData}
+          setRestaurantData={setRestaurantData}
+          setEditOpen={setEditOpen}
+        />
+      )}
       {deleteOpen && (
         <DeleteDialogBox
           setDeleteOpen={setDeleteOpen}

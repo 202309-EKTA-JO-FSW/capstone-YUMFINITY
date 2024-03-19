@@ -1,4 +1,28 @@
-export default function EditRestaurant({ data, setEditOpen }) {
+import { useContext } from "react";
+import { RestaurantsContext } from "./Dashboard";
+
+export default function EditRestaurant({
+  data,
+  setEditOpen,
+  setRestaurantData,
+}) {
+  const { updateRestaurant } = useContext(RestaurantsContext);
+
+  async function handleUpdate(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const updateFields = {
+      name: formData.get("name"),
+      location: formData.get("location").split(","),
+      phoneNumber: formData.get("phoneNumber"),
+    };
+    const result = await updateRestaurant(updateFields, data._id);
+    if (result.updatedRestaurant) {
+      setRestaurantData(result.updatedRestaurant);
+      setEditOpen(false);
+    }
+  }
+
   return (
     <div className="relative max-h-full w-[400%] bg-white p-4">
       <div className="relative rounded-lg bg-white shadow dark:bg-gray-700">
@@ -7,7 +31,7 @@ export default function EditRestaurant({ data, setEditOpen }) {
             Update Restaurant
           </h3>
         </div>
-        <form className="p-4 md:p-5">
+        <form onSubmit={handleUpdate} className="p-4 md:p-5">
           <div className="mb-4 grid grid-cols-2 gap-4">
             <div className="col-span-2">
               <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
@@ -29,8 +53,8 @@ export default function EditRestaurant({ data, setEditOpen }) {
               </label>
               <input
                 type="text"
-                name="phone"
-                id="phone"
+                name="phoneNumber"
+                id="phoneNumber"
                 defaultValue={data.phoneNumber}
                 className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
                 placeholder="Enter phone no."
@@ -43,8 +67,8 @@ export default function EditRestaurant({ data, setEditOpen }) {
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
+                name="location"
+                id="location"
                 defaultValue={data.location}
                 className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
                 required=""
@@ -82,7 +106,6 @@ export default function EditRestaurant({ data, setEditOpen }) {
           </div>
           <button
             type="submit"
-            onClick={() => setEditOpen(false)}
             className="inline-flex items-center rounded-lg bg-[#FD7014]  px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 "
           >
             Save changes

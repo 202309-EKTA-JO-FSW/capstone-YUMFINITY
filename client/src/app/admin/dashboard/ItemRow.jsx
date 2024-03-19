@@ -6,12 +6,13 @@ import { RestaurantsContext } from "./Dashboard";
 export default function ItemRow({ data }) {
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const [itemData, setItemData] = useState(data);
   const { deleteItem, fetchItems, setItems } = useContext(RestaurantsContext);
 
   async function handleDelete() {
-    const res = await deleteItem(data._id);
+    const res = await deleteItem(itemData._id);
     if (res) {
-      const { items } = await fetchItems(data.restaurantID);
+      const { items } = await fetchItems(itemData.restaurantID);
       setDeleteOpen(false);
       setItems(items);
     }
@@ -20,12 +21,12 @@ export default function ItemRow({ data }) {
   return (
     <>
       <tr className="*:py-2">
-        <td className="border-b border-gray-200 px-6">{data.title}</td>
+        <td className="border-b border-gray-200 px-6">{itemData.title}</td>
         <td className="truncate border-b border-gray-200 px-6">
-          {data.restaurantID}
+          {itemData.restaurantID}
         </td>
 
-        <td className="border-b border-gray-200 px-6">{data.price}</td>
+        <td className="border-b border-gray-200 px-6">{itemData.price}</td>
 
         <td className="border-b border-gray-200 px-6">
           <td className="whitespace-nowrap px-6 ">
@@ -44,7 +45,13 @@ export default function ItemRow({ data }) {
           </td>
         </td>
       </tr>
-      {editOpen && <EditItem data={data} setEditOpen={setEditOpen} />}
+      {editOpen && (
+        <EditItem
+          data={itemData}
+          setItemData={setItemData}
+          setEditOpen={setEditOpen}
+        />
+      )}
       {deleteOpen && (
         <DeleteDialogBox
           handleDelete={handleDelete}
