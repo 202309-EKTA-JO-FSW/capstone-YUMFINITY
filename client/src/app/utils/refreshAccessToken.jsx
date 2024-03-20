@@ -2,8 +2,8 @@
 
 import { cookies } from "next/headers";
 
-export async function getAccessToken() {
-  const res = await fetch("http://192.168.100.5:3001/v1/refreshToken", {
+export async function refreshAccessToken() {
+  const res = await fetch("http://localhost:3001/v1/refreshToken", {
     method: "GET",
     headers: {
       Cookie: cookies().toString(),
