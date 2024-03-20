@@ -15,11 +15,14 @@ export default function Dashboard({
   deleteItem,
   updateRestaurant,
   updateItem,
+  createRestaurant,
+  createItem,
 }) {
   const [tab, setTab] = useState("Restaurants");
   const [createOpen, setCreateOpen] = useState(false);
   const [restaurants, setRestaurants] = useState([]);
   const [items, setItems] = useState([]);
+  const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
   async function setRestaurantsState() {
     const data = await fetchRestaurants();
@@ -44,6 +47,11 @@ export default function Dashboard({
         deleteItem,
         updateRestaurant,
         updateItem,
+        createRestaurant,
+        createItem,
+        setCreateOpen,
+        selectedRestaurant,
+        setSelectedRestaurant,
       }}
     >
       <header>

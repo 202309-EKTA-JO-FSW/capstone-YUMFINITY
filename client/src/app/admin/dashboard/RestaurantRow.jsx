@@ -11,6 +11,7 @@ export default function RestaurantRow({ data }) {
     deleteRestaurant,
     fetchRestaurants,
     setRestaurants,
+    setSelectedRestaurant,
   } = useContext(RestaurantsContext);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -18,6 +19,7 @@ export default function RestaurantRow({ data }) {
 
   async function handleViewItems() {
     const { items } = await fetchItems(restaurantData._id);
+    setSelectedRestaurant(restaurantData._id);
     setItems(items);
     setTab("Items");
   }

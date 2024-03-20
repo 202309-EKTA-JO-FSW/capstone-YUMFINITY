@@ -3,7 +3,7 @@ import ItemRow from "./ItemRow";
 import { RestaurantsContext } from "./Dashboard";
 
 export default function ViewItems() {
-  const { items } = useContext(RestaurantsContext);
+  const { items, selectedRestaurant } = useContext(RestaurantsContext);
 
   return (
     <div className="mx-4 my-10 overflow-hidden rounded-lg shadow-lg md:mx-10">
@@ -28,9 +28,15 @@ export default function ViewItems() {
           {items.map((item) => (
             <ItemRow key={item._id} data={item} />
           ))}
-          {!items.length && (
+          {!items.length && !selectedRestaurant && (
             <div className="w-[400%] bg-white py-36 text-center text-5xl">
               Please Select a restaurant to view its Item list!
+            </div>
+          )}
+          {!items.length && selectedRestaurant && (
+            <div className="w-[400%] bg-white px-10 py-36 text-center text-5xl">
+              This restaurant doesn&apos;t have any item, create a new one in
+              the Create New Item tab!
             </div>
           )}
         </tbody>
