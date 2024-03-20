@@ -1,10 +1,12 @@
 "use client";
 
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import ViewRestaurants from "./ViewRestaurants";
 import ViewItems from "./ViewItems";
 import AddRestaurant from "./AddRestaurant";
 import AddItem from "./AddItem";
+import { useRouter } from "next/navigation";
+import { UserContext } from "@/app/utils/contextProvider";
 
 export const RestaurantsContext = createContext(null);
 
@@ -23,6 +25,8 @@ export default function Dashboard({
   const [restaurants, setRestaurants] = useState([]);
   const [items, setItems] = useState([]);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+  const { user } = useContext(UserContext);
+  const router = useRouter();
 
   async function setRestaurantsState() {
     const data = await fetchRestaurants();
@@ -32,6 +36,8 @@ export default function Dashboard({
   useEffect(() => {
     setRestaurantsState();
   }, []);
+
+  if (!user || !user?.isAdmin) return router.push("/");
 
   return (
     <RestaurantsContext.Provider
