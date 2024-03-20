@@ -113,6 +113,48 @@ async function updateItem(updateFields, itemId) {
   if (result.ok) return data;
 }
 
+async function createRestaurant(fields) {
+  "use server";
+
+  const result = await fetch(`http://localhost:3001/v1/admin/restaurant/add`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: cookies().toString(),
+    },
+    body: JSON.stringify(fields),
+  });
+  const data = await result.json();
+
+  if (data?.error?.message === "jwt expired") {
+    await refreshAccessToken();
+    return await createRestaurant(fields); // Recursively call the function with the new token
+  }
+
+  if (result.ok) return data;
+}
+
+async function createItem(fields) {
+  "use server";
+
+  const result = await fetch(`http://localhost:3001/v1/admin/item/add`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: cookies().toString(),
+    },
+    body: JSON.stringify(fields),
+  });
+  const data = await result.json();
+
+  if (data?.error?.message === "jwt expired") {
+    await refreshAccessToken();
+    return await createItem(fields); // Recursively call the function with the new token
+  }
+
+  if (result.ok) return data;
+}
+
 const AdminDashboard = () => {
   return (
     <main className="">
@@ -123,6 +165,8 @@ const AdminDashboard = () => {
         deleteItem={deleteItem}
         updateRestaurant={updateRestaurant}
         updateItem={updateItem}
+        createRestaurant={createRestaurant}
+        createItem={createItem}
       />
     </main>
   );
