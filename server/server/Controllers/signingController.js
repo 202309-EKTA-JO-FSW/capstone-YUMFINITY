@@ -180,8 +180,10 @@ const signingController = {
             secure: false,
             maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
           })
-          .status(200)
-          .json({ success: true, accessToken, refreshToken });
+          .cookie("user", JSON.stringify(user), {
+            maxAge: 1000 * 60 * 60 * 24 * 30,
+          })
+          .redirect("http://localhost:3000");
       }
     })(req, res, next);
   },

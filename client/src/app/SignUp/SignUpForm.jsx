@@ -6,6 +6,7 @@ import { TbNumber } from "react-icons/tb";
 import styles from "./signup.module.css";
 import { UserContext } from "../utils/contextProvider";
 import { useRouter } from "next/navigation";
+import GoogleSignIn from "../components/GoogleSignIn";
 
 export default function SignUpForm({ submitData }) {
   const { user, setUser } = useContext(UserContext);
@@ -42,6 +43,9 @@ export default function SignUpForm({ submitData }) {
       )}
       <div className="mb-10">
         <h3 className=" text-3xl font-extrabold">Sign up</h3>
+      </div>
+      <div className="mb-10 space-x-4 max-sm:space-y-4 sm:flex sm:items-start">
+        <GoogleSignIn />
       </div>
       <div>
         <label className="mb-2 block text-sm">First name</label>

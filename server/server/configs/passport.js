@@ -44,7 +44,7 @@ function passportStratigies(passport) {
               email: userData.email,
               password_hash: "signed with google",
               firstName: userData.given_name,
-              lastName: userData.family_name,
+              lastName: userData.family_name || userData.given_name,
               profilePicture: userData.picture,
             })
               // return user to callback route or return error
