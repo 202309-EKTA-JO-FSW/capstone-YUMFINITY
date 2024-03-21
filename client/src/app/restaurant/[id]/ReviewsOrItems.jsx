@@ -6,6 +6,7 @@ import ReviewCard from "../../components/Restaurant/ReviewCard";
 
 export default function ReviewsOrItems({ items, reviews }) {
   const [isItems, setItems] = useState(true); // true: show items; false: show reviews
+  console.log(items, reviews);
 
   return (
     <div className="grid-cols-3 md:grid">
@@ -27,6 +28,15 @@ export default function ReviewsOrItems({ items, reviews }) {
       </div>
       <section className="md:col-span-2">
         <div className="my-6 flex flex-col items-start justify-center gap-4 ">
+          {isItems
+            ? (!items || items?.length < 1) && (
+                <div>There are no Items for this restaurant.</div>
+              )
+            : (!reviews || reviews?.length < 1) && (
+                <div className="px-16 py-10 font-boston text-2xl">
+                  There are no Reviews for this restaurant.
+                </div>
+              )}
           {isItems
             ? items &&
               items.map((item) => <ItemCard key={item._id} item={item} />)
