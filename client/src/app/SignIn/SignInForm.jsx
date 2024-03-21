@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import GoogleSignIn from "./GoogleSignIn";
+import GoogleSignIn from "../components/GoogleSignIn";
 import { useContext, useState } from "react";
 import { UserContext } from "../utils/contextProvider";
 import { useRouter } from "next/navigation";
@@ -43,7 +43,7 @@ export default function SignInForm({ submitData }) {
         <h3 className=" text-3xl font-extrabold ">Sign in</h3>
       </div>
       <div className="mb-10 space-x-4 max-sm:space-y-4 sm:flex sm:items-start">
-        {/* <GoogleSignIn googleSignIn={googleSignIn} /> */}
+        <GoogleSignIn />
       </div>
       <div>
         <label className="mb-2 block text-sm">User name</label>

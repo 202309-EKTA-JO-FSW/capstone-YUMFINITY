@@ -2,12 +2,6 @@ import React from "react";
 import SignInForm from "./SignInForm";
 import { cookies } from "next/headers";
 
-async function googleSignIn() {
-  "use server";
-  // window.open("http://localhost:3001/v1/google");
-  // console.log(data);
-}
-
 async function submitData(form) {
   "use server";
 
