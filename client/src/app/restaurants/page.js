@@ -7,9 +7,7 @@ import SearchAndList from "./SearchAndList";
 async function fetchRestaurants(query) {
   "use server";
 
-  const result = await fetch(
-    `http://192.168.100.5:3001/v1/restaurants?${query}`,
-  );
+  const result = await fetch(`http://localhost:3001/v1/restaurants?${query}`);
   const data = await result.json();
   return data;
 }
