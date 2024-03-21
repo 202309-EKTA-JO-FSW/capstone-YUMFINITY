@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ItemCard from "../../components/Restaurant/ItemCard";
 import ReviewCard from "../../components/Restaurant/ReviewCard";
+import ShoppingCart from "./ShoppingCart";
 
 export default function ReviewsOrItems({ items, reviews }) {
   const [isItems, setItems] = useState(true); // true: show items; false: show reviews
@@ -44,6 +45,9 @@ export default function ReviewsOrItems({ items, reviews }) {
               reviews.map((rev) => <ReviewCard key={rev._id} review={rev} />)}
         </div>
       </section>
+      <aside>
+        <ShoppingCart />
+      </aside>
     </div>
   );
 }
