@@ -1,7 +1,7 @@
 export default function ShoppingCart() {
   return (
-    <div className="relative">
-      <div className="fixed left-0 right-0 top-0 flex max-h-fit flex-col items-center justify-center">
+    <div className="">
+      <div className=" left-0 right-0 top-0 flex max-h-fit flex-col items-center justify-center">
         <div className="rounded-lg bg-gray-50 p-6 shadow-lg">
           <h1 className="mb-6 text-2xl font-bold">Shopping Cart</h1>
           <div className="mb-4 flex justify-between">
