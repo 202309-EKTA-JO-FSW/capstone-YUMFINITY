@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import ItemCard from "../components/Restaurant/ItemCard";
-import ReviewCard from "../components/Restaurant/ReviewCard";
+import ItemCard from "../../components/Restaurant/ItemCard";
+import ReviewCard from "../../components/Restaurant/ReviewCard";
 
-export default function ReviewsOrItems() {
+export default function ReviewsOrItems({ items, reviews }) {
   const [isItems, setItems] = useState(true); // true: show items; false: show reviews
 
   return (
@@ -26,9 +26,13 @@ export default function ReviewsOrItems() {
         </button>
       </div>
       <section className="md:col-span-2">
-        <div className="mb-6 flex items-start justify-center gap-4 sm:flex-row"></div>
-        {isItems ? <ItemCard /> : <ReviewCard />}
-        {/* <Pagination /> */}
+        <div className="my-6 flex flex-col items-start justify-center gap-4 ">
+          {isItems
+            ? items &&
+              items.map((item) => <ItemCard key={item._id} item={item} />)
+            : reviews &&
+              reviews.map((rev) => <ReviewCard key={rev._id} review={rev} />)}
+        </div>
       </section>
     </div>
   );

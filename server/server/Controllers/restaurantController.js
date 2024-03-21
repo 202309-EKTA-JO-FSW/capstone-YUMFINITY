@@ -56,9 +56,9 @@ const restaurantController = {
           message: "Restaurant does not exist, check the provided ID",
         });
       const items = await Item.find({ restaurantID: id });
-      const restaurantReviews = await Review.find({ restaurantId: id }).limit(
-        50,
-      );
+      const restaurantReviews = await Review.find({ restaurantId: id })
+        .limit(50)
+        .populate("userId");
       return res.status(200).json({ restaurant, items, restaurantReviews });
     } catch (error) {
       return res.status(500).json(error);

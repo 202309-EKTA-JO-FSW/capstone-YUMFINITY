@@ -10,7 +10,7 @@ export default function RestaurantCard({ className, data }) {
   const randomIndex = Math.floor(Math.random() * workingHours.length);
   return (
     <Link
-      href={`/singleRestaurantPage/${data._id}`}
+      href={`/restaurant/${data._id}`}
       className={`group relative flex size-full flex-col justify-between rounded-xl bg-white leading-normal shadow-md shadow-gray-400 transition-all hover:-translate-y-3 hover:scale-[1.02] ${className}`}
     >
       <Image
