@@ -7,7 +7,9 @@ import SearchAndList from "./SearchAndList";
 async function fetchRestaurants(query) {
   "use server";
 
-  const result = await fetch(`http://localhost:3001/v1/restaurants?${query}`);
+  const result = await fetch(
+    `https://capstone-room-5.onrender.com/v1/restaurants?${query}`,
+  );
   const data = await result.json();
   return data;
 }
