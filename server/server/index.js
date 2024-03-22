@@ -12,7 +12,7 @@ const app = express();
 const port =
   process.env.NODE_ENV === "test"
     ? process.env.NODE_LOCAL_TEST_PORT
-    : process.env.NODE_LOCAL_PORT;
+    : process.env.PORT;
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
@@ -27,7 +27,7 @@ app.use(passport.initialize());
 app.use("/v1", require("./Routes/v1"));
 
 if (process.env.NODE_ENV === "development") {
-  app.listen(port, () => {
+  app.listen(port, "0.0.0.0", () => {
     console.log(`Server listening on port ${port}`);
     connectToMongo();
   });

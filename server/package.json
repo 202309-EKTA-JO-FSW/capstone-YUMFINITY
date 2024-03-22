@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:app": "NODE_ENV=development nodemon server/index.js",
+    "start:deploy": "NODE_ENV=development node server/index.js",
     "postinstall": "CONT=$(docker ps -aqf name=node-app) && [ $CONT ] && docker exec -w /backend-app $CONT npm install || true",
     "start": "docker-compose up",
     "build": "docker-compose up --build",
