@@ -2,7 +2,7 @@ import Image from "next/image";
 import itemPlaceholder from "./item-placeholder.jpg";
 import { IoIosAddCircleOutline } from "react-icons/io";
 
-export default function ItemCard({ className, item }) {
+export default function ItemCard({ className, item, handleAddToCart }) {
   return (
     <div
       className={`flex w-full flex-col items-center justify-between gap-3 border-y border-black-YUMFINITY bg-white p-2 md:flex-row dark:border-white-YUMFINITY dark:bg-gray-800 ${className}`}
@@ -26,7 +26,9 @@ export default function ItemCard({ className, item }) {
       </div>
       <aside className="ml-auto flex items-center justify-center gap-3">
         ${item.price}
-        <button>
+        <button
+          onClick={() => handleAddToCart({ itemId: item._id, quantity: 1 })}
+        >
           <IoIosAddCircleOutline
             fill="white"
             className="rounded-full bg-[green]"

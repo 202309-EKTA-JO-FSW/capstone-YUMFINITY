@@ -5,9 +5,18 @@ import ItemCard from "../../components/Restaurant/ItemCard";
 import ReviewCard from "../../components/Restaurant/ReviewCard";
 import ShoppingCart from "./ShoppingCart";
 
-export default function ReviewsOrItems({ items, reviews }) {
+export default function ReviewsOrItems({
+  items,
+  reviews,
+  cart,
+  setCart,
+  handleUpsertCart,
+  handleDeleteCart,
+  restaurantId,
+}) {
   const [isItems, setItems] = useState(true); // true: show items; false: show reviews
-  console.log(items, reviews);
+
+  console.log(cart);
 
   return (
     <>
@@ -27,9 +36,9 @@ export default function ReviewsOrItems({ items, reviews }) {
           View Reviews
         </button>
       </div>
-      <div className="relative grid-cols-3 md:grid">
+      <article className="grid-cols-3 md:grid">
         <section className="md:col-span-2">
-          <div className="my-6 flex flex-col items-start justify-center gap-4 ">
+          <div className="my-6 flex flex-col justify-center gap-4 ">
             {isItems
               ? (!items || items?.length < 1) && (
                   <div>There are no Items for this restaurant.</div>
@@ -41,15 +50,28 @@ export default function ReviewsOrItems({ items, reviews }) {
                 )}
             {isItems
               ? items &&
-                items.map((item) => <ItemCard key={item._id} item={item} />)
+                items.map((item) => (
+                  <ItemCard
+                    key={item._id}
+                    handleAddToCart={handleUpsertCart}
+                    item={item}
+                  />
+                ))
               : reviews &&
                 reviews.map((rev) => <ReviewCard key={rev._id} review={rev} />)}
           </div>
         </section>
-        <aside>
-          <ShoppingCart />
+        <aside className="top-0 mt-12 self-start md:sticky">
+          <ShoppingCart
+            cart={cart?.Cart || null}
+            message={cart?.message}
+            setCart={setCart}
+            handleUpsertCart={handleUpsertCart}
+            handleDeleteCart={handleDeleteCart}
+            pathId={restaurantId}
+          />
         </aside>
-      </div>
+      </article>
     </>
   );
 }
