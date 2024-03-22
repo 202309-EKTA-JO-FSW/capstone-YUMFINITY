@@ -6,7 +6,9 @@ import { refreshAccessToken } from "@/app/utils/refreshAccessToken";
 async function getRestaurantData(id) {
   "use server";
 
-  const res = await fetch(`http://localhost:3001/v1/restaurants/${id}`);
+  const res = await fetch(
+    `https://capstone-room-5.onrender.com/v1/restaurants/${id}`,
+  );
   const data = await res.json();
   return data;
 }
@@ -14,7 +16,7 @@ async function getRestaurantData(id) {
 async function getUserCart() {
   "use server";
 
-  const res = await fetch(`http://localhost:3001/v1/cart`, {
+  const res = await fetch(`https://capstone-room-5.onrender.com/v1/cart`, {
     method: "GET",
     headers: {
       Cookie: cookies().toString(),
@@ -33,7 +35,7 @@ async function getUserCart() {
 async function deleteUserCart() {
   "use server";
 
-  const res = await fetch(`http://localhost:3001/v1/cart`, {
+  const res = await fetch(`https://capstone-room-5.onrender.com/v1/cart`, {
     method: "DELETE",
     headers: {
       Cookie: cookies().toString(),
@@ -51,7 +53,7 @@ async function deleteUserCart() {
 
 async function upsertCart(fields) {
   "use server";
-  const res = await fetch(`http://localhost:3001/v1/cart`, {
+  const res = await fetch(`https://capstone-room-5.onrender.com/v1/cart`, {
     method: "PATCH",
     headers: {
       Cookie: cookies().toString(),

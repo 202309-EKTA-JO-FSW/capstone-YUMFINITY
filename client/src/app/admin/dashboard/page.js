@@ -5,7 +5,9 @@ import { refreshAccessToken } from "@/app/utils/refreshAccessToken";
 async function fetchRestaurants() {
   "use server";
 
-  const result = await fetch("http://localhost:3001/v1/restaurants");
+  const result = await fetch(
+    "https://capstone-room-5.onrender.com/v1/restaurants",
+  );
   const data = await result.json();
   return data;
 }
@@ -14,7 +16,7 @@ async function fetchItems(restaurantID) {
   "use server";
 
   const result = await fetch(
-    `http://localhost:3001/v1/restaurants/${restaurantID}`,
+    `https://capstone-room-5.onrender.com/v1/restaurants/${restaurantID}`,
   );
   const data = await result.json();
   return data;
@@ -24,7 +26,7 @@ async function deleteRestaurant(restaurantID) {
   "use server";
 
   const result = await fetch(
-    `http://localhost:3001/v1/admin/restaurant/remove`,
+    `https://capstone-room-5.onrender.com/v1/admin/restaurant/remove`,
     {
       method: "DELETE",
       headers: {
@@ -47,14 +49,17 @@ async function deleteRestaurant(restaurantID) {
 async function deleteItem(itemId) {
   "use server";
 
-  const result = await fetch("http://localhost:3001/v1/admin/item/remove", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Cookie: cookies().toString(),
+  const result = await fetch(
+    "https://capstone-room-5.onrender.com/v1/admin/item/remove",
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: cookies().toString(),
+      },
+      body: JSON.stringify({ ids: [itemId] }),
     },
-    body: JSON.stringify({ ids: [itemId] }),
-  });
+  );
   const data = await result.json();
 
   if (data?.error?.message === "jwt expired") {
@@ -69,7 +74,7 @@ async function updateRestaurant(updateFields, restaurantID) {
   "use server";
 
   const result = await fetch(
-    `http://localhost:3001/v1/admin/restaurant/update/${restaurantID}`,
+    `https://capstone-room-5.onrender.com/v1/admin/restaurant/update/${restaurantID}`,
     {
       method: "PATCH",
       headers: {
@@ -93,7 +98,7 @@ async function updateItem(updateFields, itemId) {
   "use server";
 
   const result = await fetch(
-    `http://localhost:3001/v1/admin/item/update/${itemId}`,
+    `https://capstone-room-5.onrender.com/v1/admin/item/update/${itemId}`,
     {
       method: "PATCH",
       headers: {
@@ -116,14 +121,17 @@ async function updateItem(updateFields, itemId) {
 async function createRestaurant(fields) {
   "use server";
 
-  const result = await fetch(`http://localhost:3001/v1/admin/restaurant/add`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Cookie: cookies().toString(),
+  const result = await fetch(
+    `https://capstone-room-5.onrender.com/v1/admin/restaurant/add`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: cookies().toString(),
+      },
+      body: JSON.stringify(fields),
     },
-    body: JSON.stringify(fields),
-  });
+  );
   const data = await result.json();
 
   if (data?.error?.message === "jwt expired") {
@@ -137,14 +145,17 @@ async function createRestaurant(fields) {
 async function createItem(fields) {
   "use server";
 
-  const result = await fetch(`http://localhost:3001/v1/admin/item/add`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Cookie: cookies().toString(),
+  const result = await fetch(
+    `https://capstone-room-5.onrender.com/v1/admin/item/add`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: cookies().toString(),
+      },
+      body: JSON.stringify(fields),
     },
-    body: JSON.stringify(fields),
-  });
+  );
   const data = await result.json();
 
   if (data?.error?.message === "jwt expired") {

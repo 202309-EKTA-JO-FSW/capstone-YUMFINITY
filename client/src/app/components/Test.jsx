@@ -5,7 +5,7 @@ const Hello = () => {
   const [testResult, setTestResult] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3001/test")
+    fetch("https://capstone-room-5.onrender.com/test")
       .then((res) => res.json())
       .then((data) => {
         setTestResult(data);
