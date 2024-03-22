@@ -5,9 +5,18 @@ import ItemCard from "../../components/Restaurant/ItemCard";
 import ReviewCard from "../../components/Restaurant/ReviewCard";
 import ShoppingCart from "./ShoppingCart";
 
-export default function ReviewsOrItems({ items, reviews }) {
+export default function ReviewsOrItems({
+  items,
+  reviews,
+  cart,
+  setCart,
+  handleUpsertCart,
+  handleDeleteCart,
+  restaurantId,
+}) {
   const [isItems, setItems] = useState(true); // true: show items; false: show reviews
-  console.log(items, reviews);
+
+  console.log(cart);
 
   return (
     <>
@@ -41,13 +50,26 @@ export default function ReviewsOrItems({ items, reviews }) {
                 )}
             {isItems
               ? items &&
-                items.map((item) => <ItemCard key={item._id} item={item} />)
+                items.map((item) => (
+                  <ItemCard
+                    key={item._id}
+                    handleAddToCart={handleUpsertCart}
+                    item={item}
+                  />
+                ))
               : reviews &&
                 reviews.map((rev) => <ReviewCard key={rev._id} review={rev} />)}
           </div>
         </section>
         <aside>
-          <ShoppingCart />
+          <ShoppingCart
+            cart={cart?.Cart || null}
+            message={cart?.message}
+            setCart={setCart}
+            handleUpsertCart={handleUpsertCart}
+            handleDeleteCart={handleDeleteCart}
+            pathId={restaurantId}
+          />
         </aside>
       </div>
     </>

@@ -233,7 +233,7 @@ const customerController = {
       if (!cart) {
         return res.status(404).json({ message: "Cart not found" });
       }
-      return res.json(cart);
+      return res.json({ Cart: cart, message: "fetched successfully" });
     } catch (error) {
       return res.status(500).json(error);
     }
@@ -321,10 +321,23 @@ const customerController = {
         await newCart.save();
         await item.save();
 
+        const populatedCart = await newCart.populate([
+          {
+            path: "restaurantId",
+            select: {
+              name: 1,
+              restaurantPicture: 1,
+              location: 1,
+            },
+          },
+          "items.itemId",
+        ]);
+
         // return response with new cart
-        return res
-          .status(201)
-          .json({ message: "New cart created successfully", Cart: newCart });
+        return res.status(201).json({
+          message: "New cart created successfully",
+          Cart: populatedCart,
+        });
       }
 
       // if cart exists, we add/update the item to cart
@@ -383,10 +396,22 @@ const customerController = {
         }
         await cart.save();
 
+        const populatedCart = await cart.populate([
+          {
+            path: "restaurantId",
+            select: {
+              name: 1,
+              restaurantPicture: 1,
+              location: 1,
+            },
+          },
+          "items.itemId",
+        ]);
+
         // return response with new cart
         return res
           .status(200)
-          .json({ message: "Cart updated successfully", cart });
+          .json({ message: "Cart updated successfully", Cart: populatedCart });
       }
     } catch (error) {
       return res.status(500).json(error);

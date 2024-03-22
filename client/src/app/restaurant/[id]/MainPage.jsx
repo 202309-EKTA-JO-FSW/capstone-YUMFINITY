@@ -5,11 +5,17 @@ import InfoCards from "./InfoCards";
 import ReviewsOrItems from "./ReviewsOrItems";
 import { useParams, useRouter } from "next/navigation";
 
-export default function MainPage({ getRestaurantData }) {
+export default function MainPage({
+  getRestaurantData,
+  getUserCart,
+  upsertCart,
+  deleteUserCart,
+}) {
   const [restaurant, setRestaurant] = useState(null);
   const [items, setItems] = useState(null);
   const [reviews, setReviews] = useState(null);
   const [error, setError] = useState(null);
+  const [cart, setCart] = useState(null);
   const { id } = useParams();
   const router = useRouter();
 
@@ -22,9 +28,26 @@ export default function MainPage({ getRestaurantData }) {
     setReviews(restaurantReviews);
   }
 
+  async function fetchCart() {
+    const data = await getUserCart();
+    console.log(data);
+    setCart(data);
+  }
+
   useEffect(() => {
     fetchData();
+    fetchCart();
   }, []);
+
+  async function handleUpsertCart(fields) {
+    const data = await upsertCart(fields);
+    setCart(data);
+  }
+
+  async function handleDeleteCart() {
+    const data = await deleteUserCart();
+    setCart(data);
+  }
 
   if (error) return router.push("/not-found");
 
@@ -46,7 +69,17 @@ export default function MainPage({ getRestaurantData }) {
               </p>
             </div>
           </div>
-          {items && <ReviewsOrItems items={items} reviews={reviews} />}
+          {items && (
+            <ReviewsOrItems
+              items={items}
+              reviews={reviews}
+              cart={cart}
+              setCart={setCart}
+              handleUpsertCart={handleUpsertCart}
+              handleDeleteCart={handleDeleteCart}
+              restaurantId={id}
+            />
+          )}
         </div>
       </main>
     </>
