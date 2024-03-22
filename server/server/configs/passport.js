@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const JwtStrategy = require("passport-jwt").Strategy;
 const SECRET_KEY = process.env.SECRET_KEY;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
