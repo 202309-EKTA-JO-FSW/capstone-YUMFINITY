@@ -36,9 +36,9 @@ export default function ReviewsOrItems({
           View Reviews
         </button>
       </div>
-      <div className="relative grid-cols-3 md:grid">
+      <article className="grid-cols-3 md:grid">
         <section className="md:col-span-2">
-          <div className="my-6 flex flex-col items-start justify-center gap-4 ">
+          <div className="my-6 flex flex-col justify-center gap-4 ">
             {isItems
               ? (!items || items?.length < 1) && (
                   <div>There are no Items for this restaurant.</div>
@@ -61,7 +61,7 @@ export default function ReviewsOrItems({
                 reviews.map((rev) => <ReviewCard key={rev._id} review={rev} />)}
           </div>
         </section>
-        <aside>
+        <aside className="top-0 mt-12 self-start md:sticky">
           <ShoppingCart
             cart={cart?.Cart || null}
             message={cart?.message}
@@ -71,7 +71,7 @@ export default function ReviewsOrItems({
             pathId={restaurantId}
           />
         </aside>
-      </div>
+      </article>
     </>
   );
 }

@@ -1,5 +1,7 @@
+import Link from "next/link";
 import ShoppingCartRow from "./ShoppingCartRow";
 import { FaTrashAlt } from "react-icons/fa";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 export default function ShoppingCart({
   cart,
@@ -22,7 +24,7 @@ export default function ShoppingCart({
   const Delivery = 5;
 
   return (
-    <div className="flex translate-y-12 justify-center">
+    <div className="flex justify-center">
       {(message?.includes("Cart not found") ||
         message?.includes("Cart emptied") ||
         message?.includes("deleted")) &&
@@ -37,7 +39,7 @@ export default function ShoppingCart({
         message?.includes("deleted")
       ) &&
         pathId === cart?.restaurantId._id && (
-          <div className="relative flex max-h-fit w-4/5 flex-col justify-center">
+          <div className="relative flex h-fit w-4/5 flex-col justify-center">
             <FaTrashAlt
               color="red"
               onClick={() => handleDeleteCart()}
@@ -76,16 +78,25 @@ export default function ShoppingCart({
           </div>
         )}
       {cart && pathId !== cart?.restaurantId._id && cart?.restaurantId._id && (
-        <div className="flex flex-col items-center gap-3">
-          <div className="px-10 text-center font-boston text-2xl">
+        <div className="flex w-4/5 flex-col items-center gap-3">
+          <div className="text-center font-boston text-2xl">
             You Already have a cart for {cart?.restaurantId.name} restaurant
             <br /> Delete it to make new one!
           </div>
           <FaTrashAlt
             color="red"
             onClick={() => handleDeleteCart()}
-            className="size-12 cursor-pointer hover:animate-pulse"
+            className="mb-4 size-12 cursor-pointer transition-all hover:scale-[1.3]"
           />
+          <div className="flex flex-col items-center gap-4 border-t border-black pt-4 text-center font-boston text-2xl">
+            or go to {cart?.restaurantId.name} restaurant
+            <Link href={`/restaurant/${cart?.restaurantId?._id}`}>
+              <FaArrowUpRightFromSquare
+                color="orange"
+                className="size-12 cursor-pointer transition-all hover:size-14"
+              />
+            </Link>
+          </div>
         </div>
       )}
     </div>
