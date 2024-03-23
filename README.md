@@ -133,10 +133,3 @@ If you encounter issues and wish to delete the Docker containers, you can run:
 ```bash
 npm run prune
 ```
-
-## Key Features
-
-- User authentication and authorization.
-- Displaying dishes and drinks in an appealing way on the frontend.
-- Efficient storage and retrieval of item information from the backend.
-- Ability for users to place orders, review past orders, and cancel current orders.
