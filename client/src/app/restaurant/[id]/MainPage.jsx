@@ -30,7 +30,6 @@ export default function MainPage({
 
   async function fetchCart() {
     const data = await getUserCart();
-    console.log(data);
     setCart(data);
   }
 
