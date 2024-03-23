@@ -7,6 +7,7 @@ import styles from "./form.module.css";
 
 export default function PaymentForm({ submitOrder }) {
   const [completed, setCompleted] = useState(false);
+  const [error, setError] = useState(null);
   const router = useRouter();
 
   async function handleSubmit(e) {
@@ -21,9 +22,10 @@ export default function PaymentForm({ submitOrder }) {
     };
     const order = await submitOrder(fields);
     if (order) {
+      if (order.message) setError(order.message);
       setCompleted(true);
       setTimeout(() => {
-        router.push("/restaurants");
+        order.message ? router.push("/profile") : router.push("/restaurants");
       }, 2500);
     }
   }
@@ -122,7 +124,7 @@ export default function PaymentForm({ submitOrder }) {
           </div>
         </div>
       </div>
-      {completed && (
+      {completed && !error && (
         <div
           className={`${styles.completed} fixed inset-0 flex items-center justify-center bg-black-YUMFINITY/35`}
         >
@@ -134,6 +136,17 @@ export default function PaymentForm({ submitOrder }) {
             your order is set, we hope you enjoy it
             <br />
             <MdFastfood className="ml-5 size-12 fill-red-YUMFINITY" />
+          </div>
+        </div>
+      )}
+      {completed && error && (
+        <div
+          className={`${styles.completed} fixed inset-0 flex items-center justify-center bg-black-YUMFINITY/35`}
+        >
+          <div
+            className={`${styles.pop} mx-6 flex size-fit flex-col items-center justify-center rounded-lg bg-yellow-YUMFINITY/80 px-8 py-10 text-center font-boston shadow-xl ring-2 ring-red-YUMFINITY backdrop:blur-xl md:flex-row`}
+          >
+            {error}
           </div>
         </div>
       )}
