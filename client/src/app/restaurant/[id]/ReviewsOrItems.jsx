@@ -16,8 +16,6 @@ export default function ReviewsOrItems({
 }) {
   const [isItems, setItems] = useState(true); // true: show items; false: show reviews
 
-  console.log(cart);
-
   return (
     <>
       <div className="col-span-3 flex justify-center gap-3">

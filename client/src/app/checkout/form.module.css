@@ -1,0 +1,24 @@
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.completed {
+  animation: fade-in 0.65s both;
+}
+
+@keyframes pop {
+  0% {
+    scale: 0;
+  }
+  100% {
+    scale: 1;
+  }
+}
+.pop {
+  animation: pop 0.65s both;
+}

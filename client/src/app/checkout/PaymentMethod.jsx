@@ -1,18 +1,21 @@
 export default function PaymentMethod() {
   return (
-    <form className="mt-5 grid gap-6">
+    <section className="mt-5 grid gap-6 rounded-lg border bg-white px-4 py-6 shadow-lg">
+      <p className="mb-4 pl-2 font-boston text-2xl">Payment method</p>
       <div className="relative">
         <input
+          form="payment"
           className="peer hidden"
-          id="radio_1"
+          id="cash"
           type="radio"
-          name="radio"
-          checked
+          value="cash"
+          defaultChecked
+          name="paymentMethod"
         />
         <span className="absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white peer-checked:border-gray-700"></span>
         <label
           className="flex cursor-pointer select-none rounded-lg border border-gray-300 p-4 peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50"
-          htmlFor="radio_1"
+          htmlFor="cash"
         >
           <div className="ml-5">
             <span className="mt-2 font-semibold">Cash on Delivery</span>
@@ -22,15 +25,16 @@ export default function PaymentMethod() {
       <div className="relative">
         <input
           className="peer hidden"
-          id="radio_2"
+          id="paypal"
+          form="payment"
           type="radio"
-          name="radio"
-          checked
+          value="paypal"
+          name="paymentMethod"
         />
         <span className="absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white peer-checked:border-gray-700"></span>
         <label
           className="flex cursor-pointer select-none rounded-lg border border-gray-300 p-4 peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50"
-          htmlFor="radio_2"
+          htmlFor="paypal"
         >
           <div className="ml-5">
             <img
@@ -44,15 +48,16 @@ export default function PaymentMethod() {
       <div className="relative">
         <input
           className="peer hidden"
-          id="radio_3"
+          id="card"
+          form="payment"
           type="radio"
-          name="radio"
-          checked
+          value="card"
+          name="paymentMethod"
         />
         <span className="absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white peer-checked:border-gray-700"></span>
         <label
           className="flex cursor-pointer select-none rounded-lg border border-gray-300 p-4 peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50"
-          htmlFor="radio_3"
+          htmlFor="card"
         >
           <div className="ml-5 flex cursor-pointer gap-2">
             <img
@@ -73,6 +78,6 @@ export default function PaymentMethod() {
           </div>
         </label>
       </div>
-    </form>
+    </section>
   );
 }

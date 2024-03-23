@@ -70,9 +70,11 @@ export default function ShoppingCart({
                 </span>
               </div>
               <div className="mt-6 flex justify-center">
-                <button className="rounded  bg-[#FD7014] px-4 py-2 font-bold text-white">
-                  Checkout
-                </button>
+                <Link href={"/checkout"}>
+                  <button className="rounded  bg-[#FD7014] px-4 py-2 font-bold text-white">
+                    Checkout
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

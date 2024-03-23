@@ -19,7 +19,6 @@ export default function SignUpForm({ submitData }) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const result = await submitData(formData);
-    console.log(result.errors);
     if ((result.message && !result.user) || result.error)
       return setError(result.message || result.error);
     if (result.errors) return setValidationErrors(result.errors);

@@ -10,7 +10,6 @@ const Search = () => {
       const {
         coords: { latitude, longitude },
       } = position;
-      console.log(latitude);
       router.push(`/restaurants?location=${latitude}+${longitude}`);
     });
   }
