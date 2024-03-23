@@ -133,7 +133,7 @@ const customerController = {
         restaurantId: userCart.restaurantId,
         items: userCart.items,
         specialOrderRequirement:
-          userCart.specialOrderRequirement ?? specialOrderRequirement,
+          specialOrderRequirement ?? userCart.specialOrderRequirement,
         payment: {
           totalPayment: totalPayment ?? null,
           paymentMethod: paymentMethod ?? null,
