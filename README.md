@@ -63,14 +63,11 @@ YUMFINITY is built using a combination of modern web technologies, ensuring a ro
 - **Backend**:
 - **Node.js**: A JavaScript runtime built on Chrome's V8 JavaScript engine.
 - **Express.js**: A minimal and flexible Node.js web application framework.
-- **MongoDB**: A source-available cross-platform document-oriented database program.
-- **Mongoose**: An Object Data Modeling (ODM) library for MongoDB and Node.js.
+- **MongoDB Atlas**: A fully-managed cloud database service provided by MongoDB.
 
-- **Database**:
-- **MongoDB**: A source-available cross-platform document-oriented database program.
-
-- **ORM**:
-- **Mongoose**: An Object Data Modeling (ODM) library for MongoDB and Node.js.
+- **Deployment**:
+- **Vercel**: A cloud platform for static sites and Serverless Functions, used for deploying the frontend.
+- **Render**: A unified platform to build and run all your apps and websites with free SSL, a global CDN, private networks, and auto deploys from Git.
 
 - **Containerization**:
 - **Docker**: An open-source platform for automating the deployment, scaling, and management of applications.
@@ -79,8 +76,12 @@ YUMFINITY is built using a combination of modern web technologies, ensuring a ro
 - **Version Control**:
 - **Git**: A distributed version control system for tracking changes in source code during software development.
 
-- **Deployment**:
-- **Vercel**: A cloud platform for static sites and Serverless Functions, used for deploying YUMFINITY.
+- **DevOps**:
+- **ESLint**: A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript.
+- **Husky**: A tool that can prevent bad `git commit`, `git push`, and more.
+- **Lint Staged**: A tool to run linters on git staged files.
+- **Jest**: A delightful JavaScript Testing Framework with a focus on simplicity.
+- **GitHub Actions**: A CI/CD service provided by GitHub for automating workflows.
 
 ## Project Structure
 
