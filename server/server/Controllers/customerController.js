@@ -119,14 +119,21 @@ const customerController = {
         return res.status(404).json({ message: "No Items In Cart" });
 
       //  create new order with fields from cart and request body
-      const { totalBill, totalPayment, paymentMethod, location } = req.body;
+      const {
+        totalBill,
+        totalPayment,
+        paymentMethod,
+        location,
+        specialOrderRequirement,
+      } = req.body;
       const newOrder = Order.create({
         totalBill: totalBill,
         deliveryAddress: location,
         userId: id,
         restaurantId: userCart.restaurantId,
         items: userCart.items,
-        specialOrderRequirement: userCart.specialOrderRequirement ?? null,
+        specialOrderRequirement:
+          userCart.specialOrderRequirement ?? specialOrderRequirement,
         payment: {
           totalPayment: totalPayment ?? null,
           paymentMethod: paymentMethod ?? null,

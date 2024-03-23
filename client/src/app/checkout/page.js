@@ -3,21 +3,62 @@ import React from "react";
 import ShoppingCart from "./ShoppingCart";
 import PaymentMethod from "./PaymentMethod";
 import PaymentForm from "./PaymentForm";
+import { cookies } from "next/headers";
+import { refreshAccessToken } from "../utils/refreshAccessToken";
+
+async function getUserCart() {
+  "use server";
+
+  const res = await fetch(`https://capstone-room-5.onrender.com/v1/cart`, {
+    method: "GET",
+    headers: {
+      Cookie: cookies().toString(),
+    },
+  });
+  const data = await res.json();
+
+  if (data?.error?.message === "jwt expired") {
+    await refreshAccessToken();
+    return await getUserCart(); // Recursively call the function with the new token
+  }
+
+  return data;
+}
+
+async function submitOrder(fields) {
+  "use server";
+
+  const res = await fetch(`https://capstone-room-5.onrender.com/v1/checkout`, {
+    method: "POST",
+    headers: {
+      Cookie: cookies().toString(),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(fields),
+  });
+  const data = await res.json();
+
+  if (data?.error?.message === "jwt expired") {
+    await refreshAccessToken();
+    return await getUserCart(); // Recursively call the function with the new token
+  }
+
+  return data;
+}
 
 const Checkout = () => {
   return (
     <div>
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
-        <div className="px-4 pt-8">
-          <p className="text-xl font-medium">Order Summary</p>
-          <p className="text-gray-400">
+        <div className="mt-4 flex flex-col p-8">
+          <p className="font-boston text-xl">Order Summary</p>
+          <p className="text-lg text-gray-400">
             Check your items. And select a suitable payment method.
           </p>
-          <ShoppingCart />
-          <p className="mt-8 text-lg font-medium">Choose payment method</p>
+          <ShoppingCart getUserCart={getUserCart} />
           <PaymentMethod />
         </div>
-        <PaymentForm />
+        <PaymentForm submitOrder={submitOrder} />
       </div>
     </div>
   );

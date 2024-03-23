@@ -1,14 +1,42 @@
-export default function PaymentForm() {
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { MdFastfood } from "react-icons/md";
+import styles from "./form.module.css";
+
+export default function PaymentForm({ submitOrder }) {
+  const [completed, setCompleted] = useState(false);
+  const router = useRouter();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const fields = {
+      totalBill: parseFloat(data.get("totalBill")),
+      totalPayment: parseFloat(data.get("totalBill")),
+      specialOrderRequirement: data.get("specialOrderRequirement"),
+      paymentMethod: data.get("paymentMethod"),
+      location: [33.154, 36.167],
+    };
+    const order = await submitOrder(fields);
+    if (order) {
+      setCompleted(true);
+      setTimeout(() => {
+        router.push("/restaurants");
+      }, 2500);
+    }
+  }
   return (
     <div>
-      <div className="mx-auto w-full max-w-3xl p-8">
+      <div className="mx-auto mt-20 w-full max-w-3xl p-8">
         <div className="rounded-lg border bg-white p-8 shadow-md dark:border-gray-700 dark:bg-gray-800">
           <div className="lg:col-span-2">
-            <h3 className="text-xl font-bold text-[#333]">Payment Details</h3>
+            <h3 className="font-boston text-2xl">Payment Details</h3>
           </div>
           <div className="flex items-center justify-center p-12">
             <div className="mx-auto w-full max-w-[550px] bg-white">
-              <form>
+              <form onSubmit={handleSubmit} id="payment">
                 <div className="mb-5">
                   <label
                     htmlFor="name"
@@ -74,19 +102,19 @@ export default function PaymentForm() {
                     htmlFor="message"
                     className="mb-3 block text-base font-medium text-[#07074D]"
                   >
-                    Message
+                    Order Note
                   </label>
                   <textarea
                     rows="4"
-                    name="message"
-                    id="message"
+                    name="specialOrderRequirement"
+                    id="specialOrderRequirement"
                     placeholder="Type your message"
                     className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   ></textarea>
                 </div>
                 <div>
-                  <button className="hover:shadow-form rounded-md bg-[#FD7014] px-8 py-3 text-base font-semibold text-white outline-none">
-                    confirm payment
+                  <button className="hover:shadow-form rounded-md bg-[#FD7014] px-8 py-3 font-boston text-base text-white outline-none">
+                    Submit order
                   </button>
                 </div>
               </form>
@@ -94,6 +122,21 @@ export default function PaymentForm() {
           </div>
         </div>
       </div>
+      {completed && (
+        <div
+          className={`${styles.completed} fixed inset-0 flex items-center justify-center bg-black-YUMFINITY/35`}
+        >
+          <div
+            className={`${styles.pop} mx-6 flex size-fit flex-col items-center justify-center rounded-lg bg-yellow-YUMFINITY/80 px-8 py-10 text-center font-boston shadow-xl ring-2 ring-red-YUMFINITY backdrop:blur-xl md:flex-row`}
+          >
+            Thank you for ordering with us!
+            <br />
+            your order is set, we hope you enjoy it
+            <br />
+            <MdFastfood className="ml-5 size-12 fill-red-YUMFINITY" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
