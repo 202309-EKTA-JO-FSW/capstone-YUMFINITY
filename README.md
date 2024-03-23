@@ -2,6 +2,11 @@
 
 Welcome to the YUMFINITY project! This project is a food ordering website designed to streamline the process of ordering food online. Users can browse through a variety of restaurants and menus, select items they want to order, and then proceed to checkout for payment and delivery.
 
+## Live Demo
+
+You can view a live demo of YUMFINITY at the following link:
+[YUMFINITY Live Demo](https://yumfinity.vercel.app/)
+
 ## Acknowledgements
 
 This project was developed as the capstone project for graduation from Re:Coded. Special thanks to all contributors and mentors involved in the development process.
