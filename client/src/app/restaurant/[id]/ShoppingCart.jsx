@@ -45,7 +45,7 @@ export default function ShoppingCart({
               onClick={() => handleDeleteCart()}
               className="absolute right-5 top-5 size-8 cursor-pointer transition-all hover:scale-125 hover:animate-pulse"
             />
-            <div className="rounded-lg bg-gray-50 p-6 shadow-lg">
+            <div className="rounded-lg bg-gray-50 p-6 shadow-lg dark:bg-gray-800">
               <h1 className="mb-6 text-2xl font-bold">Shopping Cart</h1>
               {cart?.items.map(({ itemId, quantity }) => (
                 <ShoppingCartRow
@@ -71,7 +71,7 @@ export default function ShoppingCart({
               </div>
               <div className="mt-6 flex justify-center">
                 <Link href={"/checkout"}>
-                  <button className="rounded  bg-[#FD7014] px-4 py-2 font-bold text-white">
+                  <button className="rounded bg-[#FD7014] px-4 py-2 font-bold text-white transition-all hover:bg-orange-600 active:bg-orange-800">
                     Checkout
                   </button>
                 </Link>

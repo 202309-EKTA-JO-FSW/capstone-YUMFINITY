@@ -57,7 +57,7 @@ export default function MainPage({
         <div className="space-y-12 px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">
+              <div className="my-1 inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">
                 Our Menu
               </div>
               <h2 className="font-boston text-3xl md:text-4xl">
