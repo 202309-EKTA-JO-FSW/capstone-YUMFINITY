@@ -1,10 +1,14 @@
+import Image from "next/image";
+import hero from "./hero.jpg";
+
 export default function HeroSection() {
   return (
     <div>
       <div className="relative h-[calc(100vh-88px)] overflow-hidden bg-gradient-to-r from-purple-600 to-blue-600 text-white">
         <div className="absolute inset-0">
-          <img
-            src="hero.jpg"
+          <Image
+            priority
+            src={hero}
             alt="Background Image"
             className="h-full w-full object-cover object-center"
           />
