@@ -50,10 +50,8 @@ function SectionWithImage({ title, paragraph, imgSrcs, imgAlt, reverse }) {
       className={`flex flex-col md:flex-row ${reverse ? "md:flex-row-reverse" : ""} my-10 items-center justify-center gap-8 md:gap-4 ${isVisible ? "animate-fade-in-up" : "opacity-0"} transition-opacity duration-1000`}
     >
       <div className="flex-1 px-4">
-        <h2 className="mb-4 text-3xl font-bold text-black-YUMFINITY">
-          {title}
-        </h2>
-        <p className="text-lg text-black-YUMFINITY">{paragraph}</p>
+        <h2 className="mb-4 text-3xl font-bold">{title}</h2>
+        <p className="text-lg">{paragraph}</p>
       </div>
       <div className="mt-4 flex flex-1 justify-center px-4 md:mt-0 md:justify-center">
         <div className="flex w-full md:w-auto md:space-x-4">
@@ -75,7 +73,7 @@ export default function AboutPage() {
   return (
     <main>
       <HeroSection />
-      <div className="min-h-screen bg-white-YUMFINITY px-20 py-10">
+      <div className="min-h-screen px-20 py-10">
         <SectionWithImage
           title="Our Vision at YUMFINITY"
           paragraph="Here at YUMFINITY, it all started with a vision that sprouted in the minds of few college students. A group of enterprising students, united by their shared passion for technology and good food, set out to create more than just a meal delivery service. We envisioned a platform that would revolutionize the way people access their favorite foods, while also offering fellow students a flexible way to earn money during their college journey. YUMFINITY was born from the belief that everyone deserves to savor delicious meals without the wait, and that's exactly what we deliver, one order at a time."
