@@ -43,7 +43,7 @@ export default function ShoppingCart({
             <FaTrashAlt
               color="red"
               onClick={() => handleDeleteCart()}
-              className="absolute right-5 top-5 size-8 cursor-pointer hover:animate-pulse"
+              className="absolute right-5 top-5 size-8 cursor-pointer transition-all hover:scale-125 hover:animate-pulse"
             />
             <div className="rounded-lg bg-gray-50 p-6 shadow-lg">
               <h1 className="mb-6 text-2xl font-bold">Shopping Cart</h1>
