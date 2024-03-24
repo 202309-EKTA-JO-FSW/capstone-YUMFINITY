@@ -11,7 +11,7 @@ export default function PastOrderCard({ className, order }) {
 
   return (
     <div
-      className={`mx-4 flex flex-col gap-6 border-b-2 border-red-YUMFINITY pt-4 *:border-b *:border-black-YUMFINITY *:pb-3 lg:grid lg:grid-cols-2 ${className}`}
+      className={`mx-4 flex flex-col gap-6 border-b-2 border-red-YUMFINITY pt-4 *:border-b *:border-black-YUMFINITY *:pb-3 lg:grid lg:grid-cols-2 *:dark:border-white ${className}`}
     >
       <fieldset>
         <div className="text-lg font-bold">Order Date</div>

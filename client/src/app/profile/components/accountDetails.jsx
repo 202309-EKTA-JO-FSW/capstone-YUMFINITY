@@ -61,7 +61,7 @@ export default function AccountDetails() {
         )}
       </div>
       {!editing && (
-        <section className="m-3 flex flex-col rounded-lg border bg-white shadow-lg *:flex *:flex-col *:items-start *:justify-start *:border-b *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center">
+        <section className="m-3 flex flex-col rounded-lg border bg-white shadow-lg *:flex *:flex-col *:items-start *:justify-start *:border-b *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center dark:bg-gray-950">
           <fieldset>
             <div className="text-lg font-bold">First Name</div>
             <div className="text-lg">{formData.firstName}</div>
@@ -111,7 +111,7 @@ export default function AccountDetails() {
         <form
           ref={form}
           id="changes"
-          className="m-3 flex h-[637px] flex-col justify-between rounded-lg border bg-white shadow-lg *:flex *:flex-col *:items-start *:justify-start *:border-b *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center"
+          className="m-3 flex h-[637px] flex-col justify-between rounded-lg border bg-white shadow-lg *:flex *:flex-col *:items-start *:justify-start *:border-b *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center dark:bg-gray-950"
         >
           <fieldset>
             <div className="text-lg font-bold">First Name</div>
@@ -119,7 +119,7 @@ export default function AccountDetails() {
               name="firstName"
               type="text"
               defaultValue={formData.firstName}
-              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200"
+              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200 dark:text-black"
             />
           </fieldset>
           <fieldset>
@@ -128,7 +128,7 @@ export default function AccountDetails() {
               name="lastName"
               type="text"
               defaultValue={formData.lastName}
-              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200"
+              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200 dark:text-black"
             />
           </fieldset>
           <fieldset>
@@ -137,7 +137,7 @@ export default function AccountDetails() {
               name="email"
               type="email"
               defaultValue={formData.email}
-              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200"
+              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200 dark:text-black"
             />
           </fieldset>
           <fieldset>
@@ -146,7 +146,7 @@ export default function AccountDetails() {
               name="username"
               type="text"
               defaultValue={formData.username}
-              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200"
+              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200 dark:text-black"
             />
           </fieldset>
           <fieldset>
@@ -155,7 +155,7 @@ export default function AccountDetails() {
               name="phoneNumber"
               type="text"
               defaultValue={formData.phoneNumber}
-              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200"
+              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200 dark:text-black"
             />
           </fieldset>
           <fieldset>

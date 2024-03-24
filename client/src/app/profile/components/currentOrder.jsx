@@ -51,14 +51,14 @@ export default function CurrentOrder() {
         )}
       </div>
       {!currentOrder && (
-        <section className="m-3 mt-9 flex h-[200px] items-center justify-center rounded-lg border bg-white shadow-lg">
+        <section className="m-3 mt-9 flex h-[200px] items-center justify-center rounded-lg border bg-white shadow-lg dark:bg-gray-950">
           <div className="px-16 py-12 text-center text-2xl font-bold">
             You don&apos;t have a Current Order being prepared
           </div>
         </section>
       )}
       {currentOrder && (
-        <section className="m-3 flex flex-col rounded-lg border bg-white shadow-lg *:flex *:flex-col *:items-start *:justify-start *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center">
+        <section className="m-3 flex flex-col rounded-lg border bg-white shadow-lg *:flex *:flex-col *:items-start *:justify-start *:border-b *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center dark:bg-gray-950">
           <fieldset>
             <div className="text-lg font-bold">Order Date</div>
             <div className="text-lg">
@@ -85,7 +85,7 @@ export default function CurrentOrder() {
                 {currentOrder.items.map((item, index) => (
                   <div
                     key={index}
-                    className="grid grid-cols-4 items-center border-b border-black-YUMFINITY px-8 py-2"
+                    className={`grid grid-cols-4 items-center border-black-YUMFINITY px-8 py-2 dark:border-white-YUMFINITY ${index === currentOrder?.items.length - 1 ? "" : "border-b"}`}
                   >
                     <div className="col-span-2">{item.itemId}</div>
                     <div className="flex items-center gap-1">
