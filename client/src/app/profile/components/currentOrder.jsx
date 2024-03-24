@@ -44,21 +44,21 @@ export default function CurrentOrder() {
         {currentOrder && (
           <button
             onClick={handleCancel}
-            className="rounded-lg bg-red-700/40 px-4 py-2 text-xl font-bold transition-all hover:bg-red-YUMFINITY active:bg-red-900 "
+            className="rounded-lg bg-red-700/75 px-4 py-2 text-xl font-bold text-white shadow-md transition-all hover:bg-red-YUMFINITY active:bg-red-900 "
           >
             Cancel
           </button>
         )}
       </div>
       {!currentOrder && (
-        <section className="m-3 flex h-[200px] items-center justify-center rounded-lg bg-red-700/25">
+        <section className="m-3 mt-9 flex h-[200px] items-center justify-center rounded-lg border bg-white shadow-lg">
           <div className="px-16 py-12 text-center text-2xl font-bold">
             You don&apos;t have a Current Order being prepared
           </div>
         </section>
       )}
       {currentOrder && (
-        <section className="m-3 flex flex-col rounded-lg bg-red-700/25 *:flex *:flex-col *:items-start *:justify-start *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center">
+        <section className="m-3 flex flex-col rounded-lg border bg-white shadow-lg *:flex *:flex-col *:items-start *:justify-start *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center">
           <fieldset>
             <div className="text-lg font-bold">Order Date</div>
             <div className="text-lg">

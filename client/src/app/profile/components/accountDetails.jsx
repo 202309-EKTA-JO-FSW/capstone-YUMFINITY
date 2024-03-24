@@ -44,7 +44,7 @@ export default function AccountDetails() {
         {!editing && (
           <button
             onClick={() => setEditing(!editing)}
-            className="rounded-lg bg-red-700/40 px-4 py-2 text-xl font-bold transition-all hover:bg-red-YUMFINITY active:bg-red-900 "
+            className="rounded-lg bg-red-700/75 px-4 py-2 text-xl font-bold text-white shadow-lg transition-all hover:bg-red-YUMFINITY active:bg-red-900 "
           >
             Edit
           </button>
@@ -54,14 +54,14 @@ export default function AccountDetails() {
             type="submit"
             form="changes"
             onClick={handleSubmit}
-            className="rounded-lg bg-red-700/40 px-4 py-2 text-xl font-bold transition-all hover:bg-red-YUMFINITY active:bg-red-900 "
+            className="rounded-lg bg-red-700/75 px-4 py-2 text-xl font-bold text-white shadow-lg transition-all hover:bg-red-YUMFINITY active:bg-red-900 "
           >
             Submit
           </button>
         )}
       </div>
       {!editing && (
-        <section className="m-3 flex flex-col rounded-lg bg-red-700/25 *:flex *:flex-col *:items-start *:justify-start *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center">
+        <section className="m-3 flex flex-col rounded-lg border bg-white shadow-lg *:flex *:flex-col *:items-start *:justify-start *:border-b *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center">
           <fieldset>
             <div className="text-lg font-bold">First Name</div>
             <div className="text-lg">{formData.firstName}</div>
@@ -111,7 +111,7 @@ export default function AccountDetails() {
         <form
           ref={form}
           id="changes"
-          className="m-3 flex flex-col rounded-lg bg-red-700/25 *:flex *:flex-col *:items-start *:justify-start *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center"
+          className="m-3 flex h-[637px] flex-col justify-between rounded-lg border bg-white shadow-lg *:flex *:flex-col *:items-start *:justify-start *:border-b *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center"
         >
           <fieldset>
             <div className="text-lg font-bold">First Name</div>
@@ -119,7 +119,7 @@ export default function AccountDetails() {
               name="firstName"
               type="text"
               defaultValue={formData.firstName}
-              className="rounded-lg px-2 text-lg"
+              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200"
             />
           </fieldset>
           <fieldset>
@@ -128,7 +128,7 @@ export default function AccountDetails() {
               name="lastName"
               type="text"
               defaultValue={formData.lastName}
-              className="rounded-lg px-2 text-lg"
+              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200"
             />
           </fieldset>
           <fieldset>
@@ -137,7 +137,7 @@ export default function AccountDetails() {
               name="email"
               type="email"
               defaultValue={formData.email}
-              className="rounded-lg px-2 text-lg"
+              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200"
             />
           </fieldset>
           <fieldset>
@@ -146,7 +146,7 @@ export default function AccountDetails() {
               name="username"
               type="text"
               defaultValue={formData.username}
-              className="rounded-lg px-2 text-lg"
+              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200"
             />
           </fieldset>
           <fieldset>
@@ -155,7 +155,7 @@ export default function AccountDetails() {
               name="phoneNumber"
               type="text"
               defaultValue={formData.phoneNumber}
-              className="rounded-lg px-2 text-lg"
+              className="rounded-sm bg-slate-100 px-2 text-lg ring-2 ring-orange-200"
             />
           </fieldset>
           <fieldset>
@@ -169,7 +169,7 @@ export default function AccountDetails() {
               />
               <label
                 htmlFor="profilePicture"
-                className="z-10 cursor-pointer text-nowrap rounded-2xl bg-yellow-YUMFINITY px-4 py-2"
+                className="z-10 cursor-pointer text-nowrap rounded-2xl bg-yellow-YUMFINITY px-4 py-2 transition-all hover:bg-orange-700 active:bg-orange-900"
               >
                 Choose Profile Picture
               </label>
