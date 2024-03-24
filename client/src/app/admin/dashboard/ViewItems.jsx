@@ -9,7 +9,7 @@ export default function ViewItems() {
     <div className="mx-4 my-10 overflow-hidden rounded-lg shadow-lg md:mx-10">
       <table className="w-full table-fixed">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-slate-300">
             <th className="w-1/4 px-6 py-4 text-left font-bold uppercase text-gray-600">
               Name
             </th>
