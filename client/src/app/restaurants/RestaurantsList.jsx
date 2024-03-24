@@ -1,14 +1,6 @@
 // import { useEffect, useState } from "react";
 import RestaurantCard from "../components/Restaurant/RestaurantCard";
 
-//   // Fetch restaurants when the component mounts.
-//   useEffect(() => {
-//     async function getRestaurantsList() {
-//       const { results } = await fetchRestaurants();
-//       if (results) setRestaurants(results);
-//     }
-//     getRestaurantsList();
-//   }, []);
 export default function RestaurantsList({ restaurants }) {
   return (
     <article className="my-16 grid gap-10 px-10 md:grid-cols-2 md:px-20 lg:grid-cols-3 xl:grid-cols-4">

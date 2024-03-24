@@ -11,7 +11,7 @@ export default function RestaurantCard({ className, data }) {
   return (
     <Link
       href={`/restaurant/${data._id}`}
-      className={`group relative flex size-full flex-col justify-between rounded-xl bg-white leading-normal shadow-md shadow-gray-400 transition-all hover:-translate-y-3 hover:scale-[1.02] ${className}`}
+      className={`group ${workingHours[randomIndex] === "Opened" ? "" : "brightness-75"} relative flex size-full flex-col justify-between rounded-xl bg-white leading-normal shadow-md shadow-gray-400 transition-all hover:-translate-y-3 hover:scale-[1.02] ${className}`}
     >
       <Image
         src={data.restaurantPicture || restaurantPlaceholder}
