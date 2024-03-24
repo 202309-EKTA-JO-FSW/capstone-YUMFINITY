@@ -55,28 +55,34 @@ YUMFINITY is a collaborative project brought to you by a dedicated team of devel
 
 YUMFINITY is built using a combination of modern web technologies, ensuring a robust, scalable, and user-friendly experience. Here's a breakdown of the key technologies involved:
 
-- **Frontend**:
+#### 1. **Frontend**:
+
 - **React**: A JavaScript library for building user interfaces.
 - **Next.js**: A React framework for server-side rendering and static site generation.
 - **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs.
 
-- **Backend**:
+#### 2. **Backend**:
+
 - **Node.js**: A JavaScript runtime built on Chrome's V8 JavaScript engine.
 - **Express.js**: A minimal and flexible Node.js web application framework.
 - **MongoDB Atlas**: A fully-managed cloud database service provided by MongoDB.
 
-- **Deployment**:
+#### 3. **Deployment**:
+
 - **Vercel**: A cloud platform for static sites and Serverless Functions, used for deploying the frontend.
 - **Render**: A unified platform to build and run all your apps and websites with free SSL, a global CDN, private networks, and auto deploys from Git.
 
-- **Containerization**:
+#### 4. **Containerization**:
+
 - **Docker**: An open-source platform for automating the deployment, scaling, and management of applications.
 - **Docker Compose**: A tool for defining and running multi-container Docker applications.
 
-- **Version Control**:
+#### 5. **Version Control**:
+
 - **Git**: A distributed version control system for tracking changes in source code during software development.
 
-- **DevOps**:
+#### 6. **DevOps**:
+
 - **ESLint**: A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript.
 - **Husky**: A tool that can prevent bad `git commit`, `git push`, and more.
 - **Lint Staged**: A tool to run linters on git staged files.
