@@ -11,7 +11,7 @@ export default function PastOrderCard({ className, order }) {
 
   return (
     <div
-      className={`mx-4 flex flex-col gap-6 border-b border-black-YUMFINITY py-4 lg:grid lg:grid-cols-2 ${className}`}
+      className={`mx-4 flex flex-col gap-6 border-b-2 border-red-YUMFINITY pt-4 *:border-b *:border-black-YUMFINITY *:pb-3 lg:grid lg:grid-cols-2 *:dark:border-white ${className}`}
     >
       <fieldset>
         <div className="text-lg font-bold">Order Date</div>
@@ -39,18 +39,18 @@ export default function PastOrderCard({ className, order }) {
         <div className="text-lg">{order.specialOrderRequirement}</div>
       </fieldset>
       {order.review.length === 0 && (
-        <form onSubmit={handleReviewSubmit}>
+        <form onSubmit={handleReviewSubmit} className="lg:col-span-2">
           <div className="text-lg font-bold">Submit Your Review</div>
           <div className="flex flex-wrap items-center justify-between gap-3 text-lg xl:flex-nowrap">
             <input
               type="text"
-              className="h-8 rounded-md px-2 text-black-YUMFINITY/80"
+              className="h-8 w-full rounded-sm bg-slate-100 px-2 text-black-YUMFINITY/80 ring-2 ring-orange-200"
               name="comment"
               id="comment"
               placeholder="Enter your comment"
             />
             <select
-              className="max-w-fit rounded-md px-2 py-1.5 text-black-YUMFINITY/80"
+              className="max-w-fit rounded-md bg-slate-200 px-2 py-1.5 text-black-YUMFINITY/80"
               id="rating"
               name="rating"
             >
@@ -60,7 +60,7 @@ export default function PastOrderCard({ className, order }) {
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <button className="rounded-lg bg-red-700/40 px-2 py-1 font-bold transition-all hover:bg-red-YUMFINITY active:bg-red-900 ">
+            <button className="rounded-lg bg-red-700/75 px-2 py-1 font-bold text-white shadow-md transition-all hover:bg-red-YUMFINITY active:bg-red-900 ">
               Submit
             </button>
           </div>
@@ -90,7 +90,7 @@ export default function PastOrderCard({ className, order }) {
             {order.items.map((item, index) => (
               <div
                 key={index}
-                className="grid w-full grid-cols-4 items-center border-b border-white-YUMFINITY py-2 lg:w-11/12"
+                className="grid w-full grid-cols-4 items-center py-2 lg:w-11/12"
               >
                 <div className="col-span-2">{item.itemId}</div>
                 <div className="flex items-center gap-1">

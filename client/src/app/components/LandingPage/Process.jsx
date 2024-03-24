@@ -1,11 +1,11 @@
 export default function Process() {
   return (
-    <div className="flex flex-col justify-center">
+    <div className="mx-5 flex flex-col justify-center md:mx-0 dark:text-black-YUMFINITY">
       <div className="w-full">
         <div className="container mx-auto mt-32 flex flex-col items-center gap-16">
           <div className="flex flex-col gap-16">
             <div className="flex flex-col gap-2 text-center">
-              <h2 className="text-dark-grey-900 mb-2 font-boston text-3xl leading-tight lg:text-4xl">
+              <h2 className="text-dark-grey-900 mb-2 font-boston text-3xl leading-tight lg:text-4xl dark:text-white">
                 How
                 <span className="relative mx-1 inline-block stroke-current font-boston text-4xl text-[#FD7014]">
                   YUMFINITY
@@ -23,7 +23,7 @@ export default function Process() {
                 </span>
                 works?
               </h2>
-              <p className="text-dark-grey-600 text-base font-medium leading-7">
+              <p className="text-dark-grey-600 text-base font-medium leading-7 dark:text-white">
                 Effortless Ordering: A Seamless Journey from Selection to
                 Satisfaction
               </p>

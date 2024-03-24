@@ -1,7 +1,7 @@
 export default function SearchRestaurants({ handleSearch, handleReset }) {
   return (
     <div className="flex w-full justify-center">
-      <div className="flex- w-5/6 rounded-xl bg-white p-6 shadow-lg dark:bg-white/50 dark:shadow-white/45">
+      <div className="flex- w-5/6 rounded-xl bg-white p-6 shadow-md dark:bg-gray-800 dark:shadow-none">
         <form onSubmit={handleSearch} onReset={handleReset}>
           <div className="relative mb-6 flex w-full items-center justify-between rounded-md">
             <input
@@ -16,7 +16,7 @@ export default function SearchRestaurants({ handleSearch, handleReset }) {
             <div className="flex flex-col">
               <label
                 htmlFor="manufacturer"
-                className="text-sm font-medium text-stone-600 dark:text-black-YUMFINITY"
+                className="text-sm font-medium text-stone-600 dark:text-white-YUMFINITY"
               >
                 Category
               </label>
@@ -39,7 +39,7 @@ export default function SearchRestaurants({ handleSearch, handleReset }) {
             <div className="flex flex-col">
               <label
                 htmlFor="status"
-                className="text-sm font-medium text-stone-600 dark:text-black-YUMFINITY"
+                className="text-sm font-medium text-stone-600 dark:text-white-YUMFINITY"
               >
                 Status
               </label>

@@ -136,7 +136,7 @@ export default function Navbar() {
           {!user && (
             <div className="flex gap-1">
               <Link href={"/SignIn"}>
-                <button className="group relative me-1 inline-flex items-center justify-center overflow-hidden rounded-lg bg-red-600 bg-gradient-to-l p-0.5 text-black-YUMFINITY hover:text-white-YUMFINITY focus:outline-none active:bg-black-YUMFINITY">
+                <button className="group relative me-1 inline-flex items-center justify-center overflow-hidden rounded-lg bg-red-600 bg-gradient-to-l p-0.5 text-black-YUMFINITY hover:text-white-YUMFINITY focus:outline-none active:bg-black-YUMFINITY dark:text-white-YUMFINITY">
                   <span className="relative rounded-md bg-white-YUMFINITY px-2.5 py-1.5 text-xl transition-all duration-75 ease-in group-hover:bg-opacity-0 dark:bg-black-YUMFINITY">
                     Sign In
                   </span>

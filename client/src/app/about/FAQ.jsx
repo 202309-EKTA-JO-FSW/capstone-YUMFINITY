@@ -19,14 +19,14 @@ export default function FAQ() {
   return (
     <div
       ref={ref}
-      className={`relative my-16 w-full bg-white px-6 pb-8 pt-10 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-2xl sm:rounded-lg sm:px-10 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
+      className={`relative my-16 w-full border bg-white px-6 pb-8 pt-10 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-2xl sm:rounded-lg sm:px-10 dark:border-gray-700 dark:bg-gray-800 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
     >
       <div className="mx-auto px-5">
         <div className="flex flex-col items-center">
           <h2 className="mt-5 text-center font-boston text-3xl tracking-tight md:text-5xl">
             FAQ
           </h2>
-          <p className="mt-3 text-lg text-neutral-500 md:text-xl">
+          <p className="mt-3 text-lg text-gray-800 md:text-xl dark:text-gray-200">
             Frequenty asked questions
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function FAQ() {
                   </svg>
                 </span>
               </summary>
-              <p className="group-open:animate-fadeIn mt-3 text-neutral-600">
+              <p className="group-open:animate-fadeIn mt-3 text-gray-800 dark:text-gray-200">
                 Our ordering process is simple and straightforward. Users can
                 browse through our selection of restaurants, choose their
                 favorite dishes, customize their orders if needed, and proceed
@@ -80,7 +80,7 @@ export default function FAQ() {
                   </svg>
                 </span>
               </summary>
-              <p className="group-open:animate-fadeIn mt-3 text-neutral-600">
+              <p className="group-open:animate-fadeIn mt-3 text-gray-800 dark:text-gray-200">
                 We accept a variety of payment methods including credit/debit
                 cards, PayPal, and in some cases, cash on delivery. You can
                 select your preferred payment option during the checkout
@@ -108,7 +108,7 @@ export default function FAQ() {
                   </svg>
                 </span>
               </summary>
-              <p className="group-open:animate-fadeIn mt-3 text-neutral-600">
+              <p className="group-open:animate-fadeIn mt-3 text-gray-800 dark:text-gray-200">
                 Delivery times may vary depending on your location and the
                 restaurant&apos;s preparation time. Typically, deliveries are
                 completed within 30 mins on average.
@@ -135,7 +135,7 @@ export default function FAQ() {
                   </svg>
                 </span>
               </summary>
-              <p className="group-open:animate-fadeIn mt-3 text-neutral-600">
+              <p className="group-open:animate-fadeIn mt-3 text-gray-800 dark:text-gray-200">
                 Absolutely! We understand that everyone has different
                 preferences, which is why we offer customization options for
                 many of our menu items. Whether you want to add extra toppings,
@@ -164,7 +164,7 @@ export default function FAQ() {
                   </svg>
                 </span>
               </summary>
-              <p className="group-open:animate-fadeIn mt-3 text-neutral-600">
+              <p className="group-open:animate-fadeIn mt-3 text-gray-800 dark:text-gray-200">
                 If you encounter any issues with your order, such as missing
                 items or incorrect dishes, please don&apos;t hesitate to contact
                 our customer support team. You can reach us and we will be happy

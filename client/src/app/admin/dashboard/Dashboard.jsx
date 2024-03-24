@@ -79,7 +79,7 @@ export default function Dashboard({
           <button
             type="button"
             onClick={() => setCreateOpen(!createOpen)}
-            className="rounded-lg bg-yellow-YUMFINITY p-3 font-bold"
+            className="rounded-lg bg-yellow-YUMFINITY p-3 font-bold text-white transition-all hover:bg-orange-700 active:bg-orange-900"
           >
             Create New {tab.slice(0, -1)}
           </button>

@@ -8,7 +8,7 @@ export default function ShoppingCartRow({ item, quantity, handleUpsertCart }) {
       <div className="mr-auto flex items-center">
         <div>
           <h2 className="font-bold">{item.title}</h2>
-          <p className="line-clamp-3 text-gray-700">{item.description}</p>
+          <p className="line-clamp-3 text-gray-300">{item.description}</p>
         </div>
       </div>
       <div className="mx-4 flex items-center gap-3">

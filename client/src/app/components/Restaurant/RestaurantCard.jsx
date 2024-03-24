@@ -11,7 +11,7 @@ export default function RestaurantCard({ className, data }) {
   return (
     <Link
       href={`/restaurant/${data._id}`}
-      className={`group relative flex size-full flex-col justify-between rounded-xl bg-white leading-normal shadow-md shadow-gray-400 transition-all hover:-translate-y-3 hover:scale-[1.02] ${className}`}
+      className={`group ${workingHours[randomIndex] === "Opened" ? "" : "brightness-75 dark:brightness-50"} relative flex size-full flex-col justify-between rounded-xl bg-white leading-normal shadow-md shadow-gray-400 transition-all hover:-translate-y-3 hover:scale-[1.02] dark:bg-gray-800 ${className}`}
     >
       <Image
         src={data.restaurantPicture || restaurantPlaceholder}
@@ -21,14 +21,14 @@ export default function RestaurantCard({ className, data }) {
       />
       <div className="p-4 pt-5">
         <div className="my-2 space-y-6">
-          <div className="mb-2 flex items-center justify-between text-pretty font-bold text-gray-900 hover:text-yellow-YUMFINITY">
+          <div className="mb-2 flex items-center justify-between text-pretty font-bold text-gray-900 hover:text-yellow-YUMFINITY dark:text-white-YUMFINITY">
             {data.name}
             <div className="flex items-center gap-1 text-sm">
               {(Math.random() * (4 - 1 + 1) + 1).toFixed(1)}
               <FaStar color="orange" />
             </div>
           </div>
-          <p className="flex items-center gap-1 text-sm text-gray-700">
+          <p className="flex items-center gap-1 text-sm text-gray-700 dark:text-white-YUMFINITY">
             {workingHours[randomIndex] === "Opened" ? (
               <TbClockHour5 className="size-5" />
             ) : (
