@@ -106,13 +106,13 @@ Before you begin, ensure you have the following installed on your system:
 ##### 1. Clone the repository:
 
 ```bash
- git clone <repository-url>
+ git clone git@github.com:202309-EKTA-JO-FSW/capstone-YUMFINITY.git
 ```
 
 ##### 2. Navigate to the project directory:
 
 ```bash
-cd YUMFINITY
+cd capstone-YUMFINITY
 ```
 
 ##### 3. Run the setup script:
