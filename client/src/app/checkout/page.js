@@ -50,7 +50,7 @@ const Checkout = () => {
   return (
     <div>
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
-        <div className="mt-4 flex flex-col p-8">
+        <div className="lg::mb-0 -mb-14 mt-4 flex flex-col p-8">
           <p className="font-boston text-xl">Order Summary</p>
           <p className="text-lg text-gray-400">
             Check your items. And select a suitable payment method.

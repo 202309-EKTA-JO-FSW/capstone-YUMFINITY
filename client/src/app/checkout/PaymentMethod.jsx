@@ -1,6 +1,6 @@
 export default function PaymentMethod() {
   return (
-    <section className="mt-5 grid gap-6 rounded-lg border bg-white px-4 py-6 shadow-lg">
+    <section className="mt-5 grid gap-6 rounded-lg border bg-white px-4 py-6 shadow-lg dark:bg-gray-800">
       <p className="mb-4 pl-2 font-boston text-2xl">Payment method</p>
       <div className="relative">
         <input
@@ -14,7 +14,7 @@ export default function PaymentMethod() {
         />
         <span className="absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white peer-checked:border-gray-700"></span>
         <label
-          className="flex cursor-pointer select-none rounded-lg border border-gray-300 p-4 peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50"
+          className="flex cursor-pointer select-none rounded-lg border border-gray-300 p-4 peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 dark:peer-checked:text-gray-800"
           htmlFor="cash"
         >
           <div className="ml-5">
