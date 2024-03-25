@@ -38,7 +38,7 @@ export default function ShoppingCart({ getUserCart }) {
   return (
     <section className="my-8">
       <div className="relative flex h-fit flex-col justify-center">
-        <div className="rounded-lg border bg-gray-50 p-6 shadow-lg">
+        <div className="rounded-lg border bg-gray-50 p-6 shadow-lg dark:border-gray-700 dark:bg-gray-800">
           <h1 className="mb-6 font-boston text-2xl">Shopping Cart</h1>
           {cart?.items?.map(({ itemId, quantity }) => (
             <ShoppingCartRow

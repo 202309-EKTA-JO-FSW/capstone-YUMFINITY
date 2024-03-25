@@ -37,12 +37,12 @@ export default function PaymentForm({ submitOrder }) {
             <h3 className="font-boston text-2xl">Payment Details</h3>
           </div>
           <div className="flex items-center justify-center p-12">
-            <div className="mx-auto w-full max-w-[550px] bg-white">
+            <div className="mx-auto w-full max-w-[550px] bg-white dark:bg-gray-800">
               <form onSubmit={handleSubmit} id="payment">
                 <div className="mb-5">
                   <label
                     htmlFor="name"
-                    className="mb-3 block text-base font-medium text-[#07074D]"
+                    className="mb-3 block text-base font-medium"
                   >
                     Full Name
                   </label>
@@ -57,7 +57,7 @@ export default function PaymentForm({ submitOrder }) {
                 <div className="mb-5">
                   <label
                     htmlFor="email"
-                    className="mb-3 block text-base font-medium text-[#07074D]"
+                    className="mb-3 block text-base font-medium"
                   >
                     Email Address
                   </label>
@@ -72,7 +72,7 @@ export default function PaymentForm({ submitOrder }) {
                 <div className="mb-5">
                   <label
                     htmlFor="subject"
-                    className="mb-3 block text-base font-medium text-[#07074D]"
+                    className="mb-3 block text-base font-medium"
                   >
                     Card Number
                   </label>
@@ -87,7 +87,7 @@ export default function PaymentForm({ submitOrder }) {
                 <div className="mb-5">
                   <label
                     htmlFor="subject"
-                    className="mb-3 block text-base font-medium text-[#07074D]"
+                    className="mb-3 block text-base font-medium"
                   >
                     Expiration Date
                   </label>
@@ -102,7 +102,7 @@ export default function PaymentForm({ submitOrder }) {
                 <div className="mb-5">
                   <label
                     htmlFor="message"
-                    className="mb-3 block text-base font-medium text-[#07074D]"
+                    className="mb-3 block text-base font-medium"
                   >
                     Order Note
                   </label>
@@ -114,8 +114,8 @@ export default function PaymentForm({ submitOrder }) {
                     className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   ></textarea>
                 </div>
-                <div>
-                  <button className="hover:shadow-form rounded-md bg-[#FD7014] px-8 py-3 font-boston text-base text-white outline-none">
+                <div className="flex justify-center">
+                  <button className="rounded-md bg-[#FD7014] px-8 py-3 font-boston text-base text-white outline-none hover:bg-orange-600 active:bg-orange-800">
                     Submit order
                   </button>
                 </div>
