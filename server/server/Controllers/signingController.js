@@ -173,17 +173,17 @@ const signingController = {
         return res
           .cookie("accessToken", accessToken, {
             httpOnly: true,
-            secure: false,
+            secure: true,
           })
           .cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            secure: false,
+            secure: true,
             maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
           })
           .cookie("user", JSON.stringify(user), {
             maxAge: 1000 * 60 * 60 * 24 * 30,
           })
-          .redirect("http://localhost:3000");
+          .redirect("https://yumfinity.vercel.app");
       }
     })(req, res, next);
   },
