@@ -73,7 +73,7 @@ export default function AboutPage() {
   return (
     <main>
       <HeroSection />
-      <div className="min-h-screen px-20 py-10">
+      <div className="min-h-screen px-8 py-10 md:px-20">
         <SectionWithImage
           title="Our Vision at YUMFINITY"
           paragraph="Here at YUMFINITY, it all started with a vision that sprouted in the minds of few college students. A group of enterprising students, united by their shared passion for technology and good food, set out to create more than just a meal delivery service. We envisioned a platform that would revolutionize the way people access their favorite foods, while also offering fellow students a flexible way to earn money during their college journey. YUMFINITY was born from the belief that everyone deserves to savor delicious meals without the wait, and that's exactly what we deliver, one order at a time."
