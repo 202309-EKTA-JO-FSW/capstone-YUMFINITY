@@ -174,14 +174,17 @@ const signingController = {
           .cookie("accessToken", accessToken, {
             httpOnly: true,
             secure: true,
+            sameSite: "None",
           })
           .cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: true,
+            sameSite: "None",
             maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
           })
           .cookie("user", JSON.stringify(user), {
             maxAge: 1000 * 60 * 60 * 24 * 30,
+            sameSite: "None",
           })
           .redirect("https://yumfinity.vercel.app");
       }
