@@ -185,6 +185,7 @@ const signingController = {
           .cookie("user", JSON.stringify(user), {
             maxAge: 1000 * 60 * 60 * 24 * 30,
             sameSite: "None",
+            secure: true,
           })
           .redirect("https://yumfinity.vercel.app");
       }
