@@ -10,6 +10,7 @@ const googleController = {
         // httpOnly: true,
         secure: true,
         sameSite: "None",
+        maxAge: 1000 * 10,
       });
       res.cookie("refreshToken", refreshToken, {
         // httpOnly: true,
