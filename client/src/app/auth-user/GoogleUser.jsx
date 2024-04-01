@@ -15,8 +15,9 @@ export default function GoogleUser({ setCookies }) {
         credentials: "include",
       });
       const { user, accessToken, refreshToken } = await res.json();
+      console.log("User: ", user);
       if (user) {
-        const check = await setCookies(user, accessToken, refreshToken);
+        const check = setCookies(user, accessToken, refreshToken);
         if (check) setUser(user);
         router.push("/restaurants");
       }

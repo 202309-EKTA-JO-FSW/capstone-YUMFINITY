@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import GoogleUser from "./GoogleUser";
 
-async function getCookie(user, accessToken, refreshToken) {
+function setCookies(user, accessToken, refreshToken) {
   "use server";
 
   cookies().set("user", JSON.stringify(user), {
@@ -18,5 +18,5 @@ async function getCookie(user, accessToken, refreshToken) {
 }
 
 export default function AUTH() {
-  return <GoogleUser getCookie={getCookie} />;
+  return <GoogleUser setCookies={setCookies} />;
 }
