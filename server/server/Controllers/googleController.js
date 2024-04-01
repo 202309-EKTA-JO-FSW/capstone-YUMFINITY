@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const createTokens = require("../utils/createTokens");
 
 const googleController = {
