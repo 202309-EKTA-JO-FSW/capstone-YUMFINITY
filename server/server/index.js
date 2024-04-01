@@ -13,7 +13,7 @@ const app = express();
 const port =
   process.env.NODE_ENV === "test"
     ? process.env.NODE_LOCAL_TEST_PORT
-    : process.env.NODE_LOCAL_PORT;
+    : process.env.PORT;
 
 app.use(cors({ origin: client_URL, credentials: true }));
 app.use(express.urlencoded({ extended: false }));
