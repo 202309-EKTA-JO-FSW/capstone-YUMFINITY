@@ -1,3 +1,4 @@
+const { client_URL } = require("../utils/URLs");
 const createTokens = require("../utils/createTokens");
 
 const googleController = {
@@ -21,7 +22,7 @@ const googleController = {
         secure: true,
         sameSite: "None",
       });
-      res.redirect(`${process.env.CLIENT_URL}/auth-user`);
+      res.redirect(`${client_URL}/auth-user`);
     }
   },
 
