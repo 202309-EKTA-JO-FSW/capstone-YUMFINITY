@@ -3,13 +3,14 @@ import React from "react";
 import allRestaurantsHeader from "./allRestaurantsHeader.jpg";
 import { FaAnglesDown } from "react-icons/fa6";
 import SearchAndList from "./SearchAndList";
+import { main_url_BACKEND } from "../utils/URLs";
 
 async function fetchRestaurants(query) {
   "use server";
 
-  const result = await fetch(
-    `https://capstone-room-5.onrender.com/v1/restaurants?${query}`,
-  );
+  const result = await fetch(`${main_url_BACKEND}/restaurants?${query}`, {
+    credentials: "include",
+  });
   const data = await result.json();
   return data;
 }
