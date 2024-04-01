@@ -4,6 +4,7 @@ const JwtStrategy = require("passport-jwt").Strategy;
 const SECRET_KEY = process.env.SECRET_KEY;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../Models/user");
+const { server_URL } = require("../utils/URLs");
 
 const cookieExtractor = function (req) {
   let token;
@@ -32,7 +33,7 @@ function passportStratigies(passport) {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: `${process.env.SERVER_URL}/v1/google/callback`,
+        callbackURL: `${server_URL}/v1/google/callback`,
       },
       async function verify(accessToken, refreshToken, profile, cb) {
         const userData = profile._json;
