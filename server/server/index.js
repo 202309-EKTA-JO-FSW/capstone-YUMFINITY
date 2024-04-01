@@ -12,9 +12,9 @@ const app = express();
 const port =
   process.env.NODE_ENV === "test"
     ? process.env.NODE_LOCAL_TEST_PORT
-    : process.env.PORT;
+    : process.env.NODE_LOCAL_PORT;
 
-app.use(cors({ origin: "https://yumfinity.vercel.app", credentials: true }));
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());

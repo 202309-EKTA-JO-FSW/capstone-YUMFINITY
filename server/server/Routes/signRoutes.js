@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const signingController = require("../Controllers/signingController");
+const googleController = require("../Controllers/googleController");
 const { body } = require("express-validator");
 const passport = require("passport");
 
@@ -39,6 +40,12 @@ router.get(
 );
 
 // google authentication callback
-router.get("/google/callback", signingController.signWithGoogle);
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/", session: false }),
+  googleController.signWithGoogle,
+);
+
+router.get("/google/me", googleController.setCookiesForGoogle);
 
 module.exports = router;

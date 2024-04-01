@@ -32,7 +32,7 @@ function passportStratigies(passport) {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "https://capstone-room-5.onrender.com/v1/google/callback",
+        callbackURL: `${process.env.SERVER_URL}/v1/google/callback`,
       },
       async function verify(accessToken, refreshToken, profile, cb) {
         const userData = profile._json;
