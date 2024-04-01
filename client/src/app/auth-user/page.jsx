@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import GoogleUser from "./GoogleUser";
 
-function setCookies(user, accessToken, refreshToken) {
+async function setCookies(user, accessToken, refreshToken) {
   "use server";
 
   cookies().set("user", JSON.stringify(user), {
