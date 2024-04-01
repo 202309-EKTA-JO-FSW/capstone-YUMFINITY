@@ -12,9 +12,9 @@ const app = express();
 const port =
   process.env.NODE_ENV === "test"
     ? process.env.NODE_LOCAL_TEST_PORT
-    : process.env.PORT;
+    : process.env.NODE_LOCAL_PORT;
 
-app.use(cors({ origin: "https://yumfinity.vercel.app", credentials: true }));
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
@@ -29,6 +29,7 @@ app.use("/v1", require("./Routes/v1"));
 if (process.env.NODE_ENV === "development") {
   app.listen(port, "0.0.0.0", () => {
     console.log(`Server listening on port ${port}`);
+    console.log(`Client URL: ${process.env.CLIENT_URL}`);
     connectToMongo();
   });
 }

@@ -160,34 +160,6 @@ const signingController = {
       .json({ successful: true, accessToken });
   },
 
-  signWithGoogle: (req, res, next) => {
-    passport.authenticate(["google"], (err, user, info) => {
-      if (err) return res.status(500).json(err);
-      if (Object.keys(info).length > 0) {
-        if (req.query.error.includes("access_denied"))
-          return res.status(401).json({ message: "You need to sign in" });
-        return res.status(401).json(info);
-      }
-      if (user) {
-        const { accessToken, refreshToken } = createTokens(user);
-        return res
-          .cookie("accessToken", accessToken, {
-            httpOnly: true,
-            secure: true,
-          })
-          .cookie("refreshToken", refreshToken, {
-            httpOnly: true,
-            secure: true,
-            maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
-          })
-          .cookie("user", JSON.stringify(user), {
-            maxAge: 1000 * 60 * 60 * 24 * 30,
-          })
-          .redirect("https://yumfinity.vercel.app");
-      }
-    })(req, res, next);
-  },
-
   signOut: async (req, res) => {
     try {
       // Clear the authentication cookies

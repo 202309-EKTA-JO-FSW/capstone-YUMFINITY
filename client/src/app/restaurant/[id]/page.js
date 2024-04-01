@@ -2,13 +2,12 @@ import React from "react";
 import MainPage from "./MainPage";
 import { cookies } from "next/headers";
 import { refreshAccessToken } from "@/app/utils/refreshAccessToken";
+import { main_url_BACKEND } from "@/app/utils/URLs";
 
 async function getRestaurantData(id) {
   "use server";
 
-  const res = await fetch(
-    `https://capstone-room-5.onrender.com/v1/restaurants/${id}`,
-  );
+  const res = await fetch(`${main_url_BACKEND}/restaurants/${id}`);
   const data = await res.json();
   return data;
 }
@@ -16,7 +15,7 @@ async function getRestaurantData(id) {
 async function getUserCart() {
   "use server";
 
-  const res = await fetch(`https://capstone-room-5.onrender.com/v1/cart`, {
+  const res = await fetch(`${main_url_BACKEND}/cart`, {
     method: "GET",
     headers: {
       Cookie: cookies().toString(),
@@ -35,7 +34,7 @@ async function getUserCart() {
 async function deleteUserCart() {
   "use server";
 
-  const res = await fetch(`https://capstone-room-5.onrender.com/v1/cart`, {
+  const res = await fetch(`${main_url_BACKEND}/cart`, {
     method: "DELETE",
     headers: {
       Cookie: cookies().toString(),
@@ -53,7 +52,7 @@ async function deleteUserCart() {
 
 async function upsertCart(fields) {
   "use server";
-  const res = await fetch(`https://capstone-room-5.onrender.com/v1/cart`, {
+  const res = await fetch(`${main_url_BACKEND}/cart`, {
     method: "PATCH",
     headers: {
       Cookie: cookies().toString(),
