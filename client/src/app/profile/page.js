@@ -8,7 +8,7 @@ import { refreshAccessToken } from "../utils/refreshAccessToken";
 
 export const metadata = {
   title: "Profile",
-  description: "See and Edit account details",
+  description: "Show and Edit account details",
 };
 
 async function fetchUserData() {

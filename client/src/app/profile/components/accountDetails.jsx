@@ -6,12 +6,14 @@ import profilePlaceholder from "./profile-placeholder.jpg";
 import { UserContext } from "@/app/utils/contextProvider";
 import { useRouter } from "next/navigation";
 import { setCookie } from "@/app/utils/setCookie";
+import Error from "../../components/Error";
 
 export default function AccountDetails({ fetchUserData, updateUserData }) {
   const { user, setUser } = useContext(UserContext);
   const router = useRouter();
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState(user);
+  const [error, setError] = useState(null);
   const form = useRef(null);
 
   async function handleSubmit(e) {
@@ -27,10 +29,14 @@ export default function AccountDetails({ fetchUserData, updateUserData }) {
 
     const response = await updateUserData(fields);
 
+    if (response.message.includes("duplicate")) {
+      setError(response.message);
+      return;
+    }
+
     if (response.message.includes("successfully")) {
       delete response.updatedCustomer.password_hash;
 
-      console.log(response);
       setFormData(response.updatedCustomer);
       setUser(response.updatedCustomer);
       setEditing(!editing);
@@ -45,6 +51,7 @@ export default function AccountDetails({ fetchUserData, updateUserData }) {
 
   return (
     <article className="order-1 rounded-lg bg-orange-200 shadow-lg dark:bg-yellow-YUMFINITY/80 dark:shadow-red-YUMFINITY/40">
+      {error && <Error setError={setError} message={error} />}
       <div className="flex items-center justify-between px-6 pt-4 lg:pt-8">
         <h2 className="font-boston text-2xl">Account Details</h2>
         {!editing && (
