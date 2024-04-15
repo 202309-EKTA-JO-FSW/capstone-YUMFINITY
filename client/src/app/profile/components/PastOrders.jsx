@@ -10,9 +10,11 @@ export default function PastOrders({ getPastOrders }) {
   useEffect(() => {
     async function fetchOrders() {
       const pastOrders = await getPastOrders();
-      pastOrders.results.length
-        ? setPastOrders(pastOrders.results)
-        : setEmpty(true);
+      if (pastOrders.message) {
+        setEmpty(true);
+        return;
+      }
+      setPastOrders(pastOrders.results);
     }
     fetchOrders();
   }, []);
@@ -29,7 +31,7 @@ export default function PastOrders({ getPastOrders }) {
         ) : (
           <div className="absolute left-1/2 top-1/2 text-center font-boston text-2xl [transform:_translate(-50%,-50%)]">
             {empty
-              ? "You don't have any order yet, go order one"
+              ? "You don't have any orders yet, go order something"
               : "Loading......"}
           </div>
         )}
