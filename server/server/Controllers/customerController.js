@@ -15,8 +15,8 @@ const customerController = {
     try {
       // Aggregation pipeline
       const pipeline = [
-        // first, we filter orders by userId
-        { $match: { userId: id } },
+        // first, we filter orders by userId and status
+        { $match: { userId: id, orderStatus: "completed" } },
         // second, if there are reviews for the found orders, we add them to each document in a new field called "review"
         {
           $lookup: {
