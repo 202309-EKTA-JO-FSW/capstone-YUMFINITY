@@ -3,7 +3,7 @@ import { useState } from "react";
 import { TiUserDelete } from "react-icons/ti";
 import DeleteDialogBox from "./DeleteDialogBox";
 
-export default function DeleteUser({ deleteAccount }) {
+export default function DeleteUser({ deleteAccount, fetchCUrrentOrder }) {
   const [deleteBox, setDeleteOpen] = useState(false);
 
   function handleDeleteBox() {
@@ -27,6 +27,7 @@ export default function DeleteUser({ deleteAccount }) {
           <DeleteDialogBox
             deleteAccount={deleteAccount}
             setDeleteOpen={setDeleteOpen}
+            fetchCUrrentOrder={fetchCUrrentOrder}
           />
         )}
       </section>

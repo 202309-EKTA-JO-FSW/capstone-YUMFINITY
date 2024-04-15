@@ -141,7 +141,10 @@ export default function ProfilePage() {
         fetchCUrrentOrder={fetchCUrrentOrder}
         cancelCurrentOrder={cancelCurrentOrder}
       />
-      <DeleteUser deleteAccount={deleteAccount} />
+      <DeleteUser
+        deleteAccount={deleteAccount}
+        fetchCUrrentOrder={fetchCUrrentOrder}
+      />
     </main>
   );
 }
