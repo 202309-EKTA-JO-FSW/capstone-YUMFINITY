@@ -15,8 +15,8 @@ const customerController = {
     try {
       // Aggregation pipeline
       const pipeline = [
-        // first, we filter orders by userId
-        { $match: { userId: id } },
+        // first, we filter orders by userId and status
+        { $match: { userId: id, orderStatus: "completed" } },
         // second, if there are reviews for the found orders, we add them to each document in a new field called "review"
         {
           $lookup: {
@@ -32,6 +32,7 @@ const customerController = {
 
       // Execute the aggregation pipeline
       const ordersWithReviews = await Order.aggregate(pipeline);
+      await Item.populate(ordersWithReviews, { path: "items.itemId" });
 
       // check if no orders was found
       if (!ordersWithReviews.length)
@@ -57,7 +58,9 @@ const customerController = {
       const currentOrder = await Order.findOne({
         userId: id,
         orderStatus: "delivering",
-      });
+      })
+        .populate("restaurantId")
+        .populate("items.itemId");
       // if there isn't a current order then send back message
       if (!currentOrder)
         return res.status(404).json({ message: "No Current Order" });
@@ -179,6 +182,7 @@ const customerController = {
         username: req.body.username,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        email: req.body.email,
         phoneNumber: req.body.phoneNumber,
         addresses: req.body.addresses,
         password_hash,
@@ -210,14 +214,12 @@ const customerController = {
       const deletedCustomer = await User.findByIdAndDelete(id);
 
       if (!deletedCustomer) {
-        return res
-          .clearCookie("refreshToken")
-          .clearCookie("accessToken")
-          .status(404)
-          .json({ message: "Customer not found" });
+        return res.status(404).json({ message: "Customer not found" });
       }
 
       res
+        .clearCookie("refreshToken")
+        .clearCookie("accessToken")
         .status(202)
         .json({ message: "Customer deleted successfully", deletedCustomer });
     } catch (error) {

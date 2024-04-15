@@ -32,4 +32,17 @@ router.delete("/cart", customerController.deleteCart);
 // edit user cart, includes creating and updating the cart
 router.patch("/cart", customerController.upsertCart);
 
+// ##################################
+
+// Account Data
+
+// GET user data
+router.get("/account-details", customerController.getCustomerById);
+
+// Update user data
+router.post("/account-details", customerController.updateCustomer);
+
+// Delete account
+router.delete("/delete-account", customerController.deleteCustomer);
+
 module.exports = router;

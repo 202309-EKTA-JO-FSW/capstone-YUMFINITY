@@ -5,11 +5,12 @@ import PaymentMethod from "./PaymentMethod";
 import PaymentForm from "./PaymentForm";
 import { cookies } from "next/headers";
 import { refreshAccessToken } from "../utils/refreshAccessToken";
+import { main_url_BACKEND } from "../utils/URLs";
 
 async function getUserCart() {
   "use server";
 
-  const res = await fetch(`https://capstone-room-5.onrender.com/v1/cart`, {
+  const res = await fetch(`${main_url_BACKEND}/cart`, {
     method: "GET",
     headers: {
       Cookie: cookies().toString(),
@@ -28,7 +29,7 @@ async function getUserCart() {
 async function submitOrder(fields) {
   "use server";
 
-  const res = await fetch(`https://capstone-room-5.onrender.com/v1/checkout`, {
+  const res = await fetch(`${main_url_BACKEND}/checkout`, {
     method: "POST",
     headers: {
       Cookie: cookies().toString(),

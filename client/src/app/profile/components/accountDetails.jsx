@@ -1,44 +1,57 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Image from "next/image";
 import profilePlaceholder from "./profile-placeholder.jpg";
+import { UserContext } from "@/app/utils/contextProvider";
+import { useRouter } from "next/navigation";
+import { setCookie } from "@/app/utils/setCookie";
+import Error from "../../components/Error";
 
-const userDataFromResponse = {
-  username: "belaloo",
-  email: "belalabomoalsh@gmail.com",
-  firstName: "Belal",
-  lastName: "Ahmad",
-  phoneNumber: "0780000000",
-  addresses: [
-    { addressName: "home", location: [32, 33] },
-    { addressName: "home", location: [32, 33] },
-  ],
-};
-
-export default function AccountDetails() {
+export default function AccountDetails({ fetchUserData, updateUserData }) {
+  const { user, setUser } = useContext(UserContext);
+  const router = useRouter();
   const [editing, setEditing] = useState(false);
-  const [formData, setFormData] = useState(userDataFromResponse);
+  const [formData, setFormData] = useState(user);
+  const [error, setError] = useState(null);
   const form = useRef(null);
 
-  function handleSubmit() {
-    const fields = Array.from(form.current.children);
-    fields.forEach((e) => {
-      if (e.lastChild.nodeName === "PICTURE") {
-        console.log(e.lastChild.childNodes[1].files);
-        formData[e.lastChild.childNodes[1].name] =
-          e.lastChild.childNodes[1].files[0];
-      }
-      if (userDataFromResponse[e.lastChild.name] !== e.lastChild.value) {
-        formData[e.lastChild.name] = e.lastChild.value;
-      }
-    });
-    setFormData(formData);
-    setEditing(!editing);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const shownData = new FormData(e.target);
+    const fields = {
+      firstName: shownData.get("firstName"),
+      lastName: shownData.get("lastName"),
+      email: shownData.get("email"),
+      phoneNumber: shownData.get("phoneNumber"),
+      username: shownData.get("username"),
+    };
+
+    const response = await updateUserData(fields);
+
+    if (response.message.includes("duplicate")) {
+      setError(response.message);
+      return;
+    }
+
+    if (response.message.includes("successfully")) {
+      delete response.updatedCustomer.password_hash;
+
+      setFormData(response.updatedCustomer);
+      setUser(response.updatedCustomer);
+      setEditing(!editing);
+      setCookie("user", JSON.stringify(response.updatedCustomer), {
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+      });
+    }
   }
+
+  if (!user) return router.push("/SignIn");
 
   return (
     <article className="order-1 rounded-lg bg-orange-200 shadow-lg dark:bg-yellow-YUMFINITY/80 dark:shadow-red-YUMFINITY/40">
+      {error && <Error setError={setError} message={error} />}
       <div className="flex items-center justify-between px-6 pt-4 lg:pt-8">
         <h2 className="font-boston text-2xl">Account Details</h2>
         {!editing && (
@@ -53,7 +66,6 @@ export default function AccountDetails() {
           <button
             type="submit"
             form="changes"
-            onClick={handleSubmit}
             className="rounded-lg bg-red-700/75 px-4 py-2 text-xl font-bold text-white shadow-lg transition-all hover:bg-red-YUMFINITY active:bg-red-900 "
           >
             Submit
@@ -111,6 +123,7 @@ export default function AccountDetails() {
         <form
           ref={form}
           id="changes"
+          onSubmit={handleSubmit}
           className="m-3 flex h-[637px] flex-col justify-between rounded-lg border bg-white shadow-lg *:flex *:flex-col *:items-start *:justify-start *:border-b *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center dark:bg-gray-950"
         >
           <fieldset>

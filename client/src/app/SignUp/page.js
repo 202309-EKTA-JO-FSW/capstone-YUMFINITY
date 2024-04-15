@@ -1,6 +1,7 @@
 import React from "react";
 import SignUpForm from "./SignUpForm";
 import { cookies } from "next/headers";
+import { main_url_BACKEND } from "../utils/URLs";
 
 async function submitData(form) {
   "use server";
@@ -14,7 +15,7 @@ async function submitData(form) {
     form.get("phoneNumber"),
   ];
 
-  const res = await fetch("https://capstone-room-5.onrender.com/v1/signUp", {
+  const res = await fetch(`${main_url_BACKEND}/signUp`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

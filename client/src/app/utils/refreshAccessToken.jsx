@@ -1,17 +1,15 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { main_url_BACKEND } from "./URLs";
 
 export async function refreshAccessToken() {
-  const res = await fetch(
-    "https://capstone-room-5.onrender.com/v1/refreshToken",
-    {
-      method: "GET",
-      headers: {
-        Cookie: cookies().toString(),
-      },
+  const res = await fetch(`${main_url_BACKEND}/refreshToken`, {
+    method: "GET",
+    headers: {
+      Cookie: cookies().toString(),
     },
-  );
+  });
 
   const data = await res.json();
   if (data.successful) {

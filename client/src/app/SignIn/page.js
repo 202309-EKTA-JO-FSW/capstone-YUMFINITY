@@ -8,7 +8,7 @@ async function submitData(form) {
 
   const [username, password] = [form.get("username"), form.get("password")];
 
-  const res = await fetch(`${main_url_BACKEND}/v1/signIn`, {
+  const res = await fetch(`${main_url_BACKEND}/signIn`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
