@@ -86,6 +86,25 @@ async function fetchCUrrentOrder() {
   return data;
 }
 
+async function cancelCurrentOrder() {
+  "use server";
+
+  const res = await fetch(`${main_url_BACKEND}/cancel-order`, {
+    method: "PATCH",
+    headers: {
+      Cookie: cookies().toString(),
+    },
+  });
+  const data = await res.json();
+
+  if (data?.error?.message === "jwt expired") {
+    await refreshAccessToken();
+    return await cancelCurrentOrder(); // Recursively call the function with the new token
+  }
+
+  return data;
+}
+
 export default function ProfilePage() {
   return (
     <main className="mt-28 flex flex-col gap-10 px-3 lg:grid lg:grid-cols-2 lg:justify-between lg:px-20">
@@ -94,7 +113,10 @@ export default function ProfilePage() {
         updateUserData={updateUserData}
       />
       <PastOrders getPastOrders={getPastOrders} />
-      <CurrentOrder fetchCUrrentOrder={fetchCUrrentOrder} />
+      <CurrentOrder
+        fetchCUrrentOrder={fetchCUrrentOrder}
+        cancelCurrentOrder={cancelCurrentOrder}
+      />
       <DeleteUser />
     </main>
   );

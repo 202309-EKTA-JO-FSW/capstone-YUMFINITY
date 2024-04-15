@@ -30,11 +30,16 @@ const fakeOrder = {
 import { useEffect, useState } from "react";
 import { BsCartCheckFill } from "react-icons/bs";
 
-export default function CurrentOrder({ fetchCUrrentOrder }) {
+export default function CurrentOrder({
+  fetchCUrrentOrder,
+  cancelCurrentOrder,
+}) {
   const [currentOrder, setCurrentOrder] = useState(null);
 
-  function handleCancel() {
-    setCurrentOrder(null);
+  async function handleCancel() {
+    const res = await cancelCurrentOrder();
+    console.log(res);
+    if (res.message.includes("successfully")) setCurrentOrder(null);
   }
 
   useEffect(() => {
@@ -45,7 +50,6 @@ export default function CurrentOrder({ fetchCUrrentOrder }) {
         return;
       }
       if (order) {
-        console.log(order);
         setCurrentOrder(order);
       }
     }
