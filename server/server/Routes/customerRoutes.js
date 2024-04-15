@@ -42,4 +42,7 @@ router.get("/account-details", customerController.getCustomerById);
 // Update user data
 router.post("/account-details", customerController.updateCustomer);
 
+// Delete account
+router.delete("/delete-account", customerController.deleteCustomer);
+
 module.exports = router;

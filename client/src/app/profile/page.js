@@ -105,6 +105,30 @@ async function cancelCurrentOrder() {
   return data;
 }
 
+async function deleteAccount() {
+  "use server";
+
+  const res = await fetch(`${main_url_BACKEND}/delete-account`, {
+    method: "DELETE",
+    headers: {
+      Cookie: cookies().toString(),
+    },
+  });
+  const data = await res.json();
+
+  if (data?.error?.message === "jwt expired") {
+    await refreshAccessToken();
+    return await deleteAccount(); // Recursively call the function with the new token
+  }
+
+  if (data.message.includes("successfully")) {
+    cookies().delete("accessToken");
+    cookies().delete("refreshToken");
+    cookies().delete("user");
+    return data;
+  }
+}
+
 export default function ProfilePage() {
   return (
     <main className="mt-28 flex flex-col gap-10 px-3 lg:grid lg:grid-cols-2 lg:justify-between lg:px-20">
@@ -117,7 +141,7 @@ export default function ProfilePage() {
         fetchCUrrentOrder={fetchCUrrentOrder}
         cancelCurrentOrder={cancelCurrentOrder}
       />
-      <DeleteUser />
+      <DeleteUser deleteAccount={deleteAccount} />
     </main>
   );
 }

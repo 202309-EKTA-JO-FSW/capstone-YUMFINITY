@@ -214,14 +214,12 @@ const customerController = {
       const deletedCustomer = await User.findByIdAndDelete(id);
 
       if (!deletedCustomer) {
-        return res
-          .clearCookie("refreshToken")
-          .clearCookie("accessToken")
-          .status(404)
-          .json({ message: "Customer not found" });
+        return res.status(404).json({ message: "Customer not found" });
       }
 
       res
+        .clearCookie("refreshToken")
+        .clearCookie("accessToken")
         .status(202)
         .json({ message: "Customer deleted successfully", deletedCustomer });
     } catch (error) {
