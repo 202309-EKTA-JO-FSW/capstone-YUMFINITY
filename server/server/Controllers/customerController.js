@@ -58,7 +58,9 @@ const customerController = {
       const currentOrder = await Order.findOne({
         userId: id,
         orderStatus: "delivering",
-      });
+      })
+        .populate("restaurantId")
+        .populate("items.itemId");
       // if there isn't a current order then send back message
       if (!currentOrder)
         return res.status(404).json({ message: "No Current Order" });

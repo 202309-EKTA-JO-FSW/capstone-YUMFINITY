@@ -27,15 +27,30 @@ const fakeOrder = {
   },
 };
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsCartCheckFill } from "react-icons/bs";
 
-export default function CurrentOrder() {
-  const [currentOrder, setCurrentOrder] = useState(fakeOrder);
+export default function CurrentOrder({ fetchCUrrentOrder }) {
+  const [currentOrder, setCurrentOrder] = useState(null);
 
   function handleCancel() {
     setCurrentOrder(null);
   }
+
+  useEffect(() => {
+    async function getOrder() {
+      const order = await fetchCUrrentOrder();
+      if (order.message) {
+        setCurrentOrder(null);
+        return;
+      }
+      if (order) {
+        console.log(order);
+        setCurrentOrder(order);
+      }
+    }
+    getOrder();
+  }, []);
 
   return (
     <article className="order-2 rounded-lg bg-orange-200 shadow-lg dark:bg-yellow-YUMFINITY/80 dark:shadow-red-YUMFINITY/40">
@@ -61,9 +76,7 @@ export default function CurrentOrder() {
         <section className="m-3 flex flex-col rounded-lg border bg-white shadow-lg *:flex *:flex-col *:items-start *:justify-start *:border-b *:px-4 *:py-4 *:md:flex-row *:md:justify-between lg:m-6 *:lg:items-center dark:bg-gray-950">
           <fieldset>
             <div className="text-lg font-bold">Order Date</div>
-            <div className="text-lg">
-              {currentOrder.orderDate.toLocaleDateString("en-US")}
-            </div>
+            <div className="text-lg">{currentOrder.orderDate}</div>
           </fieldset>
           <fieldset>
             <div className="text-lg font-bold">Delivery Address</div>
@@ -71,7 +84,7 @@ export default function CurrentOrder() {
           </fieldset>
           <fieldset>
             <div className="text-lg font-bold">Restaurant</div>
-            <div className="text-lg">{currentOrder.restaurantId}</div>
+            <div className="text-lg">{currentOrder.restaurantId.name}</div>
           </fieldset>
           <fieldset>
             <div className="flex w-full flex-col items-start gap-3">
@@ -87,7 +100,7 @@ export default function CurrentOrder() {
                     key={index}
                     className={`grid grid-cols-4 items-center border-black-YUMFINITY px-8 py-2 dark:border-white-YUMFINITY ${index === currentOrder?.items.length - 1 ? "" : "border-b"}`}
                   >
-                    <div className="col-span-2">{item.itemId}</div>
+                    <div className="col-span-2">{item.itemId.title}</div>
                     <div className="flex items-center gap-1">
                       {item.quantity}
                       <BsCartCheckFill />
