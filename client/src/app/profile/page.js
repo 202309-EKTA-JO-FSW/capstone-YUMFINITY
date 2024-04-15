@@ -50,6 +50,24 @@ async function updateUserData(fields) {
   return data;
 }
 
+async function getPastOrders() {
+  "use server";
+
+  const res = await fetch(`${main_url_BACKEND}/orders`, {
+    headers: {
+      Cookie: cookies().toString(),
+    },
+  });
+  const data = await res.json();
+
+  if (data?.error?.message === "jwt expired") {
+    await refreshAccessToken();
+    return await getPastOrders(); // Recursively call the function with the new token
+  }
+
+  return data;
+}
+
 // async function updateUserData(fields) {
 // }
 
@@ -60,7 +78,7 @@ export default function ProfilePage() {
         fetchUserData={fetchUserData}
         updateUserData={updateUserData}
       />
-      <PastOrders />
+      <PastOrders getPastOrders={getPastOrders} />
       <CurrentOrder />
       <DeleteUser />
     </main>

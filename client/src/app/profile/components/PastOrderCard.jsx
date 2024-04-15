@@ -15,14 +15,8 @@ export default function PastOrderCard({ className, order }) {
     >
       <fieldset>
         <div className="text-lg font-bold">Order Date</div>
-        <div className="text-lg">
-          {order.orderDate.toLocaleDateString("en-US")}
-        </div>
+        <div className="text-lg">{order.orderDate}</div>
       </fieldset>
-      {/* <fieldset>
-        <div className="text-lg font-bold">Delivery Address</div>
-        <div className="text-lg">{}</div>
-      </fieldset> */}
       <fieldset>
         <div className="text-lg font-bold">Restaurant</div>
         <div className="text-lg">{order.restaurantId}</div>
@@ -92,7 +86,7 @@ export default function PastOrderCard({ className, order }) {
                 key={index}
                 className="grid w-full grid-cols-4 items-center py-2 lg:w-11/12"
               >
-                <div className="col-span-2">{item.itemId}</div>
+                <div className="col-span-2">{item.itemId.title}</div>
                 <div className="flex items-center gap-1">
                   {item.quantity}
                   <BsCartCheckFill />

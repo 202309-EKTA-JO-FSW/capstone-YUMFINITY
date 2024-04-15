@@ -32,6 +32,7 @@ const customerController = {
 
       // Execute the aggregation pipeline
       const ordersWithReviews = await Order.aggregate(pipeline);
+      await Item.populate(ordersWithReviews, { path: "items.itemId" });
 
       // check if no orders was found
       if (!ordersWithReviews.length)
